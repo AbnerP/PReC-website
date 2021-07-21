@@ -1,0 +1,36 @@
+.container {
+  background-color: #252B42;
+
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+}
+
+.logo-container{
+  width: 30%;
+  height: auto;
+  background: url("/PREC/src/app/images/logo.jpg");
+}
+
+.logo{
+  width: 100px;
+  height: auto;
+}
+
+.links{
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.links li{
+  text-decoration: none;
+  list-style: none;
+}
+
+a{
+  color: #FBCC02;
+  text-decoration: none;
+  font-family: "Montserrat-Medium";
+  font-size: 16 px;
+}
