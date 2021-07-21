@@ -1,36 +1,64 @@
 .container {
+  height: 110px;
   background-color: #252B42;
 
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between; */
+  justify-content: space-between;
+  align-items:center;
 }
 
 .logo-container{
+  margin-left: 10px;
   width: 30%;
   height: auto;
-  background: url("/PREC/src/app/images/logo.jpg");
 }
 
 .logo{
   width: 100px;
   height: auto;
+  background: url("logo.png");
 }
 
-.links{
-  width: 500px;
+.routes{
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.pages{
+  width: 50%;
   display: flex;
   justify-content: space-around;
 }
 
-.links li{
-  text-decoration: none;
-  list-style: none;
+.authentication{
+  width: 40%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
+.signup{
+  border-radius: 10px;
+  background-color: #FBCC02;
+  padding: 20px 25px;
+}
+
+.login{
+  border-radius: 10px;
+  border-style: solid;
+  border-width: .5px;
+  border-color: #FBCC02;
+  padding: 20px 25px;
+}
+
+
 a{
-  color: #FBCC02;
+  /* color: #FBCC02; */
+  color: white;
   text-decoration: none;
   font-family: "Montserrat-Medium";
-  font-size: 16 px;
+  font-size: 16px;
 }
