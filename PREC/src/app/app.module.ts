@@ -11,6 +11,7 @@ import { DriversComponent } from './drivers/Drivers.component';
 import { CalculatorComponent } from './calculator/Calculator.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { AboutUsComponent } from './home/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SignupComponent } from './signup/signup.component';
       DriversComponent,
       CalculatorComponent,
       LoginComponent,
-      SignupComponent
+      SignupComponent,
+      AboutUsComponent
    ],
   imports: [
     BrowserModule,
