@@ -12,6 +12,8 @@ import { CalculatorComponent } from './calculator/Calculator.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AboutUsComponent } from './home/about-us/about-us.component';
+import { JoinUsComponent } from './home/join-us/join-us.component';
+import { CalendarPreviewComponent } from './home/calendar-preview/calendar-preview.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AboutUsComponent } from './home/about-us/about-us.component';
       CalculatorComponent,
       LoginComponent,
       SignupComponent,
-      AboutUsComponent
+      AboutUsComponent,
+      JoinUsComponent,
+      CalendarPreviewComponent
    ],
   imports: [
     BrowserModule,
