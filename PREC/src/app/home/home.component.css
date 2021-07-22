@@ -9,7 +9,7 @@ hr{
 
 .bg-image{
   width: 100%;
-  height: 200px;
+  height: auto;
   object-fit:cover;
   object-position: 30% 60%;
   position: relative;
