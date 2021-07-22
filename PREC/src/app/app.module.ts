@@ -14,6 +14,8 @@ import { SignupComponent } from './signup/signup.component';
 import { AboutUsComponent } from './home/about-us/about-us.component';
 import { JoinUsComponent } from './home/join-us/join-us.component';
 import { CalendarPreviewComponent } from './home/calendar-preview/calendar-preview.component';
+import { FooterComponent } from './general-components/nav-bar/footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { CalendarPreviewComponent } from './home/calendar-preview/calendar-previ
       SignupComponent,
       AboutUsComponent,
       JoinUsComponent,
-      CalendarPreviewComponent
+      CalendarPreviewComponent,
+      FooterComponent
    ],
   imports: [
     BrowserModule,
