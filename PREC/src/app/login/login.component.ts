@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit {
   login(userCredentials:userCredentials){
   //   this.security.login(userCredentials).subscribe(authenticationResponse =>{
   //     this.security.saveToken(authenticationResponse);
-  //     this.router.navigate(['/']);
+  //
   //   },error => this.errors = parseWebAPIErrors(error));
+    this.router.navigate(['/']);
   }
 }
