@@ -14,7 +14,7 @@ export class AuthenticationFormComponent implements OnInit {
   form:FormGroup;
 
   @Input()
-  action: string = 'Register';
+  action: string = 'Sign Up';
 
   @Output()
   onSubmit = new EventEmitter<userCredentials>();
