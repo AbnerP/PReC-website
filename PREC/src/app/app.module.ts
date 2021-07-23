@@ -15,6 +15,9 @@ import { AboutUsComponent } from './home/about-us/about-us.component';
 import { JoinUsComponent } from './home/join-us/join-us.component';
 import { CalendarPreviewComponent } from './home/calendar-preview/calendar-preview.component';
 import { FooterComponent } from './general-components/nav-bar/footer/footer.component';
+import { DisplayErrorsComponent } from './utilities/display-errors/display-errors.component';
+import { AuthenticationFormComponent } from './security/authentication-form/authentication-form.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,13 +32,18 @@ import { FooterComponent } from './general-components/nav-bar/footer/footer.comp
       AboutUsComponent,
       JoinUsComponent,
       CalendarPreviewComponent,
-      FooterComponent
+      FooterComponent,
+      DisplayErrorsComponent,
+      AuthenticationFormComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
