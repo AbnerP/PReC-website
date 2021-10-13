@@ -1,3 +1,20 @@
-<p>
-  Calculator works!
-</p>
+<div class="form">
+  <form (submit)="saveChanges()" [formGroup]="form">
+    <mat-form-field appearance="standard">
+      <mat-label>Tire</mat-label>
+      <input formControlName="tire" matInput>
+      <mat-error>The title field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Trailer</mat-label>
+      <input formControlName="trailer" matInput>
+    </mat-form-field>
+
+    <div>
+      <button mat-flat-button color="primary" [disabled]="form.invalid">Save Changes</button>
+      <a mat-stroked-button routerLink="/home">Cancel</a>
+    </div>
+
+  </form>
+</div>

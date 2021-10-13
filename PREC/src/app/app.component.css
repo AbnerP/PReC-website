@@ -48,8 +48,8 @@
   src: local("Montserrat-SemiBold"), url(../assets/fonts/Montserrat/Montserrat-SemiBold.ttf) format("truetype");
 }
 
-.container{
+.app{
   width: 100%;
-  height: 100%;
-  background-color: #252B42;
+  height: 95%;
+  /* background-color: #252B42; */
 }
