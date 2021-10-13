@@ -1,33 +1,43 @@
 package com.abnerpena;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TelemetryData {
 
-    private ArrayList<Double> lapTimes;
+    private HashMap<String,TireTelemetry> data;
 
     public TelemetryData(){
-        this.lapTimes = new ArrayList<>();
+        this.data = new HashMap<>();
     }
 
-    public double lapTimeAt(int index){
-        return this.lapTimes.get(index);
+    public double lapTimeAt(String tire,int index){
+        return this.data.get(tire).lapTimeAt(index);
+    }
+
+    public int numberOfTires(){
+        return this.data.size();
     }
 
     public void generateMockData(){
-        this.lapTimes.add(30.0);
-        this.lapTimes.add(30.60);
-        this.lapTimes.add(31.21);
-        this.lapTimes.add(31.84);
-        this.lapTimes.add(32.47);
-        this.lapTimes.add(33.12);
-        this.lapTimes.add(33.78);
-        this.lapTimes.add(34.46);
-        this.lapTimes.add(35.15);
-        this.lapTimes.add(35.85);
+        TireTelemetry s = new TireTelemetry();
+        TireTelemetry m = new TireTelemetry();
+        TireTelemetry h = new TireTelemetry();
+
+        s.generateSoftMockData();
+        m.generateMediumMockData();
+        h.generateHardMockData();
+
+        this.data.put("Soft",s);
+        this.data.put("Medium",m);
+        this.data.put("Hard",h);
     }
 
-    public int indexedMaxLap(){
-        return this.lapTimes.size()-2;
+    public double getLap(String compound,int index){
+        return this.data.get(compound).lapTimeAt(index);
+    }
+
+    public int maxIndexedLap(String compound){
+        return this.data.get(compound).indexedMaxLap();
     }
 }
