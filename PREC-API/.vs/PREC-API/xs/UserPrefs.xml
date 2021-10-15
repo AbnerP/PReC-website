@@ -1,0 +1,28 @@
+﻿<Properties StartupConfiguration="{45332130-CEBD-4806-9C1A-DEAD83BA4276}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PREC-API/Models/EmptyJSONFile.json">
+    <Files>
+      <File FileName="PREC-API/Models/Tire.cs" Line="13" Column="5" />
+      <File FileName="PREC-API/Models/EmptyJSONFile.json" Line="4" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PREC-API" expanded="True">
+            <Node name="PREC-API" expanded="True">
+              <Node name="Models" expanded="True">
+                <Node name="EmptyJSONFile.json" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.PREC-API FirstBuild="True" PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>
