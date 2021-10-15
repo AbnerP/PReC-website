@@ -23,7 +23,7 @@ public class TireTelemetry {
         this.lapTimes.add(34.78);
         this.lapTimes.add(35.46);
         this.lapTimes.add(36.15);
-        this.lapTimes.add(37.85);
+        this.lapTimes.add(36.85);
     }
 
     public void generateMediumMockData(){
@@ -66,6 +66,10 @@ public class TireTelemetry {
         this.lapTimes.add(37.15);
         this.lapTimes.add(38.85);
         this.lapTimes.add(38.85);
+    }
+
+    public ArrayList<Double> getLapTimes(){
+        return this.lapTimes;
     }
 
     public int indexedMaxLap(){

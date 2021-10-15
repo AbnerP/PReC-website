@@ -33,6 +33,10 @@ public class TelemetryData {
         this.data.put("Hard",h);
     }
 
+    public ArrayList<Double> getLapTimes(String compound){
+        return this.data.get(compound).getLapTimes();
+    }
+
     public double getLap(String compound,int index){
         return this.data.get(compound).lapTimeAt(index);
     }
