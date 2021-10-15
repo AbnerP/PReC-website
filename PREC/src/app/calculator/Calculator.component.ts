@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { laptimes } from 'src/models/laptimes.model';
+import { laptimes } from 'src/models/telemetry.model';
 
 @Component({
   selector: 'app-Calculator',
