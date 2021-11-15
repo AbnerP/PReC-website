@@ -8,8 +8,16 @@
 
   <ItemGroup>
     <None Remove="Models\" />
+    <None Remove="Swashbuckle.AspNetCore" />
+    <None Remove="Classes\" />
+    <None Remove="Newtonsoft.Json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Classes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 </Project>

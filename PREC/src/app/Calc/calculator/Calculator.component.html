@@ -1,0 +1,22 @@
+<div class="form">
+  <form (submit)="setNumTires()" [formGroup]="numTires" class="numTiresForm">
+
+    <mat-form-field appearance="standard" class="numTires">
+      <mat-label>Number of Tires</mat-label>
+      <input formControlName="tires" matInput>
+      <mat-error>Number of tires required</mat-error>
+    </mat-form-field>
+
+    <div>
+      <button mat-flat-button color="primary" [disabled]="numTires.invalid">Save</button>
+    </div>
+
+  </form>
+
+  <div *ngIf="numberOfTires">
+    <div *ngFor="let tire of numberOfTiresArr">
+      <app-tireDataForm></app-tireDataForm>
+    </div>
+  </div>
+
+</div>

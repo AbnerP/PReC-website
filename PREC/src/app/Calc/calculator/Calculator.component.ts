@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { laptimes } from 'src/models/telemetry.model';
+import {fullTelemetry,tireTelemetry} from 'src/models/telemetry.model';
 
 @Component({
   selector: 'app-Calculator',
@@ -11,17 +11,23 @@ export class CalculatorComponent implements OnInit {
 
   constructor(private formbuilder:FormBuilder) { }
 
-  form:FormGroup;
-  model: laptimes;
+  numTires:FormGroup;
+
+  numberOfTires:number;
+  numberOfTiresArr:Array<number> = [];
 
   ngOnInit() {
-    this.form = this.formbuilder.group({
-      tire:['',{validators:[Validators.required]}],
-      laptimes:''
+    this.numTires = this.formbuilder.group({
+      tires:['',{validators:[Validators.required]}]
     });
-
-    if(this.model !== undefined){
-      this.form.patchValue(this.model);
+    // if(this.model !== undefined){
+    //   this.form.patchValue(this.model);
+    // }
+  }
+  setNumTires(){
+    this.numberOfTires = this.numTires.value.tires;
+    for(let i = 0;i<this.numberOfTires;i++){
+      this.numberOfTiresArr.push(i);
     }
   }
 
