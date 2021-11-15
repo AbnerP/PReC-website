@@ -20,6 +20,7 @@ import { AuthenticationFormComponent } from './security/authentication-form/auth
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TireDataFormComponent } from './Calc/tireDataForm/tireDataForm.component';
 import { LapInputsComponent } from './Calc/LapInputs/LapInputs.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -46,8 +47,8 @@ import { LapInputsComponent } from './Calc/LapInputs/LapInputs.component';
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

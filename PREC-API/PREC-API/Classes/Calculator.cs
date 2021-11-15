@@ -178,10 +178,11 @@ namespace PREC_API.Classes
         private Strategy resultingStrategy(Strategy currentStrategy, int currentLap, bool pit, String compound)
         {
             Strategy copy = new Strategy();
-            for (int i = 0; i < currentStrategy.getPitLaps().Count; i++)
-            {
-                copy.addPitLap(currentStrategy.getCompounds()[i], currentStrategy.getPitLaps()[i]);
-            }
+            copy.setPits(new Dictionary<int,String>(currentStrategy.getPits()));
+            //for (int i = 0; i < currentStrategy.getPitLaps().Count; i++)
+            //{
+            //    copy.addPitLap(currentStrategy.getCompounds()[i], currentStrategy.getPitLaps()[i]);
+            //}
             if (pit && compound != null)
             {
                 copy.addPitLap(compound, currentLap);

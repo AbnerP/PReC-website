@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace PREC_API
 {
@@ -32,6 +33,15 @@ namespace PREC_API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PREC API", Version = "v1" });
             });
+
+            services.AddCors(options => {
+                options.AddDefaultPolicy(builder =>
+                {
+                    var frontendURL = Configuration.GetValue<string>("frontend_url");
+                    builder.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader()
+                    .WithExposedHeaders(new string[] { "totalAmountOfRecords" });
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +57,8 @@ namespace PREC_API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
