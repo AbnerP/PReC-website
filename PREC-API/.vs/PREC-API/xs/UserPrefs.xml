@@ -1,17 +1,17 @@
 ﻿<Properties StartupConfiguration="{45332130-CEBD-4806-9C1A-DEAD83BA4276}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="PREC-API/DTO/LapDTO.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PREC-API/Controllers/CalculatorController.cs">
     <Files>
       <File FileName="PREC-API/Classes/Strategy.cs" Line="10" Column="15" />
-      <File FileName="PREC-API/Classes/TireTelemetry.cs" Line="66" Column="13" />
+      <File FileName="PREC-API/Classes/TireTelemetry.cs" />
       <File FileName="PREC-API/Classes/TelemetryData.cs" />
       <File FileName="PREC-API/Classes/Calculator.cs" />
-      <File FileName="PREC-API/Controllers/CalculatorController.cs" Line="35" Column="17" />
+      <File FileName="PREC-API/Controllers/CalculatorController.cs" Line="37" Column="87" />
       <File FileName="PREC-API/Program.cs" />
       <File FileName="PREC-API/Models/EmptyJSONFile.json" />
       <File FileName="PREC-API/Models/Tire.cs" />
-      <File FileName="PREC-API/DTO/TireTelemetryDTO.cs" Line="7" Column="6" />
+      <File FileName="PREC-API/DTO/TireTelemetryDTO.cs" />
       <File FileName="PREC-API/DTO/TelemetryDTO.cs" />
-      <File FileName="PREC-API/DTO/LapDTO.cs" Line="10" Column="1" />
+      <File FileName="PREC-API/DTO/LapDTO.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,10 +19,10 @@
           <Node name="PREC-API" expanded="True">
             <Node name="PREC-API" expanded="True">
               <Node name="Classes" expanded="True" />
-              <Node name="Controllers" expanded="True" />
-              <Node name="DTO" expanded="True">
-                <Node name="LapDTO.cs" selected="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="CalculatorController.cs" selected="True" />
               </Node>
+              <Node name="DTO" expanded="True" />
             </Node>
           </Node>
         </State>

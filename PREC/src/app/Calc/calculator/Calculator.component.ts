@@ -233,29 +233,21 @@ export class CalculatorComponent implements OnInit {
     ]
   };
   ngOnInit() {
-
-    // this.numTires = this.formbuilder.group({
-    //   tires:['',{validators:[Validators.required]}]
-    // });
-    // if(this.model !== undefined){
-    //   this.form.patchValue(this.model);
-    // }
   }
   ngAfterContentInit(): void {
-    //Called after ngOnInit when the component's or directive's content has been initialized.
-    //Add 'implements AfterContentInit' to the class.
-    // this.calculatorService.get().subscribe((data) => {
-    //   this.json = data;
-    // });
-    console.log(this.telemetryData);
-    this.calculatorService.post(this.telemetryData);
+    this.calculatorService.post(this.telemetryData)
+      .then((res)=>{
+        this.pits = res.pits;
+        this.compounds = res.compounds;
+        this.totalTime = res.totalTime;
+      });
     // .subscribe((data) =>{
     //   console.log(data);
     //   this.pits = data.pits;
     //   this.compounds = data.compounds;
     //   this.totalTime = data.totalTime;
     // });
-    console.log(this.pits);
+    // console.log(this.pits);
   }
   // setNumTires(){
   //   this.numberOfTires = this.numTires.value.tires;

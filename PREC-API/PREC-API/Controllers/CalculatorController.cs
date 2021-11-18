@@ -23,11 +23,11 @@ namespace PREC_API.Controllers
         }
 
         [HttpPost]
-        public String Post(TelemetryDTO d)
+        public String Post([FromBody] TelemetryDTO d)
         {
             Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(d));
             TelemetryData data = new TelemetryData(d);
-            data.generateMockData();
+            //data.generateMockData();
             Calculator calculator = new Calculator(20, 30, data);
             Strategy s = calculator.getBestStrategy();
 
