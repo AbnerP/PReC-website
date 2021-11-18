@@ -1,7 +1,6 @@
 export interface strategy{
-  // pits: Array<pitStop>,
   compounds: Array<string>,
-  pitLaps: Array<number>,
+  pits: Array<number>,
   totalTime: number
 }
 

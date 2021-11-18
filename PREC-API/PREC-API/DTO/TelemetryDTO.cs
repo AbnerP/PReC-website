@@ -1,10 +1,11 @@
 ﻿using System;
-namespace PREC_API.Classes
+using System.Collections.Generic;
+using PREC_API.DTO;
+
+namespace PREC_API.DTO
 {
     public class TelemetryDTO
     {
-        public TelemetryDTO()
-        {
-        }
+        public List<TireTelemetryDTO> data { get; set; }
     }
 }

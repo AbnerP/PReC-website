@@ -1,10 +1,9 @@
 ﻿using System;
-namespace PREC_API.Classes
+namespace PREC_API.DTO
 {
-    public class Lap
+    public class LapDTO
     {
-        public Lap()
-        {
-        }
+        public int lap { get; set; }
+        public double time { get; set; }
     }
 }

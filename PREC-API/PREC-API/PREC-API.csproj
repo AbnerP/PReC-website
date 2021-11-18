@@ -11,10 +11,12 @@
     <None Remove="Swashbuckle.AspNetCore" />
     <None Remove="Classes\" />
     <None Remove="Newtonsoft.Json" />
+    <None Remove="DTO\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Classes\" />
+    <Folder Include="DTO\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />

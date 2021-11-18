@@ -6,11 +6,13 @@ namespace PREC_API.Classes
 {
     public class TireTelemetry
     {
+        private Dictionary<String, List<double>> data;
         private List<double> lapTimes;
 
         public TireTelemetry()
         {
             this.lapTimes = new List<double>();
+            this.data = new Dictionary<String, List<double>>();
         }
 
         public double lapTimeAt(int index)
@@ -30,6 +32,7 @@ namespace PREC_API.Classes
             this.lapTimes.Add(35.46);
             this.lapTimes.Add(36.15);
             this.lapTimes.Add(36.85);
+            this.data.Add("Soft", this.lapTimes);
         }
 
         public void generateMediumMockData()
@@ -48,6 +51,7 @@ namespace PREC_API.Classes
             this.lapTimes.Add(37.15);
             this.lapTimes.Add(38.85);
             this.lapTimes.Add(39.85);
+            this.data.Add("Medium", this.lapTimes);
         }
 
         public void generateHardMockData()
@@ -74,6 +78,7 @@ namespace PREC_API.Classes
             this.lapTimes.Add(37.15);
             this.lapTimes.Add(38.85);
             this.lapTimes.Add(38.85);
+            this.data.Add("Hard", this.lapTimes);
         }
 
         public List<double> getLapTimes()

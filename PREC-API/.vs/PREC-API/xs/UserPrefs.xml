@@ -1,25 +1,28 @@
 ﻿<Properties StartupConfiguration="{45332130-CEBD-4806-9C1A-DEAD83BA4276}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="PREC-API/Classes/Calculator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PREC-API/DTO/LapDTO.cs">
     <Files>
       <File FileName="PREC-API/Classes/Strategy.cs" Line="10" Column="15" />
-      <File FileName="PREC-API/Classes/Calculator.cs" Line="181" Column="81" />
-      <File FileName="PREC-API/Controllers/CalculatorController.cs" Line="23" Column="1" />
-      <File FileName="PREC-API/Program.cs" Line="16" Column="1" />
+      <File FileName="PREC-API/Classes/TireTelemetry.cs" Line="66" Column="13" />
+      <File FileName="PREC-API/Classes/TelemetryData.cs" />
+      <File FileName="PREC-API/Classes/Calculator.cs" />
+      <File FileName="PREC-API/Controllers/CalculatorController.cs" Line="35" Column="17" />
+      <File FileName="PREC-API/Program.cs" />
+      <File FileName="PREC-API/Models/EmptyJSONFile.json" />
+      <File FileName="PREC-API/Models/Tire.cs" />
+      <File FileName="PREC-API/DTO/TireTelemetryDTO.cs" Line="7" Column="6" />
+      <File FileName="PREC-API/DTO/TelemetryDTO.cs" />
+      <File FileName="PREC-API/DTO/LapDTO.cs" Line="10" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PREC-API" expanded="True">
             <Node name="PREC-API" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="FrameworkReferences" expanded="True" />
-                <Node name="PackageDependencies" expanded="True" />
-              </Node>
-              <Node name="Classes" expanded="True">
-                <Node name="Calculator.cs" selected="True" />
-              </Node>
+              <Node name="Classes" expanded="True" />
               <Node name="Controllers" expanded="True" />
-              <Node name="appsettings.json" expanded="True" />
+              <Node name="DTO" expanded="True">
+                <Node name="LapDTO.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>

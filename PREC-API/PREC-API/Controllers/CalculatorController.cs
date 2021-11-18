@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PREC_API.Classes;
+using PREC_API.DTO;
 
 namespace PREC_API.Controllers
 {
@@ -21,10 +22,11 @@ namespace PREC_API.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public String Get()
+        [HttpPost]
+        public String Post(TelemetryDTO d)
         {
-            TelemetryData data = new TelemetryData();
+            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(d));
+            TelemetryData data = new TelemetryData(d);
             data.generateMockData();
             Calculator calculator = new Calculator(20, 30, data);
             Strategy s = calculator.getBestStrategy();
