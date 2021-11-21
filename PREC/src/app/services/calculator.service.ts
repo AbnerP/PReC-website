@@ -14,8 +14,8 @@ export class CalculatorService {
 
   private apiURL = environment.apiURL + '/calculator';
 
-  async post(data:Telemetry){
-    const res = await axios.post<strategy>(this.apiURL, data);
+  async post(data:Telemetry, laps:number, pitLoss:number){
+    const res = await axios.post<strategy>(this.apiURL, data, { params: { laps: laps, pitLoss:pitLoss } });
     return res.data;
   }
 }

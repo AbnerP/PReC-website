@@ -1,29 +1,54 @@
+<div class="add-lessons-form" [formGroup]="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Race Length</mat-label>
+    <input matInput
+    formControlName="raceLength"
+    placeholder="10">
+  </mat-form-field>
+  <mat-label>laps</mat-label>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Time Lost in Pits</mat-label>
+    <input matInput
+    formControlName="pitLoss"
+    placeholder="30.1">
+  </mat-form-field>
+  <mat-label>seconds</mat-label>
+  <br>
+  <!-- <mat-form-field appearance="fill">
+    <input matInput
+    formControlName="numTires"
+    placeholder="lessonTitle">
+  </mat-form-field> -->
+
+  <ng-container formArrayName="laps">
+    <ng-container *ngFor="let lap of laps.controls, let i = index">
+      <div class="lesson-form-row" [formGroupName]="i">
+        <mat-form-field appearance="fill">
+          <mat-label>{{i+1}}</mat-label>
+          <input matInput
+          formControlName="time"
+          placeholder="0:00.00">
+        </mat-form-field>
+        <button mat-mini-fab><mat-icon (click)="deleteLap(i)">delete_forever</mat-icon></button>
+      </div>
+    </ng-container>
+    <button mat-mini-fab (click)="addLap()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </ng-container>
+
+
+
+</div>
+
+
 <!-- {{telemetryData |json}} -->
-{{pits | json}}
-<br>
-{{compounds}}
-<br>
-{{totalTime}}
-<!-- {{strat.totalTime}} -->
-<!-- <div class="form">
-  <form (submit)="setNumTires()" [formGroup]="numTires" class="numTiresForm">
+<!-- {{pits | json}} -->
+<!-- <br> -->
+<!-- {{totalTime}} -->
+<!-- <br> -->
+<!-- {{res | json}} -->
 
-    <mat-form-field appearance="standard" class="numTires">
-      <mat-label>Number of Tires</mat-label>
-      <input formControlName="tires" matInput>
-      <mat-error>Number of tires required</mat-error>
-    </mat-form-field>
 
-    <div>
-      <button mat-flat-button color="primary" [disabled]="numTires.invalid">Save</button>
-    </div>
 
-  </form>
-
-  <div *ngIf="numberOfTires">
-    <div *ngFor="let tire of numberOfTiresArr">
-      <app-tireDataForm></app-tireDataForm>
-    </div>
-  </div>
-
-</div> -->
