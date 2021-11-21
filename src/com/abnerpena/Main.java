@@ -6,7 +6,7 @@ public class Main {
         TelemetryData d = new TelemetryData();
         d.generateMockData();
 
-        calculator c = new calculator(14,30,d);
+        calculator c = new calculator(20,30,d);
 
         Strategy s = c.getBestStrategy();
 

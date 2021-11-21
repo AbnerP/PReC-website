@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiURL: 'https://www.googleapis.com/calendar/v3'
+  googleapiURL: 'https://www.googleapis.com/calendar/v3',
+  apiURL: 'https://localhost:5001/api'
 };
 
 /*

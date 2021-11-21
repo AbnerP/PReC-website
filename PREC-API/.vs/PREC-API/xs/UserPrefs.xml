@@ -1,17 +1,28 @@
 ﻿<Properties StartupConfiguration="{45332130-CEBD-4806-9C1A-DEAD83BA4276}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="PREC-API/Models/EmptyJSONFile.json">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PREC-API/Controllers/CalculatorController.cs">
     <Files>
-      <File FileName="PREC-API/Models/Tire.cs" Line="13" Column="5" />
-      <File FileName="PREC-API/Models/EmptyJSONFile.json" Line="4" Column="1" />
+      <File FileName="PREC-API/Classes/Strategy.cs" Line="10" Column="15" />
+      <File FileName="PREC-API/Classes/TireTelemetry.cs" />
+      <File FileName="PREC-API/Classes/TelemetryData.cs" />
+      <File FileName="PREC-API/Classes/Calculator.cs" />
+      <File FileName="PREC-API/Controllers/CalculatorController.cs" Line="37" Column="87" />
+      <File FileName="PREC-API/Program.cs" />
+      <File FileName="PREC-API/Models/EmptyJSONFile.json" />
+      <File FileName="PREC-API/Models/Tire.cs" />
+      <File FileName="PREC-API/DTO/TireTelemetryDTO.cs" />
+      <File FileName="PREC-API/DTO/TelemetryDTO.cs" />
+      <File FileName="PREC-API/DTO/LapDTO.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PREC-API" expanded="True">
             <Node name="PREC-API" expanded="True">
-              <Node name="Models" expanded="True">
-                <Node name="EmptyJSONFile.json" selected="True" />
+              <Node name="Classes" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="CalculatorController.cs" selected="True" />
               </Node>
+              <Node name="DTO" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -24,5 +35,5 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.PREC-API FirstBuild="True" PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.ItemProperties.PREC-API PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

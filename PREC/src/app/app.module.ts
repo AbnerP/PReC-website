@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './general-components/nav-bar/nav-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DriversComponent } from './drivers/Drivers.component';
-import { CalculatorComponent } from './calculator/Calculator.component';
+import { CalculatorComponent } from './Calc/calculator/Calculator.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AboutUsComponent } from './home/about-us/about-us.component';
@@ -18,6 +18,9 @@ import { FooterComponent } from './general-components/nav-bar/footer/footer.comp
 import { DisplayErrorsComponent } from './utilities/display-errors/display-errors.component';
 import { AuthenticationFormComponent } from './security/authentication-form/authentication-form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { TireDataFormComponent } from './Calc/tireDataForm/tireDataForm.component';
+import { LapInputsComponent } from './Calc/LapInputs/LapInputs.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -34,7 +37,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
       CalendarPreviewComponent,
       FooterComponent,
       DisplayErrorsComponent,
-      AuthenticationFormComponent
+      AuthenticationFormComponent,
+      TireDataFormComponent,
+      LapInputsComponent
    ],
   imports: [
     BrowserModule,
@@ -42,8 +47,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,49 @@
-<p>
-  Drivers works!
-</p>
+<!-- <div *ngFor="let control of skills.controls; index as i">
+  <input [formControl]="skills.controls[i]">
+
+</div> -->
+<!--
+<h3>Add Course Lessons</h3>
+<div class="add-lessons-form" [formGroup]="form"]>
+  <ng-container formArrayName="lessons">
+    <ng-container *ngFor="let lessonForm of lessons.controls; let i = index">
+      <div class="lessons-form-row" [formGroup]="lessonForm">
+
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Lesson title" formControlName="title">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-select placeholder="Lesson Level" formControlName="level">
+            <mat-option value="beginner">Beginner</mat-option>
+            <mat-option value="intermediate">Intermediate</mat-option>
+            <mat-option value="advanced">Advanced</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-icon class="delete-btn" (click)="deleteLesson(i)">delete_forever</mat-icon>
+      </div>
+    </ng-container>
+  </ng-container>
+
+
+
+
+  <button mat-mini-fab (click)="addLesson()">
+    <mat-icon class="add-course-btn">add</mat-icon>
+  </button>
+</div> -->
+
+
+
+
+<!-- <form [formGroup]="user">
+  <input formControlName="name">
+  <ng-container formArrayName="skills">
+    <div *ngFor="let _ of skills.controls; index as i">
+      <ng-container [formGroupName]="i">
+        <input formControlName="name" />
+      </ng-container>
+    </div>
+  </ng-container>
+</form> -->
