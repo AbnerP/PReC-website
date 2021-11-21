@@ -15,30 +15,34 @@
   </mat-form-field>
   <mat-label>seconds</mat-label>
   <br>
-  <!-- <mat-form-field appearance="fill">
+  <mat-form-field appearance="fill">
+    <mat-label>Number of Tires</mat-label>
     <input matInput
     formControlName="numTires"
-    placeholder="lessonTitle">
-  </mat-form-field> -->
+    placeholder="1">
+  </mat-form-field>
 
-  <ng-container formArrayName="laps">
-    <ng-container *ngFor="let lap of laps.controls, let i = index">
-      <div class="lesson-form-row" [formGroupName]="i">
-        <mat-form-field appearance="fill">
-          <mat-label>{{i+1}}</mat-label>
-          <input matInput
-          formControlName="time"
-          placeholder="0:00.00">
-        </mat-form-field>
-        <button mat-mini-fab><mat-icon (click)="deleteLap(i)">delete_forever</mat-icon></button>
-      </div>
+  <button mat-mini-fab (click)="showTelemetryInputs()">
+    <mat-icon>done</mat-icon>
+  </button>
+  <ng-container *ngFor="let tire of numberOfTiresArr">
+    <ng-container formArrayName="laps">
+      <ng-container *ngFor="let lap of laps.controls, let i = index">
+        <div class="lesson-form-row" [formGroupName]="i">
+          <mat-form-field appearance="fill">
+            <mat-label>{{i+1}}</mat-label>
+            <input matInput
+            formControlName="time"
+            placeholder="0:00.00">
+          </mat-form-field>
+          <button mat-mini-fab><mat-icon (click)="deleteLap(i)">delete_forever</mat-icon></button>
+        </div>
+      </ng-container>
+      <button mat-mini-fab (click)="addLap()">
+        <mat-icon>add</mat-icon>
+      </button>
     </ng-container>
-    <button mat-mini-fab (click)="addLap()">
-      <mat-icon>add</mat-icon>
-    </button>
   </ng-container>
-
-
 
 </div>
 

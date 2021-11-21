@@ -23,10 +23,9 @@ export class CalculatorComponent implements OnInit {
     raceLength: ['', Validators.required],
     pitLoss: ['', Validators.required],
     numTires: ['', Validators.required],
-    laps: this.fb.array([])
+    tires: this.fb.array([])
   });
 
-  numberOfTires:number;
   numberOfTiresArr:Array<number> = [];
 
   constructor(private calculatorService:CalculatorService, private fb:FormBuilder) { }
@@ -34,7 +33,25 @@ export class CalculatorComponent implements OnInit {
 
 
   ngOnInit() {
+  }
 
+  showTelemetryInputs(){
+    console.log(this.form.value["numTires"]);
+    this.numberOfTiresArr = [];
+    for(let i = 1;i<=this.form.value["numTires"];i++){
+      this.numberOfTiresArr.push(i);
+    }
+  }
+  addTire(){
+    const lessonForm = this.fb.group({
+      time: ['', Validators.required],
+    });
+    this.laps.push(lessonForm);
+  }
+
+  get tires() {
+    const arr:FormArray = this.form['controls']['tires'] as FormArray;
+    return arr;
   }
 
   addLap(){
