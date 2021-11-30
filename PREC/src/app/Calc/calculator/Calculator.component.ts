@@ -11,7 +11,7 @@ import * as mockResults from "./strategy.json";
   templateUrl: './Calculator.component.html',
   styleUrls: ['./Calculator.component.css']
 })
-export class CalculatorComponent implements OnInit {
+export class CalculatorComponent {
 
   pits:Array<number>;
   totalTime:number;
@@ -22,7 +22,7 @@ export class CalculatorComponent implements OnInit {
   form = this.fb.group({
     raceLength: ['', Validators.required],
     pitLoss: ['', Validators.required],
-    numTires: ['', Validators.required],
+    numTires: [3, Validators.required],
     tires: this.fb.array([])
   });
 
@@ -30,36 +30,58 @@ export class CalculatorComponent implements OnInit {
 
   constructor(private calculatorService:CalculatorService, private fb:FormBuilder) { }
 
-
-
-  ngOnInit() {
+  ngOnInit(): void {
+    // // console.log(this.form);
+    // for(let i = 0;i<3;i++){
+    //   this.form.addControl("tire"+i,this.fb.group({
+    //     compound:[''],
+    //     times: this.fb.array([
+    //       this.fb.control({
+    //         lap:['1']
+    //       })
+    //     ])
+    //   }));
+    // }
+    // let arr:FormArray = this.form.controls["tire1"]["controls"]["times"] as FormArray;
+    // arr.push(this.fb.control({
+    //   lap:['2']
+    // }));
+    // console.log(this.form);
+    
   }
 
-  showTelemetryInputs(){
-    console.log(this.form.value["numTires"]);
-    this.numberOfTiresArr = [];
-    for(let i = 1;i<=this.form.value["numTires"];i++){
-      this.numberOfTiresArr.push(i);
-    }
-  }
   addTire(){
-    const lessonForm = this.fb.group({
-      time: ['', Validators.required],
-    });
-    this.laps.push(lessonForm);
+    let arr: FormArray=this.form.controls["tires"] as FormArray;
+    arr.push(this.fb.group({
+      compound:[''],
+      times:this.fb.array([]),
+    }))
+    console.log(this.form)
+    // this.form.addControl()
+    // this.tires.push(
+    //   this.fb.control({
+    //     time:['']
+    //     //hello: ['']
+    //   })
+    // );
   }
 
+  addLap(i){
+    let arr: FormArray=this.form.controls["tires"]["controls"][i]["controls"]["times"] as FormArray;
+    arr.push(this.fb.control({
+      lap:['2']
+    }));
+    console.log(this.form)
+    // const lessonForm = this.fb.group({
+    //   time: ['', Validators.required],
+    // });
+    // this.laps.push(lessonForm);
+  }
   get tires() {
     const arr:FormArray = this.form['controls']['tires'] as FormArray;
     return arr;
   }
 
-  addLap(){
-    const lessonForm = this.fb.group({
-      time: ['', Validators.required],
-    });
-    this.laps.push(lessonForm);
-  }
 
   deleteLap(LapIndex:number){
     this.laps.removeAt(LapIndex);
@@ -79,4 +101,19 @@ export class CalculatorComponent implements OnInit {
       this.res = res;
     });
   }
+
+  showTelemetryInputs(){
+    console.log(this.form.value["numTires"]);
+    this.numberOfTiresArr = [];
+    for(let i = 1;i<=this.form.value["numTires"];i++){
+      this.numberOfTiresArr.push(i);
+    }
+  }
+
+  callAddTireNTimes(){
+    for(let j=0;j<this.form.value["numTires"];j++){
+      this.addTire()
+    }
+  }
+
 }

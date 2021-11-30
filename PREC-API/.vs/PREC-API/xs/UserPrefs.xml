@@ -5,7 +5,7 @@
       <File FileName="PREC-API/Classes/TireTelemetry.cs" />
       <File FileName="PREC-API/Classes/TelemetryData.cs" />
       <File FileName="PREC-API/Classes/Calculator.cs" />
-      <File FileName="PREC-API/Controllers/CalculatorController.cs" Line="37" Column="87" />
+      <File FileName="PREC-API/Controllers/CalculatorController.cs" Line="31" Column="65" />
       <File FileName="PREC-API/Program.cs" />
       <File FileName="PREC-API/Models/EmptyJSONFile.json" />
       <File FileName="PREC-API/Models/Tire.cs" />
