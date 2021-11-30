@@ -14,14 +14,8 @@
     placeholder="30.1">
   </mat-form-field>
   <mat-label>seconds</mat-label>
-  <br>
-  <mat-form-field appearance="fill">
-    <mat-label>Number of Tires</mat-label>
-    <input matInput
-    formControlName="numTires"
-    placeholder="1">
-  </mat-form-field>
-  <button (click)="addTire()">click me</button>
+  
+  <br><button (click)="addTire()">Add Tire</button>
 
   <ng-container formArrayName="tires">
     <ng-container *ngFor="let tire of tires.controls, let t = index"><br>

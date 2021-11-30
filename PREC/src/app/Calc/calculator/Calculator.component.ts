@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { strategy } from 'src/app/Models/strategy.model';
-import { Lap, Telemetry,tireTelemetry } from 'src/app/Models/tiretelemetry.model';
+import { Lap, Telemetry,tireFormTelemetry,tireTelemetry } from 'src/app/Models/tiretelemetry.model';
 import { CalculatorService } from 'src/app/services/calculator.service';
 import * as mockData from "./telemetry.json";
 import * as mockResults from "./strategy.json";
@@ -22,7 +22,7 @@ export class CalculatorComponent {
   form = this.fb.group({
     raceLength: ['', Validators.required],
     pitLoss: ['', Validators.required],
-    numTires: [3, Validators.required],
+    // numTires: [3, Validators.required],
     tires: this.fb.array([])
   });
 
@@ -51,7 +51,6 @@ export class CalculatorComponent {
     arr.push(this.fb.group({
       lap:['']
     }));
-    console.log(this.form)
   }
 
   get tires() {
@@ -94,8 +93,12 @@ export class CalculatorComponent {
   }
 
   saveChanges(){
-    console.log(this.form.value);
-    console.log(this.telemetryData);
+    let tires:Array<tireFormTelemetry> = this.form.value.tires;
+    let data:Telemetry;
+    for(let tire of tires){
+      
+      console.log(tire)
+    }
   }
 
 }

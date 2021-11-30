@@ -1,27 +1,26 @@
 ﻿<Properties StartupConfiguration="{45332130-CEBD-4806-9C1A-DEAD83BA4276}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="PREC-API/Controllers/CalculatorController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PREC-API/Classes/TelemetryData.cs">
     <Files>
       <File FileName="PREC-API/Classes/Strategy.cs" Line="10" Column="15" />
       <File FileName="PREC-API/Classes/TireTelemetry.cs" />
-      <File FileName="PREC-API/Classes/TelemetryData.cs" />
-      <File FileName="PREC-API/Classes/Calculator.cs" />
-      <File FileName="PREC-API/Controllers/CalculatorController.cs" Line="31" Column="65" />
+      <File FileName="PREC-API/Classes/TelemetryData.cs" Line="17" Column="16" />
+      <File FileName="PREC-API/Classes/Calculator.cs" Line="1" Column="1" />
+      <File FileName="PREC-API/Controllers/CalculatorController.cs" Line="29" Column="47" />
       <File FileName="PREC-API/Program.cs" />
       <File FileName="PREC-API/Models/EmptyJSONFile.json" />
       <File FileName="PREC-API/Models/Tire.cs" />
-      <File FileName="PREC-API/DTO/TireTelemetryDTO.cs" />
-      <File FileName="PREC-API/DTO/TelemetryDTO.cs" />
-      <File FileName="PREC-API/DTO/LapDTO.cs" />
+      <File FileName="PREC-API/DTO/TireTelemetryDTO.cs" Line="9" Column="27" />
+      <File FileName="PREC-API/DTO/TelemetryDTO.cs" Line="9" Column="29" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PREC-API" expanded="True">
             <Node name="PREC-API" expanded="True">
-              <Node name="Classes" expanded="True" />
-              <Node name="Controllers" expanded="True">
-                <Node name="CalculatorController.cs" selected="True" />
+              <Node name="Classes" expanded="True">
+                <Node name="TelemetryData.cs" selected="True" />
               </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="DTO" expanded="True" />
             </Node>
           </Node>
