@@ -31,20 +31,24 @@ export class CalculatorComponent {
   constructor(private calculatorService:CalculatorService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
+  }
 
+  ngAfterContentInit(): void {
   }
 
   addTire(){
     let arr: FormArray=this.form.controls["tires"] as FormArray;
     arr.push(this.fb.group({
       compound:[''],
-      times:this.fb.array([]),
+      times:this.fb.array([
+      ]),
     }));
+    console.log(this.form)
   }
 
   addLap(i){
     let arr: FormArray=this.form.controls["tires"]["controls"][i]["controls"]["times"] as FormArray;
-    arr.push(this.fb.control({
+    arr.push(this.fb.group({
       lap:['']
     }));
     console.log(this.form)
@@ -87,6 +91,11 @@ export class CalculatorComponent {
     for(let j=0;j<this.form.value["numTires"];j++){
       this.addTire()
     }
+  }
+
+  saveChanges(){
+    console.log(this.form.value);
+    console.log(this.telemetryData);
   }
 
 }

@@ -25,9 +25,7 @@
 
   <ng-container formArrayName="tires">
     <ng-container *ngFor="let tire of tires.controls, let t = index"><br>
-
-      <ng-container [formGroupName]="t">
-
+      <ng-container formGroupName="{{t}}">
         <mat-form-field appearance="fill">
           <mat-label>Tire {{t+1}}</mat-label>
           <input matInput
@@ -38,24 +36,26 @@
 
         <ng-container formArrayName="times">
           <ng-container *ngFor="let time of getTimesFormsArray(t).controls, let l = index"><br>
-            <ng-container [formGroupName]="l">
-              <mat-form-field appearance="fill">
-                <mat-label>Lap {{l+1}}</mat-label>
-                <input matInput
-                formControlName="lap"
-                placeholder="0:00.00">
-              </mat-form-field>
-            </ng-container>
+              <ng-container [formGroupName]=l>
+                <mat-form-field appearance="fill">
+                  <mat-label>Lap {{l+1}}</mat-label>
+                  <input matInput
+                  formControlName="lap"
+                  placeholder="0:00.00">
+                </mat-form-field>
+              </ng-container>
+
           </ng-container>
         </ng-container>
 
       </ng-container>
     </ng-container>
   </ng-container>
-
+  <br><br>
+  <button type="submit" (click)="saveChanges()">Submit</button>
 </div>
 
-
+{{this.form.value | json}}
 <!-- {{telemetryData |json}} -->
 <!-- {{pits | json}} -->
 <!-- <br> -->
