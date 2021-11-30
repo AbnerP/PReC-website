@@ -31,23 +31,7 @@ export class CalculatorComponent {
   constructor(private calculatorService:CalculatorService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
-    // // console.log(this.form);
-    // for(let i = 0;i<3;i++){
-    //   this.form.addControl("tire"+i,this.fb.group({
-    //     compound:[''],
-    //     times: this.fb.array([
-    //       this.fb.control({
-    //         lap:['1']
-    //       })
-    //     ])
-    //   }));
-    // }
-    // let arr:FormArray = this.form.controls["tire1"]["controls"]["times"] as FormArray;
-    // arr.push(this.fb.control({
-    //   lap:['2']
-    // }));
-    // console.log(this.form);
-    
+
   }
 
   addTire(){
@@ -55,42 +39,31 @@ export class CalculatorComponent {
     arr.push(this.fb.group({
       compound:[''],
       times:this.fb.array([]),
-    }))
-    console.log(this.form)
-    // this.form.addControl()
-    // this.tires.push(
-    //   this.fb.control({
-    //     time:['']
-    //     //hello: ['']
-    //   })
-    // );
+    }));
   }
 
   addLap(i){
     let arr: FormArray=this.form.controls["tires"]["controls"][i]["controls"]["times"] as FormArray;
     arr.push(this.fb.control({
-      lap:['2']
+      lap:['']
     }));
     console.log(this.form)
-    // const lessonForm = this.fb.group({
-    //   time: ['', Validators.required],
-    // });
-    // this.laps.push(lessonForm);
   }
+
   get tires() {
     const arr:FormArray = this.form['controls']['tires'] as FormArray;
     return arr;
   }
 
-
-  deleteLap(LapIndex:number){
-    this.laps.removeAt(LapIndex);
-  }
-
-  get laps() {
-    const arr:FormArray = this.form['controls']['laps'] as FormArray;
+  getTimesFormsArray(i) {
+    let arr: FormArray=this.form.controls["tires"]["controls"][i]["controls"]["times"] as FormArray;
     return arr;
   }
+
+  // deleteLap(LapIndex:number){
+  //   this.laps.removeAt(LapIndex);
+  // }
+
 
   calculate(){
     this.calculatorService.post(this.telemetryData,30,30)

@@ -22,92 +22,36 @@
     placeholder="1">
   </mat-form-field>
   <button (click)="addTire()">click me</button>
-  <!-- <button mat-mini-fab (click)="callAddTireNTimes()">
-    <mat-icon>done</mat-icon>
-  </button> -->
+
   <ng-container formArrayName="tires">
-    <ng-container *ngFor="let tire of tires.controls, let i = index">
-      <ng-container formGroupName=ie>
+    <ng-container *ngFor="let tire of tires.controls, let t = index"><br>
+
+      <ng-container [formGroupName]="t">
+
         <mat-form-field appearance="fill">
-          <mat-label>Tire {{i+1}}</mat-label>
+          <mat-label>Tire {{t+1}}</mat-label>
           <input matInput
           formControlName="compound"
-          placeholder="0:00.00">
+          placeholder="Soft">
         </mat-form-field>
-      </ng-container>
-      <br>
-    </ng-container>
-  </ng-container>
+        <button (click)="addLap(t)">New Lap Entry</button>
 
-
-  <!-- <ng-container *ngFor="let tire of numberOfTiresArr">
-    <ng-container formArrayName="tires">
-      <ng-container *ngFor="let tire of tires.controls, let i = index">
-        <div [formGroupName]="i">
-          <div formControlName="compound">
-            <mat-form-field appearance="fill">
-              <mat-label>Tire {{i+1}}</mat-label>
-              <input matInput
-              formControlName="compound"
-              placeholder="0:00.00">
-            </mat-form-field>
-          </div>
-        </div>
-      </ng-container>
-    </ng-container>
-    <br>
-    <!-- <button (click)="addTire()">Add Tire</button>
-    <br>
-    <button (click)="addLap(0)">Add Lap</button>
-  </ng-container> -->
-
-
-
-  <!-- <ng-container *ngFor="let tire of numberOfTiresArr">
-    <ng-container formArrayName="tires">
-      <ng-container *ngFor="let tire of tires.controls, let i = index">
-        <div class="lesson-form-row" [formGroupName]="i">
-          hey
-          <ng-container formArrayName="laps">
-            <ng-container *ngFor="let lap of laps.controls, let j = index">
-              <div [formControlName]="j">
-                <mat-form-field appearance="fill">
-                  <mat-label>{{j+1}}</mat-label>
-                  <input matInput
-                  formControlName="time"
-                  placeholder="0:00.00">
-                </mat-form-field>
-                <button mat-mini-fab (click)="addLap(i)">
-                  <mat-icon>add</mat-icon>
-                </button>
-              </div>
+        <ng-container formArrayName="times">
+          <ng-container *ngFor="let time of getTimesFormsArray(t).controls, let l = index"><br>
+            <ng-container [formGroupName]="l">
+              <mat-form-field appearance="fill">
+                <mat-label>Lap {{l+1}}</mat-label>
+                <input matInput
+                formControlName="lap"
+                placeholder="0:00.00">
+              </mat-form-field>
             </ng-container>
           </ng-container>
-          <button mat-mini-fab (click)="addTire(i)">
-            <mat-icon>add</mat-icon>
-          </button>
-        </div>
+        </ng-container>
+
       </ng-container>
     </ng-container>
-  </ng-container> -->
-  <!-- <ng-container *ngFor="let tire of numberOfTiresArr">
-    <ng-container formArrayName="laps">
-      <ng-container *ngFor="let lap of laps.controls, let i = index">
-        <div class="lesson-form-row" [formGroupName]="i">
-          <mat-form-field appearance="fill">
-            <mat-label>{{i+1}}</mat-label>
-            <input matInput
-            formControlName="time"
-            placeholder="0:00.00">
-          </mat-form-field>
-          <button mat-mini-fab><mat-icon (click)="deleteLap(i)">delete_forever</mat-icon></button>
-        </div>
-      </ng-container>
-      <button mat-mini-fab (click)="addLap()">
-        <mat-icon>add</mat-icon>
-      </button>
-    </ng-container>
-  </ng-container> -->
+  </ng-container>
 
 </div>
 
