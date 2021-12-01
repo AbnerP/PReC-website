@@ -13,5 +13,5 @@ export interface Lap{
 
 export interface tireFormTelemetry{
   compound: string,
-  times: Array<string>
+  times: Array<number>
 }
