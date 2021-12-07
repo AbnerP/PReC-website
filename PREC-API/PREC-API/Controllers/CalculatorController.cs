@@ -31,10 +31,11 @@ namespace PREC_API.Controllers
             Calculator calculator = new Calculator(laps, pitLoss, data);
             Strategy s = calculator.getBestStrategy();
 
-            //Console.WriteLine(s.toString());
-            //int totalTimeMins = (int)Math.Floor(s.getTotalTime() / 60);
-            //int totalTimeSecs = (int)s.getTotalTime() % 60;
-            //Console.WriteLine("Total Time: " + totalTimeMins + ":" + totalTimeSecs);
+            Console.WriteLine(s.toString());
+            // int totalTimeMins = (int)Math.Floor(s.getTotalTime() / 60);
+            // int totalTimeSecs = (int)s.getTotalTime() % 60;
+            // Console.WriteLine("Total Time: " + totalTimeMins + ":" + totalTimeSecs);
+
             return Newtonsoft.Json.JsonConvert.SerializeObject(s);
         }
     }
