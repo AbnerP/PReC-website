@@ -1,2 +1,2 @@
-# PReC-website
-Puerto Rico eRacing Club website
+# Puerto Rico eRacing Club 
+PReC website
