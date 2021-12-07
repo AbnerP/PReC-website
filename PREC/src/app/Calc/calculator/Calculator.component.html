@@ -26,6 +26,7 @@
           formControlName="compound"
           placeholder="Soft">
         </mat-form-field>
+        <button (click)="removeTire(t)">Remove Tire</button>
         <button (click)="addLap(t)">New Lap Entry</button>
 
         <ng-container formArrayName="times">
