@@ -20,9 +20,9 @@ namespace PREC_API.Classes
             foreach (TireTelemetryDTO tire in data.data)
             {
                 List<double> times = new List<double>();
-                foreach (LapDTO lap in tire.times)
+                foreach (double time in tire.times)
                 {
-                    times.Add(lap.time);
+                    times.Add(time);
                 }
                 this.data.Add(tire.compound, times);
             }

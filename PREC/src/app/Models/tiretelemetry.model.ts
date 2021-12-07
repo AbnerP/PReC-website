@@ -4,10 +4,14 @@ export interface Telemetry{
 
 export interface tireTelemetry{
   compound: string,
-  times: Array<Lap>
+  times: Array<number>
 }
 
 export interface Lap{
-  lap: number,
   time: number
+}
+
+export interface tireFormTelemetry{
+  compound: string,
+  times: Array<number>
 }
