@@ -1,9 +1,3 @@
-Form Data <br>
-{{this.formData | json}}
-<br>
-Template <br>
-{{telemetryData |json}}
-
 <div class="add-lessons-form" [formGroup]="form">
   <mat-form-field appearance="fill">
     <mat-label>Race Length</mat-label>
@@ -43,8 +37,8 @@ Template <br>
                   formControlName="lap"
                   placeholder="0:00.00">
                 </mat-form-field>
+                <button (click)="removeLap(t,l)">X</button>
               </ng-container>
-
           </ng-container>
         </ng-container>
 
@@ -55,7 +49,7 @@ Template <br>
   <button type="submit" (click)="saveChanges()">Submit</button>
 </div>
 
-
+<br>
 {{pits | json}}
 <br>
 {{totalTime}}

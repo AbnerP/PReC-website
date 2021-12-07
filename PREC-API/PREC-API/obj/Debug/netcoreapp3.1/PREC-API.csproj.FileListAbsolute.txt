@@ -25,3 +25,4 @@
 /Users/abnerpena/Desktop/PReC-website/PREC-API/PREC-API/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/abnerpena/Desktop/PReC-website/PREC-API/PREC-API/obj/Debug/netcoreapp3.1/PREC-API.MvcApplicationPartsAssemblyInfo.cs
 /Users/abnerpena/Desktop/PReC-website/PREC-API/PREC-API/bin/Debug/netcoreapp3.1/Newtonsoft.Json.dll
+/Users/abnerpena/Desktop/PReC-website/PREC-API/PREC-API/obj/Debug/netcoreapp3.1/PREC-API.csproj.CopyComplete

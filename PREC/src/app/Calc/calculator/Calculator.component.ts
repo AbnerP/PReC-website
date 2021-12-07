@@ -58,6 +58,11 @@ export class CalculatorComponent {
     }));
   }
 
+  removeLap(i,l){
+    let arr: FormArray=this.form.controls["tires"]["controls"][i]["controls"]["times"] as FormArray;
+    arr.removeAt(l);
+  }
+
   get tires() {
     const arr:FormArray = this.form['controls']['tires'] as FormArray;
     return arr;
