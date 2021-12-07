@@ -1,3 +1,8 @@
+{{pits | json}}
+<br>
+{{totalTime}}
+<br>
+
 <div class="add-lessons-form" [formGroup]="form">
   <mat-form-field appearance="fill">
     <mat-label>Race Length</mat-label>
@@ -36,7 +41,10 @@
                   <mat-label>Lap {{l+1}}</mat-label>
                   <input matInput
                   formControlName="lap"
-                  placeholder="0:00.00">
+                  placeholder="0:00.00"
+                  required
+                  pattern="^[1-9]([0-9]+)?(\.[1-9]+)?$"
+                  >
                 </mat-form-field>
                 <button (click)="removeLap(t,l)">X</button>
               </ng-container>
@@ -49,11 +57,3 @@
   <br><br>
   <button type="submit" (click)="saveChanges()">Submit</button>
 </div>
-
-<br>
-{{pits | json}}
-<br>
-{{totalTime}}
-
-
-

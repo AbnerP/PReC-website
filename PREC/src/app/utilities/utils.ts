@@ -1,3 +1,4 @@
+import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 
 export function toBase64(file:File){
@@ -47,5 +48,12 @@ export function formatDateFormData(date:Date){
   ] = format.formatToParts(date);
 
   return `${year}-${month}-${day}`;
-
 }
+
+const secondsAndMilisecondsRE = /^(\d+)?(\.\d+)?$/;
+const integerRE = /^\d+$/;
+const compoundRE = /^([A-Z][a-z]*|[a-z]+)$/;
+const lapTimeRE =/^([0-9]+):([0-5][0-9]):([0-5][0-9])$/;
+
+export {secondsAndMilisecondsRE,integerRE,compoundRE,lapTimeRE};
+

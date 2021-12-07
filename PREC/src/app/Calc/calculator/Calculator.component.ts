@@ -5,6 +5,7 @@ import { Lap, Telemetry,tireFormTelemetry,tireTelemetry } from 'src/app/Models/t
 import { CalculatorService } from 'src/app/services/calculator.service';
 import * as mockData from "./telemetry.json";
 import * as mockResults from "./strategy.json";
+import {secondsAndMilisecondsRE,integerRE, compoundRE, lapTimeRE} from "../../utilities/utils";
 
 @Component({
   selector: 'app-Calculator',
@@ -20,9 +21,11 @@ export class CalculatorComponent {
   telemetryData:Telemetry = mockData;
   formData:Telemetry;
 
+  laptimeRE = lapTimeRE;
+
   form = this.fb.group({
-    raceLength: ['', Validators.required],
-    pitLoss: ['', Validators.required],
+    raceLength: ['', [Validators.required,Validators.pattern(integerRE)]],
+    pitLoss: ['', [Validators.required,Validators.pattern(secondsAndMilisecondsRE)]],
     tires: this.fb.array([])
   });
 
@@ -38,7 +41,7 @@ export class CalculatorComponent {
   addTire(){
     let arr: FormArray=this.form.controls["tires"] as FormArray;
     arr.push(this.fb.group({
-      compound:[''],
+      compound:['', [Validators.required,Validators.pattern(compoundRE)]],
       times:this.fb.array([
       ]),
     }));
@@ -52,7 +55,7 @@ export class CalculatorComponent {
   addLap(i){
     let arr: FormArray=this.form.controls["tires"]["controls"][i]["controls"]["times"] as FormArray;
     arr.push(this.fb.group({
-      lap:['']
+      lap:new FormControl('', Validators.required),
     }));
   }
 
