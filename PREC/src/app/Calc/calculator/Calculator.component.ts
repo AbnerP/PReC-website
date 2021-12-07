@@ -23,7 +23,6 @@ export class CalculatorComponent {
   form = this.fb.group({
     raceLength: ['', Validators.required],
     pitLoss: ['', Validators.required],
-    // numTires: [3, Validators.required],
     tires: this.fb.array([])
   });
 
@@ -49,7 +48,7 @@ export class CalculatorComponent {
     let arr: FormArray=this.form.controls["tires"] as FormArray;
     arr.removeAt(i);
   }
-  
+
   addLap(i){
     let arr: FormArray=this.form.controls["tires"]["controls"][i]["controls"]["times"] as FormArray;
     arr.push(this.fb.group({
