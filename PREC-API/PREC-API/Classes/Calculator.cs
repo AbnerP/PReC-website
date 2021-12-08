@@ -31,7 +31,7 @@ namespace PREC_API.Classes
             startSoft = calculate("Soft", 0, 0.0, 0, startSoft);
             Strategy startMedium = new Strategy();
             startMedium.addPitLap("Medium", 0);
-            startMedium = calculate("Hard", 0, 0.0, 0, startMedium);
+            startMedium = calculate("Medium", 0, 0.0, 0, startMedium);
             Strategy startHard = new Strategy();
             startHard.addPitLap("Hard", 0);
             startHard = calculate("Hard", 0, 0.0, 0, startHard);
@@ -84,8 +84,16 @@ namespace PREC_API.Classes
         {
             if (currentLap == this.numLaps)
             {
-                tireAge++;
-                currentStrategy.addTotalTime(totalTime + this.data.getLap(compound, tireAge));
+                if(currentLap == 0)
+                {
+                    currentStrategy.addTotalTime(totalTime + this.data.getLap(compound, tireAge));
+                }
+                else
+                {
+                    tireAge++;
+                    currentStrategy.addTotalTime(totalTime + this.data.getLap(compound, tireAge));
+                }
+
                 if (currentStrategy.getTotalTime() < this.minTime)
                 {
                     this.minTime = currentStrategy.getTotalTime();

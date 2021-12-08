@@ -28,7 +28,7 @@ namespace PREC_API.Controllers
             Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(d));
             TelemetryData data = new TelemetryData(d);
             //data.generateMockData();
-            Calculator calculator = new Calculator(laps, pitLoss, data);
+            Calculator calculator = new Calculator(laps-1, pitLoss, data);
             Strategy s = calculator.getBestStrategy();
 
             Console.WriteLine(s.toString());

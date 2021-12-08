@@ -51,7 +51,7 @@ export function formatDateFormData(date:Date){
 }
 
 const secondsAndMilisecondsRE = /^(\d+)?(\.\d+)?$/;
-const integerRE = /^\d+$/;
+const integerRE = /^[1-9][0-9]*$/;
 const compoundRE = /^([A-Z][a-z]*|[a-z]+)$/;
 const lapTimeRE =/^([0-9]+):([0-5][0-9]):([0-5][0-9])$/;
 
