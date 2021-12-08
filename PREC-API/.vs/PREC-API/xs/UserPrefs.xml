@@ -1,12 +1,12 @@
-﻿<Properties StartupConfiguration="{45332130-CEBD-4806-9C1A-DEAD83BA4276}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="PREC-API/Classes/TelemetryData.cs">
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{45332130-CEBD-4806-9C1A-DEAD83BA4276}|Default">
+  <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="PREC-API/Classes/Strategy.cs" Line="10" Column="15" />
-      <File FileName="PREC-API/Classes/TireTelemetry.cs" />
-      <File FileName="PREC-API/Classes/TelemetryData.cs" Line="17" Column="16" />
-      <File FileName="PREC-API/Classes/Calculator.cs" />
-      <File FileName="PREC-API/Controllers/CalculatorController.cs" />
-      <File FileName="PREC-API/Program.cs" />
+      <File FileName="PREC-API/Classes/TireTelemetry.cs" Line="15" Column="64" />
+      <File FileName="PREC-API/Classes/TelemetryData.cs" Line="10" Column="15" />
+      <File FileName="PREC-API/Classes/Calculator.cs" Line="210" Column="66" />
+      <File FileName="PREC-API/Controllers/CalculatorController.cs" Line="32" Column="55" />
+      <File FileName="PREC-API/Program.cs" Line="16" Column="1" />
       <File FileName="PREC-API/Models/EmptyJSONFile.json" />
       <File FileName="PREC-API/Models/Tire.cs" />
       <File FileName="PREC-API/DTO/TireTelemetryDTO.cs" />
@@ -18,7 +18,7 @@
           <Node name="PREC-API" expanded="True">
             <Node name="PREC-API" expanded="True">
               <Node name="Classes" expanded="True">
-                <Node name="TelemetryData.cs" selected="True" />
+                <Node name="Calculator.cs" selected="True" />
               </Node>
               <Node name="Controllers" expanded="True" />
               <Node name="DTO" expanded="True" />
