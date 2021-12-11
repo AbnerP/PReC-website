@@ -4,21 +4,44 @@
 <br>
 
 <div class="add-lessons-form" [formGroup]="form">
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="fill" >
+
     <mat-label>Race Length</mat-label>
     <input matInput
     formControlName="raceLength"
-    placeholder="10">
+    placeholder="23">
+
+    <!-- <span matPrefix>P</span> -->
+    <span matSuffix>Laps</span>
+
+    <mat-error *ngIf="raceLength.errors?.pattern">
+      Invalid number of laps
+    </mat-error>
+
+    <mat-error *ngIf="raceLength.errors?.required">
+      Field is required
+    </mat-error>
+
   </mat-form-field>
-  <mat-label>laps</mat-label>
   <br>
   <mat-form-field appearance="fill">
     <mat-label>Time Lost in Pits</mat-label>
+
     <input matInput
     formControlName="pitLoss"
     placeholder="30.1">
+
+    <span matSuffix>seconds</span>
+
+    <mat-error *ngIf="pitLoss.errors?.pattern">
+      Invalid pit loss time
+    </mat-error>
+
+    <mat-error *ngIf="pitLoss.errors?.required">
+      Field is required
+    </mat-error>
+
   </mat-form-field>
-  <mat-label>seconds</mat-label>
 
   <br><button (click)="addTire()">Add Tire</button>
 

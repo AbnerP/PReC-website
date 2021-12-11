@@ -34,8 +34,18 @@ export class CalculatorComponent {
   constructor(private calculatorService:CalculatorService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
-    this.formTestValues();
+    // this.formTestValues();
+    this.initializeWSomeVals();
   }
+
+  get raceLength(){
+    return this.form.controls['raceLength'];
+  }
+
+  get pitLoss(){
+    return this.form.controls['pitLoss'];
+  }
+
 
   //Form Array Manipulation
   addTire(){
@@ -135,5 +145,20 @@ export class CalculatorComponent {
     arr.push(this.fb.group({
       lap:[val]
     }));
+  }
+
+  initializeWSomeVals(){
+    this.addTire();
+    this.addTire();
+    this.addTire();
+    let compound1 = this.form.controls["tires"]["controls"][0]["controls"]["compound"] as FormControl;
+    let compound2 = this.form.controls["tires"]["controls"][1]["controls"]["compound"] as FormControl;
+    let compound3 = this.form.controls["tires"]["controls"][2]["controls"]["compound"] as FormControl;
+    compound1.setValue("Soft");
+    compound2.setValue("Medium");
+    compound3.setValue("Hard");
+    this.addLapVal(0,"");
+    this.addLapVal(1,"");
+    this.addLapVal(2,"");
   }
 }
