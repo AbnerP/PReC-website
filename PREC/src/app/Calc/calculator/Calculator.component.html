@@ -101,7 +101,7 @@
   <br><br>
 
   <div class="calculateBTNContainer">
-    <button class="calculateBTN" mat-stroked-button type="submit" (click)="saveChanges()">Calculate</button>
+    <button class="calculateBTN" mat-stroked-button type="submit" [disabled]="!form.valid" (click)="saveChanges()">Calculate</button>
   </div>
 
 </div>

@@ -8,7 +8,6 @@ $prec-blue:#252B42;
   height: 100vh;
 }
 
-
 ::ng-deep .mat-form-field {
 
   .mat-input-element {
@@ -137,7 +136,7 @@ $prec-blue:#252B42;
   }
 }
 
-.calculateBTN{
+.calculateBTN:enabled{
   background-color: $prec-yellow;
   color: white;
   cursor: pointer;
@@ -146,4 +145,15 @@ $prec-blue:#252B42;
   height: 6vh;
   width: 18vw;
   animation: glowing 1300ms infinite;
+}
+
+.calculateBTN:disabled{
+  background-color: rgb(219, 219, 219);
+  color: white;
+  cursor:default;
+  border: none;
+  border-radius: 1vh;
+  height: 6vh;
+  width: 18vw;
+  animation: none;
 }

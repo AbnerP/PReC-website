@@ -21,13 +21,13 @@ export class CalculatorComponent {
   telemetryData:Telemetry = mockData;
   formData:Telemetry;
 
-  laptimeRE = lapTimeRE;
-
   form = this.fb.group({
     raceLength: ['', [Validators.required,Validators.pattern(integerRE)]],
     pitLoss: ['', [Validators.required,Validators.pattern(secondsAndMilisecondsRE)]],
     tires: this.fb.array([])
   });
+
+  
 
   numberOfTiresArr:Array<number> = [];
 
