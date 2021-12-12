@@ -10,7 +10,7 @@ import {secondsAndMilisecondsRE,integerRE, compoundRE, lapTimeRE} from "../../ut
 @Component({
   selector: 'app-Calculator',
   templateUrl: './Calculator.component.html',
-  styleUrls: ['./Calculator.component.css']
+  styleUrls: ['./Calculator.component.scss']
 })
 export class CalculatorComponent {
 
@@ -44,6 +44,14 @@ export class CalculatorComponent {
 
   get pitLoss(){
     return this.form.controls['pitLoss'];
+  }
+
+  compound(num:number){
+    return this.form['controls']['tires']["controls"][num]["controls"]["compound"];
+  }
+
+  lap(tire,num){
+    return this.form.controls["tires"]["controls"][tire]["controls"]["times"]["controls"][num]["controls"]["lap"];
   }
 
 
@@ -157,8 +165,8 @@ export class CalculatorComponent {
     compound1.setValue("Soft");
     compound2.setValue("Medium");
     compound3.setValue("Hard");
-    this.addLapVal(0,"");
-    this.addLapVal(1,"");
-    this.addLapVal(2,"");
+    this.addLap(0);
+    this.addLap(1);
+    this.addLap(2);
   }
 }

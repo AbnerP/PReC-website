@@ -1,0 +1,149 @@
+
+$prec-yellow:#ffd000;
+$prec-yellowSecondary:#ffdb0e;
+$prec-blue:#252B42;
+
+.calculator-form{
+  margin-top: 2vh;
+  height: 100vh;
+}
+
+
+::ng-deep .mat-form-field {
+
+  .mat-input-element {
+    color: $prec-blue;
+  }
+  .mat-form-field-label {
+    color: $prec-blue;
+  }
+  .mat-form-field-outline{
+    color:$prec-blue;
+  }
+  .mat-form-field-underline {
+    background-color: $prec-blue;
+  }
+  .mat-form-field-ripple {
+    background-color: $prec-blue;
+  }
+  .mat-form-field-required-marker {
+    color: $prec-blue;
+  }
+  span{
+    color: grey;
+  }
+}
+
+::ng-deep .lap.mat-form-field {
+  .mat-form-field-outline{
+    color:rgb(190, 190, 190);
+  }
+}
+
+//Focus
+::ng-deep .mat-form-field.mat-focused {
+  .mat-form-field-label {
+    color: $prec-blue;
+  }
+  .mat-form-field-ripple {
+    background-color: $prec-yellow;
+  }
+  .mat-form-field-required-marker {
+    color: $prec-yellow;
+  }
+  .mat-form-field-outline{
+    color:$prec-yellow;
+  }
+  .mat-input-element {
+    color: $prec-blue;
+  }
+}
+
+//Error
+::ng-deep .mat-form-field.mat-form-field-invalid {
+  .mat-input-element {
+    color: $prec-blue;
+  }
+  .mat-form-field-label {
+    color: $prec-blue;
+  }
+}
+
+::ng-deep .mat-stroked-button{
+  background-color:$prec-yellow;
+  color: white;
+}
+
+.delTire{
+  background-color: white;
+  font-size: xx-large;
+}
+
+.miscData{
+  display: flex;
+  justify-content:space-evenly;
+}
+
+.addTireButton{
+  border: 1px solid $prec-yellow;
+  font-weight:normal;
+  height: fit-content;
+  margin:1.5vh;
+}
+
+.pitLossField{
+  width: 10vw;
+}
+
+.raceLengthField{
+  width: 10vw;
+}
+.tires{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-evenly;
+}
+.tire{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.newLapBTN{
+  background-color: $prec-yellow;
+  color: white;
+  border-radius: 1vh;
+  width: 40%;
+}
+
+.calculateBTNContainer{
+  display: flex;
+  justify-content: center;
+}
+
+
+@keyframes glowing {
+  0% {
+    background-color: $prec-yellow;
+    box-shadow: 0 0 5px $prec-yellow;
+  }
+  50% {
+    background-color: $prec-yellowSecondary;
+    box-shadow: 0 0 20px $prec-yellowSecondary;
+  }
+  100% {
+    background-color: $prec-yellow;
+    box-shadow: 0 0 5px $prec-yellow;
+  }
+}
+
+.calculateBTN{
+  background-color: $prec-yellow;
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 1vh;
+  height: 6vh;
+  width: 18vw;
+  animation: glowing 1300ms infinite;
+}
