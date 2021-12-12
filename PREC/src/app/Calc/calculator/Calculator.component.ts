@@ -34,7 +34,7 @@ export class CalculatorComponent {
   constructor(private calculatorService:CalculatorService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
-    this.formTestValues();
+    // this.formTestValues();
     // this.initializeWSomeVals();
   }
 
