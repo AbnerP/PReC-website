@@ -32,6 +32,16 @@ export function parseWebAPIErrors(response:any): string[] {
 
   return result;
 }
+export function timeInSec(time):number{
+  if(typeof(time) === 'string'){
+    const times: Array<string> = time.split(":");
+    let seconds = parseInt(times[0])*60;
+    seconds += parseFloat(times[1]);
+    return seconds;
+  }else{
+    return parseFloat(time);
+  }
+}
 
 export function formatDateFormData(date:Date){
   date = new Date(date);

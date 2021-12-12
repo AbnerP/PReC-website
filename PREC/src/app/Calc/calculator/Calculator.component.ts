@@ -5,7 +5,7 @@ import { Lap, Telemetry,tireFormTelemetry,tireTelemetry } from 'src/app/Models/t
 import { CalculatorService } from 'src/app/services/calculator.service';
 import * as mockData from "./telemetry.json";
 import * as mockResults from "./strategy.json";
-import {secondsAndMilisecondsRE,integerRE, compoundRE, lapTimeRE} from "../../utilities/utils";
+import {secondsAndMilisecondsRE,integerRE, compoundRE, lapTimeRE, timeInSec} from "../../utilities/utils";
 
 @Component({
   selector: 'app-Calculator',
@@ -27,15 +27,15 @@ export class CalculatorComponent {
     tires: this.fb.array([])
   });
 
-  
+
 
   numberOfTiresArr:Array<number> = [];
 
   constructor(private calculatorService:CalculatorService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
-    // this.formTestValues();
-    this.initializeWSomeVals();
+    this.formTestValues();
+    // this.initializeWSomeVals();
   }
 
   get raceLength(){
@@ -114,7 +114,7 @@ export class CalculatorComponent {
         times:[]
       };
       for(let time of tire["times"]){
-        tel.times.push(time["lap"]);
+        tel.times.push(timeInSec(time["lap"]));
       }
       this.formData.data.push(tel);
     }
