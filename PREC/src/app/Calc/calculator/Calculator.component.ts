@@ -64,7 +64,7 @@ export class CalculatorComponent {
       times:this.fb.array([
       ]),
     }));
-    this.addLap(i);
+    // this.addLap(i);
   }
 
   removeTire(i){
@@ -103,13 +103,9 @@ export class CalculatorComponent {
   calculateAPI(laps,loss){
     this.calculatorService.post(this.formData,laps,loss)
     .then((res)=>{
-      console.log(res);
       this.pits = res.pits;
       this.totalTime = res.totalTime;
       this.res = res;
-      for (const [key, value] of Object.entries(this.pits)) {
-        console.log(`${key}: ${value}`);
-      }
     });
   }
 
@@ -168,6 +164,7 @@ export class CalculatorComponent {
     this.addTire();
     let compound1 = this.form.controls["tires"]["controls"][0]["controls"]["compound"] as FormControl;
     compound1.setValue("Soft");
+    this.addLapVal(0,"");
   }
 
 

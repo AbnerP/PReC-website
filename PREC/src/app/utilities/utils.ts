@@ -34,10 +34,14 @@ export function parseWebAPIErrors(response:any): string[] {
 }
 export function timeInSec(time):number{
   if(typeof(time) === 'string'){
-    const times: Array<string> = time.split(":");
-    let seconds = parseInt(times[0])*60;
-    seconds += parseFloat(times[1]);
-    return seconds;
+    if(time.includes(":")){
+      const times: Array<string> = time.split(":");
+      let seconds = parseInt(times[0])*60;
+      seconds += parseFloat(times[1]);
+      return seconds;
+    }else{
+      return parseFloat(time);
+    }
   }else{
     return parseFloat(time);
   }
