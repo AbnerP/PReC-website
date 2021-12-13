@@ -34,7 +34,7 @@ export class CalculatorComponent {
   constructor(private calculatorService:CalculatorService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
-    // this.formTestValues();
+    this.formTestValues();
     // this.initializeWSomeVals();
   }
 
@@ -97,10 +97,18 @@ export class CalculatorComponent {
   calculateAPI(laps,loss){
     this.calculatorService.post(this.formData,laps,loss)
     .then((res)=>{
+      console.log(res);
       this.pits = res.pits;
       this.totalTime = res.totalTime;
       this.res = res;
+      for (const [key, value] of Object.entries(this.pits)) {
+        console.log(`${key}: ${value}`);
+      }
     });
+
+    // for(let pit in this.pits){
+    //   console.log(pit);
+    // }
   }
 
   //For Submit Method
@@ -119,7 +127,6 @@ export class CalculatorComponent {
       this.formData.data.push(tel);
     }
     this.calculateAPI(this.form.value["raceLength"],this.form.value["pitLoss"]);
-
   }
 
   //Testing Purposes
@@ -168,5 +175,22 @@ export class CalculatorComponent {
     this.addLap(0);
     this.addLap(1);
     this.addLap(2);
+  }
+
+  generatePitKeys(obj){
+    return Object.keys(obj).map((key)=>{ return {key:key, value:obj[key]}});
+  }
+  parseLap(str){
+    return parseInt(str);
+  }
+  secondsToMMSS(secs){
+    let str:string="";
+    str += Math.floor(secs/60).toString()+":";
+    if(secs%60 < 10){
+      str += "0"+(secs%60).toFixed(3).toString();
+    }else{
+      str += (secs%60).toFixed(3).toString();
+    }
+    return str;
   }
 }

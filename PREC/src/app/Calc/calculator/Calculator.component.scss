@@ -5,7 +5,7 @@ $prec-blue:#252B42;
 
 .calculator-form{
   margin-top: 2vh;
-  height: 100vh;
+  width: 100%;
 }
 
 ::ng-deep .mat-form-field {
@@ -156,4 +156,39 @@ $prec-blue:#252B42;
   height: 6vh;
   width: 18vw;
   animation: none;
+}
+
+.results{
+  margin-top: 3vh;
+
+  display: flex;
+  justify-content: center;
+}
+
+// table, th, td {
+//   border: 1px solid black;
+// }
+
+table {
+  background-color: $prec-blue;
+  border-collapse: collapse;
+  width: 30vw;
+}
+td{
+  color: white;
+  text-align: center;
+}
+
+th{
+  color: white;
+  border-bottom: 2px solid $prec-yellow;
+  text-align: center;
+}
+
+.data{
+  border-right: 2px solid $prec-yellow;
+}
+
+.totalTime{
+  background-color: $prec-yellow;
 }

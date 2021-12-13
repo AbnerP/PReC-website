@@ -1,8 +1,4 @@
 <div class="calculator-form" [formGroup]="form">
-  <!-- {{pits | json}}
-  <br>
-  {{totalTime}}
-  <br> -->
   <div class="miscData">
     <mat-form-field class="raceLengthField" appearance="outline" >
       <mat-label>Race Length</mat-label>
@@ -104,4 +100,24 @@
     <button class="calculateBTN" mat-stroked-button type="submit" [disabled]="!form.valid" (click)="saveChanges()">Calculate</button>
   </div>
 
+</div>
+
+<div *ngIf="pits" class="results">
+  <table>
+    <tr>
+      <th>Lap</th>
+      <th>Tire</th>
+      <th>Total Time</th>
+    </tr>
+    <tr *ngFor="let pit of generatePitKeys(pits)">
+      <td class="data" *ngIf="pit.key == '0'"> Start</td>
+      <td class="data" *ngIf="pit.key != '0'">{{parseLap(pit.key)+1}}</td>
+      <td class="data">{{pit.value}}</td>
+    </tr>
+    <tr>
+      <td class="data" ></td>
+      <td class="data"></td>
+      <td class="totalTime">{{secondsToMMSS(totalTime)}}</td>
+    </tr>
+  </table>
 </div>
