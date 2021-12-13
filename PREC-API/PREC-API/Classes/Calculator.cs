@@ -26,66 +26,40 @@ namespace PREC_API.Classes
         public Strategy getBestStrategy()
         {
             List<Strategy> strategies = new List<Strategy>();
-            Strategy startSoft = new Strategy();
-            startSoft.addPitLap("Soft", 0);
-            startSoft = calculate("Soft", 0, 0.0, 0, startSoft);
-            Strategy startMedium = new Strategy();
-            startMedium.addPitLap("Medium", 0);
-            startMedium = calculate("Hard", 0, 0.0, 0, startMedium);
-            Strategy startHard = new Strategy();
-            startHard.addPitLap("Hard", 0);
-            startHard = calculate("Hard", 0, 0.0, 0, startHard);
 
-            double totalSoft = startSoft.getTotalTime();
-            double totalMedium = startMedium.getTotalTime();
-            double totalHard = startHard.getTotalTime();
+            foreach (KeyValuePair<String, List<Double>> entry in data.data)
+            {
+                Strategy temp = new Strategy();
+                temp.addPitLap(entry.Key, 0);
+                temp = calculate(entry.Key, 0, 0.0, 0, temp);
+                strategies.Add(temp);
+            }
 
-            double fastestTime = Math.Min(totalHard, totalMedium);
-            fastestTime = Math.Min(fastestTime, totalSoft);
-            if (fastestTime == totalSoft)
+            Strategy fastest = strategies[0];
+            foreach (Strategy s in strategies)
             {
-                return startSoft;
+                if(s.getTotalTime() < fastest.getTotalTime())
+                {
+                    fastest = s;
+                }
             }
-            else if (fastestTime == totalMedium)
-            {
-                return startMedium;
-            }
-            else
-            {
-                return startHard;
-            }
+            return fastest;
         }
 
-
-        //ONE COMPOUND STRATEGY
-        //    private Strategy calculate(int currentLap, double totalTime, int tireAge, Strategy currentStrategy){
-        //        if(currentLap == this.numLaps) {
-        //            tireAge++;
-        //            currentStrategy.addTotalTime(totalTime+this.data.lapTimeAt(tireAge));
-        //            return currentStrategy;
-        //        }else{
-        //            Strategy pit = calculate(currentLap+1,totalTime+this.data.lapTimeAt(tireAge)+this.pitLoss,0,resultingStrategy(currentStrategy,currentLap,true));
-        //            Strategy cont;
-        //            if(tireAge == this.data.indexedMaxLap()){
-        //                cont = calculate(currentLap+1,totalTime+this.data.lapTimeAt(tireAge)+this.pitLoss,0,resultingStrategy(currentStrategy,currentLap,true));
-        //            }else{
-        //                cont = calculate(currentLap+1,totalTime+this.data.lapTimeAt(tireAge),tireAge+1,resultingStrategy(currentStrategy,currentLap,false));
-        //            }
-        //            if(pit.getTotalTime() >= cont.getTotalTime()){
-        //                return cont;
-        //            }else{
-        //                return pit;
-        //            }
-        //        }
-        //    }
-
-        //THREE COMPOUND STRATEGY
         private Strategy calculate(String compound, int currentLap, double totalTime, int tireAge, Strategy currentStrategy)
         {
             if (currentLap == this.numLaps)
             {
-                tireAge++;
-                currentStrategy.addTotalTime(totalTime + this.data.getLap(compound, tireAge));
+                if(currentLap == 0)
+                {
+                    currentStrategy.addTotalTime(totalTime + this.data.getLap(compound, tireAge));
+                }
+                else
+                {
+                    tireAge++;
+                    currentStrategy.addTotalTime(totalTime + this.data.getLap(compound, tireAge));
+                }
+
                 if (currentStrategy.getTotalTime() < this.minTime)
                 {
                     this.minTime = currentStrategy.getTotalTime();
@@ -96,23 +70,10 @@ namespace PREC_API.Classes
             {
 
                 Strategy cont = null;
-                Strategy pitS = null;
-                Strategy pitM = null;
-                Strategy pitH = null;
 
-                //            if(tireAge != this.data.maxIndexedLap(compound) ) {
-                //                    cont = calculate(compound, currentLap + 1, totalTime + this.data.getLap(compound, tireAge), tireAge + 1, resultingStrategy(currentStrategy, currentLap, false, null));
-                //            }
-                ////
-                //            if(totalTime+this.data.getLap(compound,tireAge)+this.pitLoss > this.minTime && cont != null){
-                //                return cont;
-                //            }else{
-                //                pitS = calculate("Soft",currentLap+1,totalTime+this.data.getLap(compound,tireAge)+this.pitLoss,0,resultingStrategy(currentStrategy,currentLap,true,"Soft"));
-                //                pitM = calculate("Medium",currentLap+1,totalTime+this.data.getLap(compound,tireAge)+this.pitLoss,0,resultingStrategy(currentStrategy,currentLap,true,"Medium"));
-                //                pitH = calculate("Hard",currentLap+1,totalTime+this.data.getLap(compound,tireAge)+this.pitLoss,0,resultingStrategy(currentStrategy,currentLap,true,"Hard"));
-                //            }
                 int minLapsWithCurrentCompound = minLapsPerCompound.GetValueOrDefault(compound);
                 int maxIndexLap = this.data.maxIndexedLap(compound);
+
                 if (tireAge < minLapsWithCurrentCompound && tireAge < maxIndexLap)
                 {
                     return calculate(compound, currentLap + 1, totalTime + this.data.getLap(compound, tireAge), tireAge + 1, resultingStrategy(currentStrategy, currentLap, false, null));
@@ -129,48 +90,29 @@ namespace PREC_API.Classes
                     }
                     else
                     {
-                        pitS = calculate("Soft", currentLap + 1, totalTime + this.data.getLap(compound, tireAge) + this.pitLoss, 0, resultingStrategy(currentStrategy, currentLap, true, "Soft"));
-                        pitM = calculate("Medium", currentLap + 1, totalTime + this.data.getLap(compound, tireAge) + this.pitLoss, 0, resultingStrategy(currentStrategy, currentLap, true, "Medium"));
-                        pitH = calculate("Hard", currentLap + 1, totalTime + this.data.getLap(compound, tireAge) + this.pitLoss, 0, resultingStrategy(currentStrategy, currentLap, true, "Hard"));
+                        List<Strategy> strategies = new List<Strategy>();
+                        if(cont != null)
+                        {
+                            strategies.Add(cont);
+                        }
+
+                        foreach (KeyValuePair<String, List<Double>> entry in data.data)
+                        {
+                            Strategy temp = calculate(entry.Key, currentLap + 1, totalTime + this.data.getLap(compound, tireAge) + this.pitLoss, 0, resultingStrategy(currentStrategy, currentLap, true, entry.Key));
+                            strategies.Add(temp);
+                        }
+
+                        Strategy fastest = strategies[0];
+                        foreach (Strategy s in strategies)
+                        {
+                            if (s.getTotalTime() < fastest.getTotalTime())
+                            {
+                                fastest = s;
+                            }
+                        }
+                        return fastest;
                     }
                 }
-
-                double totalCont = Double.PositiveInfinity;
-                double totalSoft = Double.PositiveInfinity;
-                double totalMedium = Double.PositiveInfinity;
-                double totalHard = Double.PositiveInfinity;
-
-                if (cont != null)
-                {
-                    totalCont = cont.getTotalTime();
-                }
-                if (pitS != null)
-                {
-                    totalSoft = pitS.getTotalTime();
-                    totalMedium = pitM.getTotalTime();
-                    totalHard = pitH.getTotalTime();
-                }
-
-                double fastestTime = Math.Min(totalHard, totalMedium);
-                fastestTime = Math.Min(fastestTime, totalSoft);
-                fastestTime = Math.Min(fastestTime, totalCont);
-                if (fastestTime == totalSoft)
-                {
-                    return pitS;
-                }
-                else if (fastestTime == totalMedium)
-                {
-                    return pitM;
-                }
-                else if (fastestTime == totalCont)
-                {
-                    return cont;
-                }
-                else
-                {
-                    return pitH;
-                }
-
             }
 
         }
@@ -179,10 +121,6 @@ namespace PREC_API.Classes
         {
             Strategy copy = new Strategy();
             copy.setPits(new Dictionary<int,String>(currentStrategy.getPits()));
-            //for (int i = 0; i < currentStrategy.getPitLaps().Count; i++)
-            //{
-            //    copy.addPitLap(currentStrategy.getCompounds()[i], currentStrategy.getPitLaps()[i]);
-            //}
             if (pit && compound != null)
             {
                 copy.addPitLap(compound, currentLap);
@@ -193,18 +131,11 @@ namespace PREC_API.Classes
 
         private void setMinLapsPerCompound()
         {
-            int softLimit = getIndexOfMinimumConsiderableLap(this.data.getLapTimes("Soft"));
-            int medLimit = getIndexOfMinimumConsiderableLap(this.data.getLapTimes("Medium"));
-            int hardLimit = getIndexOfMinimumConsiderableLap(this.data.getLapTimes("Hard"));
-            //System.out.println("Soft lower limit: " + softLimit);
-            //System.out.println("Medium lower limit: " + medLimit);
-            //System.out.println("Hard lower limit: " + hardLimit);
-            //        int softLimit = this.data.maxIndexedLap("Soft")/2;
-            //        int medLimit = this.data.maxIndexedLap("Medium")/2;
-            //        int hardLimit = this.data.maxIndexedLap("Hard")/2;
-            this.minLapsPerCompound.Add("Soft", softLimit);
-            this.minLapsPerCompound.Add("Medium", medLimit);
-            this.minLapsPerCompound.Add("Hard", hardLimit);
+            foreach (KeyValuePair<String, List<Double>> entry in data.data)
+            {
+                int temp = getIndexOfMinimumConsiderableLap(this.data.getLapTimes(entry.Key));
+                this.minLapsPerCompound.Add(entry.Key, temp);
+            }
         }
 
         private int getIndexOfMinimumConsiderableLap(List<Double> laps)

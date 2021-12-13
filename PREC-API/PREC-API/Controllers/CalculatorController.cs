@@ -26,15 +26,10 @@ namespace PREC_API.Controllers
         public String Post([FromBody] TelemetryDTO d, [FromQuery(Name = "laps")] int laps, [FromQuery(Name = "pitLoss")] double pitLoss)
         {
             Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(d));
-            TelemetryData data = new TelemetryData(d);
-            //data.generateMockData();
-            Calculator calculator = new Calculator(laps, pitLoss, data);
-            Strategy s = calculator.getBestStrategy();
 
-            Console.WriteLine(s.toString());
-            // int totalTimeMins = (int)Math.Floor(s.getTotalTime() / 60);
-            // int totalTimeSecs = (int)s.getTotalTime() % 60;
-            // Console.WriteLine("Total Time: " + totalTimeMins + ":" + totalTimeSecs);
+            TelemetryData data = new TelemetryData(d);
+            Calculator calculator = new Calculator(laps-1, pitLoss, data);
+            Strategy s = calculator.getBestStrategy();
 
             return Newtonsoft.Json.JsonConvert.SerializeObject(s);
         }

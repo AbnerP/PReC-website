@@ -7,7 +7,7 @@ namespace PREC_API.Classes
     public class TelemetryData
     {
 
-        private Dictionary<String, List<double>> data;
+        public Dictionary<String, List<double>> data;
 
         public TelemetryData()
         {

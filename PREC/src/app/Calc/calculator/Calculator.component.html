@@ -1,58 +1,124 @@
-<div class="add-lessons-form" [formGroup]="form">
-  <mat-form-field appearance="fill">
-    <mat-label>Race Length</mat-label>
-    <input matInput
-    formControlName="raceLength"
-    placeholder="10">
-  </mat-form-field>
-  <mat-label>laps</mat-label>
-  <br>
-  <mat-form-field appearance="fill">
-    <mat-label>Time Lost in Pits</mat-label>
-    <input matInput
-    formControlName="pitLoss"
-    placeholder="30.1">
-  </mat-form-field>
-  <mat-label>seconds</mat-label>
+{{formData | json}}
+<div class="calculator-form" [formGroup]="form">
+  <div class="miscData">
+    <mat-form-field class="raceLengthField" appearance="outline" >
+      <mat-label>Race Length</mat-label>
 
-  <br><button (click)="addTire()">Add Tire</button>
+      <input matInput
+      formControlName="raceLength"
+      placeholder="23">
 
-  <ng-container formArrayName="tires">
-    <ng-container *ngFor="let tire of tires.controls, let t = index"><br>
-      <ng-container formGroupName="{{t}}">
-        <mat-form-field appearance="fill">
-          <mat-label>Tire {{t+1}}</mat-label>
-          <input matInput
-          formControlName="compound"
-          placeholder="Soft">
-        </mat-form-field>
-        <button (click)="addLap(t)">New Lap Entry</button>
+      <span matSuffix >laps</span>
 
-        <ng-container formArrayName="times">
-          <ng-container *ngFor="let time of getTimesFormsArray(t).controls, let l = index"><br>
-              <ng-container [formGroupName]=l>
-                <mat-form-field appearance="fill">
-                  <mat-label>Lap {{l+1}}</mat-label>
-                  <input matInput
-                  formControlName="lap"
-                  placeholder="0:00.00">
-                </mat-form-field>
-                <button (click)="removeLap(t,l)">X</button>
-              </ng-container>
-          </ng-container>
-        </ng-container>
+      <mat-error *ngIf="raceLength.errors?.pattern">
+        Invalid number of laps
+      </mat-error>
 
-      </ng-container>
-    </ng-container>
-  </ng-container>
+      <mat-error *ngIf="raceLength.errors?.required">
+        Field is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="pitLossField" appearance="outline">
+      <mat-label>Pit Loss</mat-label>
+
+      <input matInput
+      formControlName="pitLoss"
+      placeholder="30.1">
+
+      <span matSuffix>seconds</span>
+
+      <mat-error *ngIf="pitLoss.errors?.pattern">
+        Invalid pit loss time
+      </mat-error>
+
+      <mat-error *ngIf="pitLoss.errors?.required">
+        Field is required
+      </mat-error>
+
+    </mat-form-field>
+
+    <button class="addTireButton" mat-stroked-button (click)="addTire()">Add Tire</button>
+  </div>
+
+  <div class="tires" formArrayName="tires">
+    <div *ngFor="let tire of tires.controls, let t = index"><br>
+      <div class="tire" formGroupName="{{t}}">
+
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Tire</mat-label>
+
+            <input matInput
+            formControlName="compound"
+            placeholder="Soft">
+
+            <mat-error *ngIf="compound(t).errors?.required">
+              Field is required
+            </mat-error>
+
+            <mat-error *ngIf="compound(t).errors?.pattern">
+              Cannot contain numbers
+            </mat-error>
+
+          </mat-form-field>
+
+          <button mat-icon-button color="warn" class="delTire" (click)="removeTire(t)"><mat-icon>delete_outline</mat-icon></button>
+        </div>
+
+        <div formArrayName="times">
+          <div *ngFor="let time of getTimesFormsArray(t).controls, let l = index"><br>
+            <div [formGroupName]=l>
+              <mat-form-field class="lap" appearance="outline">
+                <mat-label>Lap {{l+1}}</mat-label>
+                <input matInput
+                formControlName="lap"
+                placeholder="0:00.00"
+                pattern="^([0-9]+:)?[0-5][0-9]+(\.[0-9]+)?$"
+                >
+                <mat-error *ngIf="lap(t,l).errors?.required">
+                  Field is required
+                </mat-error>
+
+                <mat-error *ngIf="lap(t,l).errors?.pattern">
+                  Invalid lap time
+                </mat-error>
+              </mat-form-field>
+              <button mat-icon-button color="warn" (click)="removeLap(t,l)"><mat-icon>remove</mat-icon></button>
+            </div>
+          </div>
+        </div>
+
+        <button mat-button class="newLapBTN" (click)="addLap(t)">+</button>
+
+      </div>
+    </div>
+  </div>
+
   <br><br>
-  <button type="submit" (click)="saveChanges()">Submit</button>
+
+  <div class="calculateBTNContainer">
+    <button class="calculateBTN" mat-stroked-button type="submit" [disabled]="!form.valid" (click)="saveChanges()">Calculate</button>
+  </div>
+
 </div>
 
-<br>
-{{pits | json}}
-<br>
-{{totalTime}}
-
-
-
+<div *ngIf="pits" class="results">
+  <table>
+    <tr>
+      <th>Lap</th>
+      <th>Tire</th>
+      <th>Total Time</th>
+    </tr>
+    <tr *ngFor="let pit of generatePitKeys(pits)">
+      <td class="data" *ngIf="pit.key == '0'"> Start</td>
+      <td class="data" *ngIf="pit.key != '0'">{{parseLap(pit.key)+1}}</td>
+      <td class="data">{{pit.value}}</td>
+    </tr>
+    <tr>
+      <td class="data" ></td>
+      <td class="data"></td>
+      <td class="totalTime">{{secsToMins(totalTime)}}</td>
+    </tr>
+  </table>
+</div>

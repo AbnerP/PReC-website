@@ -5,11 +5,12 @@ import { Lap, Telemetry,tireFormTelemetry,tireTelemetry } from 'src/app/Models/t
 import { CalculatorService } from 'src/app/services/calculator.service';
 import * as mockData from "./telemetry.json";
 import * as mockResults from "./strategy.json";
+import {secondsAndMilisecondsRE,integerRE, compoundRE, lapTimeRE, timeInSec, secondsToMMSS} from "../../utilities/utils";
 
 @Component({
   selector: 'app-Calculator',
   templateUrl: './Calculator.component.html',
-  styleUrls: ['./Calculator.component.css']
+  styleUrls: ['./Calculator.component.scss']
 })
 export class CalculatorComponent {
 
@@ -21,46 +22,76 @@ export class CalculatorComponent {
   formData:Telemetry;
 
   form = this.fb.group({
-    raceLength: ['', Validators.required],
-    pitLoss: ['', Validators.required],
-    // numTires: [3, Validators.required],
+    raceLength: ['', [Validators.required,Validators.pattern(integerRE)]],
+    pitLoss: ['', [Validators.required,Validators.pattern(secondsAndMilisecondsRE)]],
     tires: this.fb.array([])
   });
 
-  numberOfTiresArr:Array<number> = [];
+  secsToMins = (secs) => secondsToMMSS(secs);
+  parseLap = (str) => parseInt(str);
+  generatePitKeys = (pit) => Object.keys(pit).map((key)=>{ return {key:key, value:pit[key]}});
 
   constructor(private calculatorService:CalculatorService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
-    this.formTestValues();
+    // this.formTestValues();
+    this.initializeForm();
   }
 
+  get raceLength(){
+    return this.form.controls['raceLength'];
+  }
+
+  get pitLoss(){
+    return this.form.controls['pitLoss'];
+  }
+
+  compound(num:number){
+    return this.form['controls']['tires']["controls"][num]["controls"]["compound"];
+  }
+
+  lap(tire,num){
+    return this.form.controls["tires"]["controls"][tire]["controls"]["times"]["controls"][num]["controls"]["lap"];
+  }
+
+
+  //Form Array Manipulation
   addTire(){
     let arr: FormArray=this.form.controls["tires"] as FormArray;
+    let i = arr.length;
     arr.push(this.fb.group({
-      compound:[''],
+      compound:['', [Validators.required,Validators.pattern(compoundRE)]],
       times:this.fb.array([
       ]),
     }));
-    // console.log(this.form)
+    // this.addLap(i);
   }
-  addLapVal(i,val){
-    let arr: FormArray=this.form.controls["tires"]["controls"][i]["controls"]["times"] as FormArray;
-    arr.push(this.fb.group({
-      lap:[val]
-    }));
+
+  removeTire(i){
+    let arr: FormArray=this.form.controls["tires"] as FormArray;
+    if(arr.length > 1){
+      arr.removeAt(i);
+    }
   }
 
   addLap(i){
     let arr: FormArray=this.form.controls["tires"]["controls"][i]["controls"]["times"] as FormArray;
     arr.push(this.fb.group({
-      lap:['']
+      lap:new FormControl('', Validators.required),
     }));
   }
 
   removeLap(i,l){
     let arr: FormArray=this.form.controls["tires"]["controls"][i]["controls"]["times"] as FormArray;
-    arr.removeAt(l);
+    if(arr.length > 1){
+      arr.removeAt(l);
+    }
+  }
+
+  //Template Iteration Functions
+  getTimesFormsArray(i) {
+    let arr: FormArray=this.form.controls["tires"]["controls"][i]["controls"]["times"] as FormArray;
+    return arr;
   }
 
   get tires() {
@@ -68,17 +99,8 @@ export class CalculatorComponent {
     return arr;
   }
 
-  getTimesFormsArray(i) {
-    let arr: FormArray=this.form.controls["tires"]["controls"][i]["controls"]["times"] as FormArray;
-    return arr;
-  }
-
-  // deleteLap(LapIndex:number){
-  //   this.laps.removeAt(LapIndex);
-  // }
-
-
-  calculate(laps,loss){
+  //Calculation Service Call
+  calculateAPI(laps,loss){
     this.calculatorService.post(this.formData,laps,loss)
     .then((res)=>{
       this.pits = res.pits;
@@ -87,19 +109,7 @@ export class CalculatorComponent {
     });
   }
 
-  showTelemetryInputs(){
-    this.numberOfTiresArr = [];
-    for(let i = 1;i<=this.form.value["numTires"];i++){
-      this.numberOfTiresArr.push(i);
-    }
-  }
-
-  callAddTireNTimes(){
-    for(let j=0;j<this.form.value["numTires"];j++){
-      this.addTire()
-    }
-  }
-
+  //For Submit Method
   saveChanges(){
     let tires:Array<tireTelemetry> = this.form.value.tires;
     let arr: FormArray=this.form.controls["tires"]["controls"][0]["controls"]["times"] as FormArray;
@@ -110,14 +120,14 @@ export class CalculatorComponent {
         times:[]
       };
       for(let time of tire["times"]){
-        tel.times.push(time["lap"]);
+        tel.times.push(timeInSec(time["lap"]));
       }
       this.formData.data.push(tel);
     }
-    this.calculate(this.form.value["raceLength"],this.form.value["pitLoss"]);
-
+    this.calculateAPI(this.form.value["raceLength"],this.form.value["pitLoss"]);
   }
 
+  //Testing Purposes
   formTestValues(){
     let raceLengthField = this.form.controls["raceLength"] as FormControl;
     let pitLossField = this.form.controls["pitLoss"] as FormControl;
@@ -142,4 +152,22 @@ export class CalculatorComponent {
       this.addLapVal(2,time);
     }
   }
+
+  addLapVal(i,val){
+    let arr: FormArray=this.form.controls["tires"]["controls"][i]["controls"]["times"] as FormArray;
+    arr.push(this.fb.group({
+      lap:[val]
+    }));
+  }
+
+  initializeForm(){
+    this.addTire();
+    let compound1 = this.form.controls["tires"]["controls"][0]["controls"]["compound"] as FormControl;
+    compound1.setValue("Soft");
+    this.addLapVal(0,"");
+  }
+
+
+
+
 }
