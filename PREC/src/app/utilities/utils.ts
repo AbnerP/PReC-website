@@ -42,7 +42,16 @@ export function timeInSec(time):number{
     return parseFloat(time);
   }
 }
-
+export function secondsToMMSS(secs){
+  let str:string="";
+  str += Math.floor(secs/60).toString()+":";
+  if(secs%60 < 10){
+    str += "0"+(secs%60).toFixed(3).toString();
+  }else{
+    str += (secs%60).toFixed(3).toString();
+  }
+  return str;
+}
 export function formatDateFormData(date:Date){
   date = new Date(date);
   const format = new Intl.DateTimeFormat('en',{

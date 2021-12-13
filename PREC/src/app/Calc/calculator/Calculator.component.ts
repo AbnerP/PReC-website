@@ -5,7 +5,7 @@ import { Lap, Telemetry,tireFormTelemetry,tireTelemetry } from 'src/app/Models/t
 import { CalculatorService } from 'src/app/services/calculator.service';
 import * as mockData from "./telemetry.json";
 import * as mockResults from "./strategy.json";
-import {secondsAndMilisecondsRE,integerRE, compoundRE, lapTimeRE, timeInSec} from "../../utilities/utils";
+import {secondsAndMilisecondsRE,integerRE, compoundRE, lapTimeRE, timeInSec, secondsToMMSS} from "../../utilities/utils";
 
 @Component({
   selector: 'app-Calculator',
@@ -27,15 +27,15 @@ export class CalculatorComponent {
     tires: this.fb.array([])
   });
 
-
-
-  numberOfTiresArr:Array<number> = [];
+  secsToMins = (secs) => secondsToMMSS(secs);
+  parseLap = (str) => parseInt(str);
+  generatePitKeys = (pit) => Object.keys(pit).map((key)=>{ return {key:key, value:pit[key]}});
 
   constructor(private calculatorService:CalculatorService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
-    this.formTestValues();
-    // this.initializeWSomeVals();
+    // this.formTestValues();
+    this.initializeForm();
   }
 
   get raceLength(){
@@ -58,16 +58,20 @@ export class CalculatorComponent {
   //Form Array Manipulation
   addTire(){
     let arr: FormArray=this.form.controls["tires"] as FormArray;
+    let i = arr.length;
     arr.push(this.fb.group({
       compound:['', [Validators.required,Validators.pattern(compoundRE)]],
       times:this.fb.array([
       ]),
     }));
+    this.addLap(i);
   }
 
   removeTire(i){
     let arr: FormArray=this.form.controls["tires"] as FormArray;
-    arr.removeAt(i);
+    if(arr.length > 1){
+      arr.removeAt(i);
+    }
   }
 
   addLap(i){
@@ -79,7 +83,9 @@ export class CalculatorComponent {
 
   removeLap(i,l){
     let arr: FormArray=this.form.controls["tires"]["controls"][i]["controls"]["times"] as FormArray;
-    arr.removeAt(l);
+    if(arr.length > 1){
+      arr.removeAt(l);
+    }
   }
 
   //Template Iteration Functions
@@ -105,10 +111,6 @@ export class CalculatorComponent {
         console.log(`${key}: ${value}`);
       }
     });
-
-    // for(let pit in this.pits){
-    //   console.log(pit);
-    // }
   }
 
   //For Submit Method
@@ -162,35 +164,13 @@ export class CalculatorComponent {
     }));
   }
 
-  initializeWSomeVals(){
-    this.addTire();
-    this.addTire();
+  initializeForm(){
     this.addTire();
     let compound1 = this.form.controls["tires"]["controls"][0]["controls"]["compound"] as FormControl;
-    let compound2 = this.form.controls["tires"]["controls"][1]["controls"]["compound"] as FormControl;
-    let compound3 = this.form.controls["tires"]["controls"][2]["controls"]["compound"] as FormControl;
     compound1.setValue("Soft");
-    compound2.setValue("Medium");
-    compound3.setValue("Hard");
-    this.addLap(0);
-    this.addLap(1);
-    this.addLap(2);
   }
 
-  generatePitKeys(obj){
-    return Object.keys(obj).map((key)=>{ return {key:key, value:obj[key]}});
-  }
-  parseLap(str){
-    return parseInt(str);
-  }
-  secondsToMMSS(secs){
-    let str:string="";
-    str += Math.floor(secs/60).toString()+":";
-    if(secs%60 < 10){
-      str += "0"+(secs%60).toFixed(3).toString();
-    }else{
-      str += (secs%60).toFixed(3).toString();
-    }
-    return str;
-  }
+
+
+
 }
