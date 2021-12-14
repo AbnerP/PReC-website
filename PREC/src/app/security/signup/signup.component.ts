@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { parseWebAPIErrors } from '../utilities/utils';
-import { userCredentials } from '../security/security.models';
+import { parseWebAPIErrors } from '../../utilities/utils';
+import { userCredentials } from '../security.models';
 
 @Component({
   selector: 'app-signup',

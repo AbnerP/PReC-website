@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { strategy } from '../Models/strategy.model';
-import { Telemetry } from '../Models/tiretelemetry.model';
+import { strategy } from '../models/calculatorInterfaces/strategy.model';
+import { Telemetry } from '../models/tiretelemetry.model';
 import axios from "axios";
 @Injectable({
   providedIn: 'root'

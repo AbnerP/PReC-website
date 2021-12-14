@@ -1,0 +1,51 @@
+$prec-yellow:#ffd000;
+$prec-yellowSecondary:#ffdb0e;
+$prec-blue:#252B42;
+$font-size-name:1.3rem;
+$font-size-p:.8rem;
+$font-size-a:.7rem;
+
+.card{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.name{
+  line-height: 1.1rem;
+  font-size: $font-size-name;
+  color: white;
+  margin: 2vh 0 0 0;
+}
+
+img{
+  object-fit: cover;
+  width: 19vh;
+  height: 19vh;
+  border-radius: 100%;
+}
+.roles{
+  padding: 0 2em;
+}
+
+.roleName{
+  font-size: $font-size-p;
+  color: rgb(236, 236, 236);
+}
+
+.roleSeparator{
+  font-size: $font-size-p;
+  color: $prec-yellow;
+  margin: 0 1vh;
+}
+
+a{
+  font-size: $font-size-a;
+  color: $prec-yellow;
+  text-decoration: none;
+}
+
+a:visited{
+  font-size: $font-size-a;
+  color: $prec-yellow;
+}

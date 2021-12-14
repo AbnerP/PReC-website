@@ -1,0 +1,11 @@
+<div class="card">
+  <img [src]="imageURL" alt="Abner">
+  <h2 class="name">{{name}}</h2>
+  <a href="{{kudosPrimeLink}}">{{gamertag}}</a>
+  <div class="roles">
+    <span *ngFor="let role of teamRole;let i = index">
+      <span class="roleSeparator" *ngIf="teamRole.length-1 === i" >|</span>
+      <span class="roleName">{{role}}</span>
+    </span>
+  </div>
+</div>

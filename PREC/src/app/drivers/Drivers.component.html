@@ -1,3 +1,14 @@
+<div class="cards">
+  <div *ngFor="let driver of drivers" class="card">
+    <app-driver-card
+        [imageURL]="driver.imageURL"
+        [name]="driver.name"
+        [gamertag]="driver.gamertag"
+        [kudosPrimeLink]="driver.kudosPrimeLink"
+        [teamRole]="driver.teamRole"></app-driver-card>
+  </div>
+</div>
+
 <!-- <div *ngFor="let control of skills.controls; index as i">
   <input [formControl]="skills.controls[i]">
 

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { strategy } from 'src/app/Models/strategy.model';
-import { Lap, Telemetry,tireFormTelemetry,tireTelemetry } from 'src/app/Models/tiretelemetry.model';
+import { strategy } from 'src/app/models/calculatorInterfaces/strategy.model';
+import { Lap, Telemetry,tireFormTelemetry,tireTelemetry } from 'src/app/models/tiretelemetry.model';
 import { CalculatorService } from 'src/app/services/calculator.service';
 import * as mockData from "./telemetry.json";
 import * as mockResults from "./strategy.json";
-import {secondsAndMilisecondsRE,integerRE, compoundRE, lapTimeRE, timeInSec, secondsToMMSS} from "../../utilities/utils";
+import {secondsAndMilisecondsRE,integerRE, compoundRE, lapTimeRE, timeInSec, secondsToMMSS} from "../utilities/utils";
 
 @Component({
   selector: 'app-Calculator',
