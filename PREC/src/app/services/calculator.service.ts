@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { strategy } from '../models/calculatorInterfaces/strategy.model';
-import { Telemetry } from '../models/tiretelemetry.model';
+import { Telemetry } from '../models/calculatorInterfaces/tiretelemetry.model';
 import axios from "axios";
 @Injectable({
   providedIn: 'root'
