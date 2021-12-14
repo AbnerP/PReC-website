@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { driverInfo } from '../Models/drivers.model';
+import { driverInfo } from '../models/driverInterfaces/drivers.model';
 
 @Component({
   selector: 'app-Drivers',
