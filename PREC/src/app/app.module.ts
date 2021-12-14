@@ -21,6 +21,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TireDataFormComponent } from './Calc/tireDataForm/tireDataForm.component';
 import { LapInputsComponent } from './Calc/LapInputs/LapInputs.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DriverCardComponent } from './driver-card/driver-card.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { HttpClientModule } from '@angular/common/http';
       DisplayErrorsComponent,
       AuthenticationFormComponent,
       TireDataFormComponent,
-      LapInputsComponent
+      LapInputsComponent,
+      DriverCardComponent
    ],
   imports: [
     BrowserModule,
