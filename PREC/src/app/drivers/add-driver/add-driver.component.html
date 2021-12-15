@@ -1,0 +1,96 @@
+<div class="body">
+  <div class="backToDrivers">
+    <button mat-flat-button routerLink="../" routerLinkActive="active">All Drivers</button>
+  </div>
+
+  <form class="driverForm" [formGroup]="form">
+    <mat-form-field  appearance="outline" >
+      <mat-label>Name</mat-label>
+
+      <input matInput
+      formControlName="name"
+      placeholder="Abner">
+
+
+      <mat-error *ngIf="form.controls.name.errors?.required">
+        Field is required
+      </mat-error>
+
+    </mat-form-field>
+
+    <hr>
+    <br>
+    <div formArrayName="teamRoles">
+      <div *ngFor="let teamRole of teamRoles.controls, let i = index">
+        <div class="role" [formGroupName]="i">
+          <mat-form-field  appearance="outline" >
+            <mat-label>Team Role</mat-label>
+
+            <input matInput
+            formControlName="role"
+            placeholder="Abner">
+
+
+            <mat-error *ngIf="teamRoles.errors?.required">
+              Field is required
+            </mat-error>
+
+          </mat-form-field>
+          <button (click)="addTeamRole()">+</button>
+        </div>
+      </div>
+    </div>
+
+
+    <hr>
+    <br>
+
+    <mat-form-field  appearance="outline" >
+      <mat-label>Gamer Tag</mat-label>
+
+      <input matInput
+      formControlName="name"
+      placeholder="Abner">
+
+      <mat-error *ngIf="teamRoles.errors?.required">
+        Field is required
+      </mat-error>
+
+    </mat-form-field>
+
+    <hr>
+    <br>
+
+
+    <mat-form-field  appearance="outline" >
+      <mat-label>Image URL</mat-label>
+
+      <input matInput
+      formControlName="imageURL"
+      placeholder="N/A">
+
+      <mat-error *ngIf="teamRoles.errors?.required">
+        Field is required
+      </mat-error>
+
+    </mat-form-field>
+
+    <hr>
+    <br>
+
+    <mat-form-field  appearance="outline" >
+      <mat-label>Kudos Prime Link</mat-label>
+
+      <input matInput
+      formControlName="kudosPrimeLink"
+      placeholder="Abner">
+
+
+      <mat-error *ngIf="teamRoles.errors?.required">
+        Field is required
+      </mat-error>
+
+    </mat-form-field>
+  </form>
+
+</div>

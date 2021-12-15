@@ -13,13 +13,11 @@ import {secondsAndMilisecondsRE,integerRE, compoundRE, lapTimeRE, timeInSec, sec
   styleUrls: ['./Calculator.component.scss']
 })
 export class CalculatorComponent {
+  constructor(private calculatorService:CalculatorService, private fb:FormBuilder) { }
 
   pits:Array<number>;
   totalTime:number;
   res:any;
-
-  telemetryData:Telemetry = mockData;
-  formData:Telemetry;
 
   form = this.fb.group({
     raceLength: ['', [Validators.required,Validators.pattern(integerRE)]],
@@ -27,11 +25,13 @@ export class CalculatorComponent {
     tires: this.fb.array([])
   });
 
+  telemetryData:Telemetry = mockData;
+  formData:Telemetry;
+
   secsToMins = (secs) => secondsToMMSS(secs);
   parseLap = (str) => parseInt(str);
   generatePitKeys = (pit) => Object.keys(pit).map((key)=>{ return {key:key, value:pit[key]}});
 
-  constructor(private calculatorService:CalculatorService, private fb:FormBuilder) { }
 
   ngOnInit(): void {
     // this.formTestValues();

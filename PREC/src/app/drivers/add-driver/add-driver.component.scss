@@ -1,0 +1,29 @@
+$prec-yellow:#ffd000;
+$prec-blue:#252B42;
+
+.body{
+  border-top: 1px solid $prec-yellow;
+  width: 100%;
+  height: 100vh;
+  background-color: $prec-blue;
+}
+.backToDrivers{
+  margin-top: 1vh;
+  display: flex;
+  justify-content: center;
+}
+
+.driverForm{
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+hr{
+  border: none;
+  border-top: 1px solid $prec-yellow;
+  border-radius: 20%;
+  background-color: $prec-yellow;
+  width: 10%;
+}

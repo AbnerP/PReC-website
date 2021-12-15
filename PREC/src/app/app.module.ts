@@ -20,6 +20,7 @@ import { AuthenticationFormComponent } from './security/authentication-form/auth
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DriverCardComponent } from './drivers/driver-card/driver-card.component';
+import { AddDriverComponent } from './drivers/add-driver/add-driver.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { DriverCardComponent } from './drivers/driver-card/driver-card.component
       FooterComponent,
       DisplayErrorsComponent,
       AuthenticationFormComponent,
-      DriverCardComponent
+      DriverCardComponent,
+      AddDriverComponent
    ],
   imports: [
     BrowserModule,

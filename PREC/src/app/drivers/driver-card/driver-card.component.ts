@@ -20,6 +20,7 @@ export class DriverCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

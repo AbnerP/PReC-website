@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   googleapiURL: 'https://www.googleapis.com/calendar/v3',
-  apiURL: 'https://localhost:5001/api'
+  calculatorApiURL: 'https://localhost:5001/api',
+  backendAPIURL: 'http://localhost:3000/api'
 };
 
 /*
