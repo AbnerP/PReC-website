@@ -3,7 +3,7 @@
     <button mat-flat-button routerLink="../" routerLinkActive="active">All Drivers</button>
   </div>
 
-  <form class="driverForm" [formGroup]="form">
+  <div class="driverForm" [formGroup]="form">
     <mat-form-field  appearance="outline" >
       <mat-label>Name</mat-label>
 
@@ -31,7 +31,7 @@
             placeholder="Abner">
 
 
-            <mat-error *ngIf="teamRoles.errors?.required">
+            <mat-error *ngIf="form.controls['teamRoles']['controls'][0]['controls']['role'].errors.required">
               Field is required
             </mat-error>
 
@@ -49,10 +49,10 @@
       <mat-label>Gamer Tag</mat-label>
 
       <input matInput
-      formControlName="name"
+      formControlName="gamertag"
       placeholder="Abner">
 
-      <mat-error *ngIf="teamRoles.errors?.required">
+      <mat-error *ngIf="form.controls.gamertag.errors?.required">
         Field is required
       </mat-error>
 
@@ -69,7 +69,7 @@
       formControlName="imageURL"
       placeholder="N/A">
 
-      <mat-error *ngIf="teamRoles.errors?.required">
+      <mat-error *ngIf="form.controls.imageURL.errors?.required">
         Field is required
       </mat-error>
 
@@ -86,11 +86,11 @@
       placeholder="Abner">
 
 
-      <mat-error *ngIf="teamRoles.errors?.required">
+      <mat-error *ngIf="form.controls.kudosPrimeLink.errors?.required">
         Field is required
       </mat-error>
 
     </mat-form-field>
-  </form>
+  </div>
 
 </div>

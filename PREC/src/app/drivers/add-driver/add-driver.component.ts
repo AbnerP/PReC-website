@@ -20,7 +20,6 @@ export class AddDriverComponent implements OnInit {
       kudosPrimeLink:['',Validators.required]
     });
     this.addTeamRole();
-    console.log(this.form.controls["teamRoles"])
   }
 
   get teamRoles(){
