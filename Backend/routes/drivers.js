@@ -64,7 +64,6 @@ router.get('/:driverId',async (req,res) =>{
 });
 
 router.post('/',upload.single('driverImage'),async (req,res) =>{
-    console.log(req.file);
     const driver = new Driver({
         name: req.body.name,
         teamRole: req.body.teamRole,

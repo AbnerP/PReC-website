@@ -72,7 +72,7 @@
       </mat-error>
 
     </mat-form-field> -->
-    <input type="file" (change)="onFileSelected($event)">
+    <input type="file" (change)="onImageUploaded($event)">
 
     <button class="submitBTN" mat-stroked-button type="submit" [disabled]="!form.valid" (click)="saveChanges()">Submit</button>
 

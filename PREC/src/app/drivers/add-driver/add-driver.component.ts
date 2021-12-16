@@ -59,9 +59,7 @@ export class AddDriverComponent implements OnInit {
     this.router.navigate(['/drivers']);
   }
 
-
-
-  onFileSelected(event){
+  onImageUploaded(event){
     this.profileIMG = <File> event.target.files[0];
   }
 }
