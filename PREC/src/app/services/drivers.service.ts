@@ -37,6 +37,7 @@ export class DriversService {
   }
 
   async createDriver(driver:driverInfo){
+    console.log(driver);
     const res = await axios.post<driverInfo>(this.apiURL,driver);
     console.log(res.data);
     return res.data;

@@ -1,15 +1,12 @@
 <div class="body">
-  <div class="backToDrivers">
-    <button mat-flat-button routerLink="../" routerLinkActive="active">All Drivers</button>
-  </div>
-
   <div class="driverForm" [formGroup]="form">
     <mat-form-field  appearance="outline" >
       <mat-label>Name</mat-label>
 
       <input matInput
+      required
       formControlName="name"
-      placeholder="Abner">
+      placeholder="John Doe">
 
 
       <mat-error *ngIf="form.controls.name.errors?.required">
@@ -18,39 +15,29 @@
 
     </mat-form-field>
 
-    <hr>
-    <br>
-    <div formArrayName="teamRoles">
-      <div *ngFor="let teamRole of teamRoles.controls, let i = index">
+    <div class="roles" formArrayName="teamRole">
+      <div *ngFor="let r of teamRole.controls, let i = index">
         <div class="role" [formGroupName]="i">
           <mat-form-field  appearance="outline" >
             <mat-label>Team Role</mat-label>
 
             <input matInput
             formControlName="role"
-            placeholder="Abner">
-
-
-            <mat-error *ngIf="form.controls['teamRoles']['controls'][0]['controls']['role'].errors.required">
-              Field is required
-            </mat-error>
+            placeholder="Driver">
 
           </mat-form-field>
-          <button (click)="addTeamRole()">+</button>
         </div>
       </div>
+      <button class="newRole" (click)="addTeamRole()">+</button>
     </div>
-
-
-    <hr>
-    <br>
 
     <mat-form-field  appearance="outline" >
       <mat-label>Gamer Tag</mat-label>
 
       <input matInput
+      required
       formControlName="gamertag"
-      placeholder="Abner">
+      placeholder="PReC_">
 
       <mat-error *ngIf="form.controls.gamertag.errors?.required">
         Field is required
@@ -58,14 +45,12 @@
 
     </mat-form-field>
 
-    <hr>
-    <br>
-
 
     <mat-form-field  appearance="outline" >
       <mat-label>Image URL</mat-label>
 
       <input matInput
+      required
       formControlName="imageURL"
       placeholder="N/A">
 
@@ -75,15 +60,12 @@
 
     </mat-form-field>
 
-    <hr>
-    <br>
-
     <mat-form-field  appearance="outline" >
       <mat-label>Kudos Prime Link</mat-label>
 
       <input matInput
       formControlName="kudosPrimeLink"
-      placeholder="Abner">
+      placeholder="https://www.kudosprime.com/">
 
 
       <mat-error *ngIf="form.controls.kudosPrimeLink.errors?.required">
@@ -91,6 +73,9 @@
       </mat-error>
 
     </mat-form-field>
+
+    <button class="submitBTN" mat-stroked-button type="submit" [disabled]="!form.valid" (click)="saveChanges()">Submit</button>
+
   </div>
 
 </div>

@@ -45,11 +45,11 @@ export class DriversComponent implements OnInit {
       teamRole:["Driver","Web Page Maintance"],
       gamertag:"PReC_APena",
       kudosPrimeLink:"https://www.kudosprime.com/gts/stats.php?profile=10733830"
-    },
+    }
   ];
 
   constructor(private service:DriversService){}
-  
+
   ngOnInit(): void {
     // this.service.getDriverByID('61b937944a9e8465df20746e');
     // this.service.getDrivers();

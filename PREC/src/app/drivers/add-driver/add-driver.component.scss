@@ -1,10 +1,11 @@
 $prec-yellow:#ffd000;
+$prec-yellowSecondary:#ffdb0e;
 $prec-blue:#252B42;
 
 .body{
   border-top: 1px solid $prec-yellow;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: $prec-blue;
 }
 .backToDrivers{
@@ -27,3 +28,113 @@ hr{
   background-color: $prec-yellow;
   width: 10%;
 }
+
+::ng-deep .mat-form-field {
+  .mat-input-element {
+    color: white;
+  }
+  .mat-form-field-label {
+    color: rgb(180, 180, 180);
+  }
+  .mat-form-field-outline{
+    color:$prec-yellow;
+  }
+  .mat-form-field-required-marker {
+    color: $prec-yellow;
+  }
+}
+
+::ng-deep .mat-form-field.mat-focused {
+  .mat-form-field-label {
+    color: white;
+  }
+  .mat-form-field-ripple {
+    background-color: $prec-yellow;
+  }
+  .mat-form-field-required-marker {
+    color: $prec-yellow;
+  }
+  .mat-form-field-outline{
+    color:$prec-yellow;
+  }
+  .mat-input-element {
+    color: white;
+  }
+}
+
+//Error
+::ng-deep .mat-form-field.mat-form-field-invalid {
+  .mat-input-element {
+    color: white;
+  }
+  .mat-form-field-label {
+    color: rgb(255, 78, 78);
+  }
+  .mat-form-field-outline{
+    color:grey;
+  }
+}
+
+.roles{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes glowing {
+  0% {
+    background-color: $prec-yellow;
+    box-shadow: 0 0 5px $prec-yellow;
+  }
+  50% {
+    background-color: $prec-yellowSecondary;
+    box-shadow: 0 0 10px $prec-yellowSecondary;
+  }
+  100% {
+    background-color: $prec-yellow;
+    box-shadow: 0 0 5px $prec-yellow;
+  }
+}
+
+.newRole{
+  height: 3.3vh;
+  width: 100%;
+  background-color: $prec-yellow;
+  color: white;
+  border: none;
+  border-radius: 3px;
+}
+
+.newRole:active{
+  width: 99%;
+}
+
+button{
+  margin-bottom: 2vh;
+}
+
+
+.submitBTN:disabled{
+  background-color: rgb(144, 144, 144);
+  color: rgb(163, 163, 163);
+  cursor:default;
+  border: none;
+  border-radius: 1vh;
+  animation: none;
+  width: 10%;
+}
+
+.submitBTN:enabled{
+  background-color: $prec-yellow;
+  color: white;
+  cursor:default;
+  border: none;
+  border-radius: 1vh;
+  animation: none;
+  width: 10%;
+}
+
+.submitBTN:active{
+  width: 9.5%;
+}
+
