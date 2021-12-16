@@ -45,21 +45,6 @@
 
     </mat-form-field>
 
-
-    <mat-form-field  appearance="outline" >
-      <mat-label>Image URL</mat-label>
-
-      <input matInput
-      required
-      formControlName="imageURL"
-      placeholder="N/A">
-
-      <mat-error *ngIf="form.controls.imageURL.errors?.required">
-        Field is required
-      </mat-error>
-
-    </mat-form-field>
-
     <mat-form-field  appearance="outline" >
       <mat-label>Kudos Prime Link</mat-label>
 
@@ -73,6 +58,21 @@
       </mat-error>
 
     </mat-form-field>
+
+    <!-- <mat-form-field  appearance="outline" >
+      <mat-label>Image URL</mat-label>
+
+      <input matInput
+      required
+      formControlName="imageURL"
+      placeholder="N/A">
+
+      <mat-error *ngIf="form.controls.imageURL.errors?.required">
+        Field is required
+      </mat-error>
+
+    </mat-form-field> -->
+    <input type="file" (change)="onFileSelected($event)">
 
     <button class="submitBTN" mat-stroked-button type="submit" [disabled]="!form.valid" (click)="saveChanges()">Submit</button>
 

@@ -2,10 +2,49 @@ const express = require('express');
 const router = express.Router();
 const Driver = require('../models/Drivers');
 
+//Image Uploading
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination:function(req,file,cb){
+        cb(null,'./uploads/');
+    },
+    filename:function(req,file,cb){
+        cb(null,new Date().toISOString() + file.originalname)
+    }
+});
+
+const fileFilter = (req,file,cb) =>{
+    if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+        cb(null,true);
+    }else{
+        cb(null,false);
+    }
+};
+const upload = multer({
+    storage: storage,
+    limits:{
+        fileSize:1024*1024*5
+    },
+    fileFilter:fileFilter
+});
+
 router.get('/',async (req,res) =>{
     try{
-        const drivers = await Driver.find();
-        res.status(200).json(drivers);
+        const drivers = await Driver.find().select(' name teamRole gamertag kudosPrimeLink imageURL');
+        const response = {
+            drivers: drivers.map(driver =>{
+                return{
+                    _id:driver._id,
+                    name: driver.name,
+                    teamRole: driver.teamRole,
+                    gamertag: driver.gamertag,
+                    kudosPrimeLink:driver.kudosPrimeLink,
+                    imageURL: driver.imageURL
+                }
+            }),
+            count: drivers.length
+        }
+        res.status(200).json(response);
     }catch(e){
         res.status(400).json({message:e});
     } 
@@ -14,19 +53,24 @@ router.get('/',async (req,res) =>{
 router.get('/:driverId',async (req,res) =>{
     try{
         const driver = await Driver.findById(req.params.driverId);
-        res.status(200).json(driver);
+        if(driver){
+            res.status(200).json(driver);
+        }else{
+            res.status(404).json({message:`No driver with id:${req.params.driverId}`});
+        }
     }catch(e){
         res.status(400).json({message:e});
     } 
 });
 
-router.post('/',async (req,res) =>{
+router.post('/',upload.single('driverImage'),async (req,res) =>{
+    console.log(req.file);
     const driver = new Driver({
-        imageURL: req.body.imageURL,
         name: req.body.name,
         teamRole: req.body.teamRole,
         gamertag: req.body.gamertag,
-        kudosPrimeLink:req.body.kudosPrimeLink 
+        kudosPrimeLink:req.body.kudosPrimeLink,
+        imageURL: req.file.path
     });
 
     try{
@@ -39,10 +83,16 @@ router.post('/',async (req,res) =>{
 
 router.patch('/:driverId',async (req,res) =>{
     try{
+        const updateOptions = {};
+        for(const option of req.body){
+            updateOptions[option.propName] = option.value;
+        }
+
         const updatedDriver = await Driver.updateOne(
             {_id:req.params.driverId},
-            {$set:{imageURL:req.body.imageURL}}
-            );
+            {$set: updateOptions}
+        );
+
         res.status(200).json(updatedDriver);
     }catch(e){
         res.status(400).json({message:e});

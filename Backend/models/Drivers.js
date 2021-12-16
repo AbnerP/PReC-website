@@ -1,17 +1,14 @@
 const mongoose = require('mongoose');
 
 const driverSchema = mongoose.Schema({
-    imageURL: {
-        type:String,
-        required:true
-    },
     name: {
         type:String,
         required:true
     },
     teamRole:{
         type:[String],
-        required:true
+        required:true,
+        default:["Driver"]
     },
     gamertag:{
         type:String,
@@ -19,7 +16,11 @@ const driverSchema = mongoose.Schema({
     },
     kudosPrimeLink:{
         type:String,
-        required:true
+        required:false
+    },
+    imageURL: {
+        type:String,
+        required:false
     }
 });
 

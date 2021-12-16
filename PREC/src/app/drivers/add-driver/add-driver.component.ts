@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,7 +14,10 @@ export class AddDriverComponent implements OnInit {
 
   constructor(private fb:FormBuilder,
     private service:DriversService,
-    private router:Router) { }
+    private router:Router){
+  }
+
+  profileIMG:File = null;
   form:FormGroup;
 
   ngOnInit(): void {
@@ -51,9 +55,13 @@ export class AddDriverComponent implements OnInit {
       driver.teamRole.push(role["role"]);
     }
 
-    this.service.createDriver(driver);
-    
+    this.service.createDriver(driver,this.profileIMG);
     this.router.navigate(['/drivers']);
   }
 
+
+
+  onFileSelected(event){
+    this.profileIMG = <File> event.target.files[0];
+  }
 }
