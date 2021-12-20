@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { driverInfo } from '../models/driverInterfaces/drivers.model';
+import { driverDTO } from '../models/driverInterfaces/driversDTO.model';
 import { DriversService } from '../services/drivers.service';
 
 @Component({
@@ -48,7 +49,7 @@ export class DriversComponent implements OnInit {
   //   }
   // ];
 
-  drivers:Array<driverInfo> = [];
+  drivers:Array<driverDTO> = [];
 
   constructor(private service:DriversService){}
 
@@ -62,6 +63,13 @@ export class DriversComponent implements OnInit {
     // this.service.createDriver(this.drivers[0]);
   }
 
+  deleteDriver(id:string){
+    this.service.deleteDriver(id).then(res =>{
+      this.service.getDrivers().then(data =>{
+        this.drivers = data.drivers;
+      });
+    });
+  }
   /*
   {
     // constructor(private fb:FormBuilder) { }

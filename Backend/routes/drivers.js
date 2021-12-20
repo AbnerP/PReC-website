@@ -1,8 +1,12 @@
 const express = require('express');
+const crypto = require('crypto');
+const fs = require('fs');
+const { promisify } = require('util');
 const router = express.Router();
 const Driver = require('../models/Drivers');
 
 //Image Uploading
+const unlinkAsync = promisify(fs.unlink);
 const multer = require('multer');
 const storage = multer.diskStorage({
     destination:function(req,file,cb){
@@ -64,6 +68,7 @@ router.get('/:driverId',async (req,res) =>{
 });
 
 router.post('/',upload.single('driverImage'),async (req,res) =>{
+    console.log(req);
     const driver = new Driver({
         name: req.body.name,
         teamRole: req.body.teamRole,
@@ -81,6 +86,7 @@ router.post('/',upload.single('driverImage'),async (req,res) =>{
 });
 
 router.patch('/:driverId',async (req,res) =>{
+    // console.log(req.);
     try{
         const updateOptions = {};
         for(const option of req.body){
@@ -100,6 +106,12 @@ router.patch('/:driverId',async (req,res) =>{
 
 router.delete('/:driverId',async (req,res) =>{
     try{
+        const driver = await Driver.findById(req.params.driverId);
+        if(driver){
+            await unlinkAsync(driver.imageURL);
+        }else{
+            res.status(404).json({message:`No driver with id:${req.params.driverId}`});
+        }
         const removedDriver = await Driver.remove({_id:req.params.driverId});
         res.status(200).json(removedDriver);
     }catch(e){

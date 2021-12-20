@@ -18,6 +18,9 @@ $prec-blue:#252B42;
 .card{
   margin: 5vh 0;
   width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .addDriver{
@@ -30,4 +33,11 @@ button{
   margin: 0;
 }
 
-
+.deleteBTN{
+  margin: .5rem;
+  color:white;
+  cursor: pointer;
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+}

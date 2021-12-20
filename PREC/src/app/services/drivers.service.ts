@@ -38,7 +38,7 @@ export class DriversService {
     return res.data;
   }
 
-  async createDriver(driver:driverInfo,img:File){
+  async createDriver(driver:driverInfo,img:File,cb){
     const fd = new FormData();
     fd.append('driverImage',img,img.name);
     fd.append('name',driver.name);
@@ -48,10 +48,15 @@ export class DriversService {
     for(let role of driver.teamRole){
       fd.append('teamRole',role);
     }
-    this.http.post(this.apiURL,fd)
-      .subscribe(res => {
-        console.log(res);
-      });
+    axios.post(this.apiURL,fd).then((res)=>{
+      console.log(res);
+      cb();
+    });
+    // this.http.post(this.apiURL,fd)
+    //   .subscribe(res => {
+    //     console.log(res);
+    //     cb();
+    // });
     // const res = await axios.post<driverInfo>(this.apiURL,driver);
     // console.log(res.data);
     // return res.data;
