@@ -54,7 +54,7 @@ export class AddDriverComponent implements OnInit {
     for(let role of this.form.value["teamRole"]){
       driver.teamRole.push(role["role"]);
     }
-
+    
     this.service.createDriver(driver,this.profileIMG).then(res =>{
       this.router.navigate(['/drivers'])
     });

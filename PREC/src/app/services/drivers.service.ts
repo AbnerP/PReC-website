@@ -40,23 +40,16 @@ export class DriversService {
 
   async createDriver(driver:driverInfo,img:File){
     const fd = new FormData();
-    fd.append('driverImage',img,img.name);
+    if(img != null){
+      fd.append('driverImage',img,img.name);
+    }
     fd.append('name',driver.name);
-    // fd.append('teamRole',driver.teamRole);
     fd.append('gamertag',driver.gamertag);
     fd.append('kudosPrimeLink',driver.kudosPrimeLink);
     for(let role of driver.teamRole){
       fd.append('teamRole',role);
     }
     return await axios.post(this.apiURL,fd);
-    // this.http.post(this.apiURL,fd)
-    //   .subscribe(res => {
-    //     console.log(res);
-    //     cb();
-    // });
-    // const res = await axios.post<driverInfo>(this.apiURL,driver);
-    // console.log(res.data);
-    // return res.data;
   }
 
 }

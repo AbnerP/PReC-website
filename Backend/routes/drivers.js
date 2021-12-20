@@ -21,7 +21,7 @@ const fileFilter = (req,file,cb) =>{
     if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
         cb(null,true);
     }else{
-        cb(null,false);
+        cb(null,null);
     }
 };
 const upload = multer({
@@ -68,13 +68,20 @@ router.get('/:driverId',async (req,res) =>{
 });
 
 router.post('/',upload.single('driverImage'),async (req,res) =>{
+    
     console.log(req);
+    let imageURL; 
+    if(req.file == undefined){
+        imageURL = "uploads/defaultDriverIMG.jpeg";
+    }else{
+        imageURL = req.file.path;
+    }
     const driver = new Driver({
         name: req.body.name,
         teamRole: req.body.teamRole,
         gamertag: req.body.gamertag,
         kudosPrimeLink:req.body.kudosPrimeLink,
-        imageURL: req.file.path
+        imageURL: imageURL
     });
 
     try{
@@ -108,7 +115,9 @@ router.delete('/:driverId',async (req,res) =>{
     try{
         const driver = await Driver.findById(req.params.driverId);
         if(driver){
-            await unlinkAsync(driver.imageURL);
+            if(driver.imageURL != "uploads/defaultDriverIMG.jpeg"){
+                await unlinkAsync(driver.imageURL);
+            }
         }else{
             res.status(404).json({message:`No driver with id:${req.params.driverId}`});
         }
