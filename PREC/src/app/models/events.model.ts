@@ -1,5 +1,6 @@
 export interface eventsDTO{
-  
+  events: Array<eventDTO>;
+  count:number;
 }
 
 export interface eventDTO{
