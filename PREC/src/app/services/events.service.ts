@@ -24,6 +24,7 @@ export class EventsService {
 
   async geteventByID(id:string){
     const res = await axios.get<eventDTO>(this.apiURL+`/${id}`);
+    res.data.imageURL = environment.backendAPIURL + '/'+ res.data.imageURL;
     return res.data;
   }
 

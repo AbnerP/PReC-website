@@ -32,41 +32,24 @@ span{
   padding: 1vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   #mainInfo{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    #title{
-      color: $prec-yellow;
-      font-weight:500;
-      font-size: 1rem;
-    }
-    #dateAndTime{
+    h2{
       color: white;
-      font-size: .8rem;
     }
   }
 
   #raceInfo{
     display: flex;
+    flex-direction: column;
     justify-content:space-evenly;
     flex-wrap: wrap;
-    span{
-      margin: 2rem .2rem;
-    }
-  }
-
-  #misc{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .Label{
-      margin: .2rem;
-    }
-    .description{
+    div{
       margin: .1rem;
-      text-align: center;
+      .Label{
+        margin-right: .2rem;
+      }
     }
   }
 }
