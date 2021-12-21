@@ -21,6 +21,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DriverCardComponent } from './drivers/driver-card/driver-card.component';
 import { AddDriverComponent } from './drivers/add-driver/add-driver.component';
+import { EventsComponent } from './events/events.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { AddDriverComponent } from './drivers/add-driver/add-driver.component';
       DisplayErrorsComponent,
       AuthenticationFormComponent,
       DriverCardComponent,
-      AddDriverComponent
+      AddDriverComponent,
+      EventsComponent
    ],
   imports: [
     BrowserModule,
