@@ -1,0 +1,74 @@
+$prec-yellow:rgb(255, 208, 0);
+$prec-yellowSecondary:#ffdb0e;
+$prec-blue:#252B42;
+
+#card{
+  display: flex;
+  flex-direction: row;
+  padding: 1vh;
+  cursor: pointer;
+}
+
+#imageContainer{
+  display: flex;
+  justify-content: center;
+  img{
+    object-fit: cover;
+    height: 15vw;
+    width: 15vw;
+    border-radius: .5rem;
+  }
+  padding: 1vh;
+}
+span{
+  color: rgb(222, 222, 222);
+}
+.Label{
+  color: $prec-yellow;
+  font-weight: 500;
+}
+
+#infoContainer{
+  padding: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  #mainInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #title{
+      color: $prec-yellow;
+      font-weight:500;
+      font-size: 1rem;
+    }
+    #dateAndTime{
+      color: white;
+      font-size: .8rem;
+    }
+  }
+
+  #raceInfo{
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+    span{
+      margin: 2rem .2rem;
+    }
+  }
+
+  #misc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .Label{
+      margin: .2rem;
+    }
+    .description{
+      margin: .1rem;
+      text-align: center;
+    }
+  }
+}
+
+

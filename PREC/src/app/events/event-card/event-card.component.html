@@ -1,1 +1,35 @@
-{{event._id}}
+<div id="card">
+  <div id="imageContainer">
+    <img src="{{event.imageURL}}" alt="">
+  </div>
+  <div id="infoContainer">
+    <div id="mainInfo">
+      <span id="title">{{event.name}}</span>
+      <!-- <h3>{{event.date}}</h3> -->
+      <span id="dateAndTime">12/25/1999 @ {{event.startTime}}</span>
+    </div>
+
+    <div id="raceInfo">
+      <div>
+        <span class="Label">Track</span>
+        <span>{{event.track}}</span>
+      </div>
+      <div>
+        <span class="Label">Length</span>
+        <span>{{event.duration}}</span>
+      </div>
+      <div>
+        <span class="Label">Game</span>
+        <span>{{event.game}}</span>
+      </div>
+    </div>
+
+    <div id="misc">
+      <div>
+        <span class="Label">Contact</span>
+        <span>{{event.contactInfo}}</span>
+      </div>
+      <span class="description">{{event.description}}fhasjdklfhdsjkf dkjsfhad sjkfhdasjkfh dsjf dhsfjkdhsaf jldkashf </span>
+    </div>
+  </div>
+</div>
