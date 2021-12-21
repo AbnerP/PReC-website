@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CalculatorComponent } from './calculator/Calculator.component';
 import { AddDriverComponent } from './drivers/add-driver/add-driver.component';
 import { DriversComponent } from './drivers/Drivers.component';
+import { EventsComponent } from './events/events.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './security/login/login.component';
 import { SignupComponent } from './security/signup/signup.component';
@@ -13,6 +14,9 @@ const routes: Routes = [
 
   {path:'drivers',component:DriversComponent},
   {path:'drivers/new',component:AddDriverComponent},
+
+  {path:'events',component:EventsComponent},
+
 
   {path:'calculator',component:CalculatorComponent},
 
