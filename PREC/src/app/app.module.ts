@@ -21,6 +21,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DriverCardComponent } from './drivers/driver-card/driver-card.component';
 import { AddDriverComponent } from './drivers/add-driver/add-driver.component';
+import { EventsComponent } from './events/events.component';
+import { EventCardComponent } from './events/event-card/event-card.component';
+import { EventPageComponent } from './events/event-page/event-page.component';
+import { AddEventComponent } from './events/add-event/add-event.component';
 
 
 @NgModule({
@@ -39,7 +43,11 @@ import { AddDriverComponent } from './drivers/add-driver/add-driver.component';
       DisplayErrorsComponent,
       AuthenticationFormComponent,
       DriverCardComponent,
-      AddDriverComponent
+      AddDriverComponent,
+      EventsComponent,
+      EventCardComponent,
+      EventPageComponent,
+      AddEventComponent
    ],
   imports: [
     BrowserModule,

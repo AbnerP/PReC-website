@@ -1,0 +1,77 @@
+$prec-yellow:rgb(255, 208, 0);
+$prec-yellowSecondary:#ffdb0e;
+$prec-blue:#252B42;
+
+#body{
+  border-top:1px solid $prec-yellow ;
+  display: flex;
+  flex-direction: column;
+  padding: 1vh;
+  background-color: $prec-blue;
+}
+
+#mainInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 1rem 0 0 ;
+  h2{
+    color: $prec-yellow;
+  }
+  #dateAndTime{
+    color: white;
+    font-weight: 500;
+  }
+}
+
+#imageContainer{
+  display: flex;
+  justify-content: center;
+  img{
+    object-fit: cover;
+    width: 50vw;
+    height: auto;
+    border-radius: .5rem;
+  }
+}
+
+span{
+  color: rgb(222, 222, 222);
+}
+
+.Label{
+  color: $prec-yellow;
+  font-weight: 500;
+}
+
+#raceInfo{
+  margin: 2vh 0;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-evenly;
+  flex-wrap: wrap;
+  div{
+    margin: .1rem;
+    .Label{
+      margin-right: .2rem;
+    }
+  }
+}
+
+#misc{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  div{
+    .Label{
+      margin-right: .2rem;
+    }
+    p{
+      color: rgb(222, 222, 222);
+      text-align: center;
+    }
+  }
+}
+
+
+

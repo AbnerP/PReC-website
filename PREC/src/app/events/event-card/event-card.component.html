@@ -1,0 +1,33 @@
+<div id="card" (click)="redirect()">
+
+  <div id="imageContainer">
+    <img src="{{event.imageURL}}" alt="">
+  </div>
+
+  <div id="infoContainer">
+    <div id="mainInfo">
+      <h2>{{event.name}}</h2>
+      <span id="dateAndTime">{{event.date | date:'MMM d'}} at {{event.startTime}}</span>
+    </div>
+
+    <div id="raceInfo">
+      <div>
+        <span class="Label">Track</span>
+        <span>{{event.track}}</span>
+      </div>
+
+      <div>
+        <span class="Label">Length</span>
+        <span>{{event.duration}}</span>
+      </div>
+
+      <div>
+        <span class="Label">Game</span>
+        <span>{{event.game}}</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

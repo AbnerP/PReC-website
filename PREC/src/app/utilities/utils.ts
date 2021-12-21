@@ -73,6 +73,10 @@ export function formatDateFormData(date:Date){
   return `${year}-${month}-${day}`;
 }
 
+export const stringToMultiLineArray = (str:string) => {
+  return str.split(/\n/);
+}
+
 const secondsAndMilisecondsRE = /^(\d+)?(\.\d+)?$/;
 const integerRE = /^[1-9][0-9]*$/;
 const compoundRE = /^([A-Z][a-z]*|[a-z]+)$/;
