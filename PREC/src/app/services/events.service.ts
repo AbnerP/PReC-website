@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import axios from "axios";
 import { environment } from 'src/environments/environment';
+import { eventDTO, eventsDTO } from '../models/events.model';
 
 
 @Injectable({
@@ -9,46 +10,46 @@ import { environment } from 'src/environments/environment';
 })
 export class EventsService {
 
-  constructor(private http:HttpClient) { }
+  constructor() { }
 
   private apiURL = environment.backendAPIURL + '/events';
 
-  // async getDrivers(){
-  //   const res = await axios.get<driversDTO>(this.apiURL);
-  //   for(let driver of res.data.drivers){
-  //     driver.imageURL = environment.backendAPIURL + '/'+ driver.imageURL;
-  //   }
-  //   return res.data;
-  // }
+  async getEvents(){
+    const res = await axios.get<eventsDTO>(this.apiURL);
+    for(let event of res.data.events){
+      event.imageURL = environment.backendAPIURL + '/'+ event.imageURL;
+    }
+    return res.data;
+  }
 
-  // async getDriverByID(id:string){
-  //   const res = await axios.get<driversDTO>(this.apiURL+`/${id}`);
-  //   return res.data;
-  // }
+  async geteventByID(id:string){
+    const res = await axios.get<eventDTO>(this.apiURL+`/${id}`);
+    return res.data;
+  }
 
-  // async updateDriverImage(id:string,img:string){
-  //   const res = await axios.patch(this.apiURL+`/${id}`,{imageURL:img});
-  //   console.log(res.data);
-  //   return res.data;
-  // }
+  async updateEventImage(id:string,img:string){
+    const res = await axios.patch(this.apiURL+`/${id}`,{imageURL:img});
+    console.log(res.data);
+    return res.data;
+  }
 
-  // async deleteDriver(id:string){
-  //   const res = await axios.delete(this.apiURL+`/${id}`);
-  //   console.log(res.data);
-  //   return res.data;
-  // }
+  async deleteEvent(id:string){
+    const res = await axios.delete(this.apiURL+`/${id}`);
+    console.log(res.data);
+    return res.data;
+  }
 
-  // async createDriver(driver:driverInfo,img:File){
-  //   const fd = new FormData();
-  //   if(img != null){
-  //     fd.append('driverImage',img,img.name);
-  //   }
-  //   fd.append('name',driver.name);
-  //   fd.append('gamertag',driver.gamertag);
-  //   fd.append('kudosPrimeLink',driver.kudosPrimeLink);
-  //   for(let role of driver.teamRole){
-  //     fd.append('teamRole',role);
-  //   }
-  //   return await axios.post(this.apiURL,fd);
-  // }
+  async createEvent(event:eventDTO,img:File){
+    // const fd = new FormData();
+    // if(img != null){
+    //   fd.append('eventImage',img,img.name);
+    // }
+    // fd.append('name',event.name);
+    // fd.append('gamertag',event.gamertag);
+    // fd.append('kudosPrimeLink',event.kudosPrimeLink);
+    // for(let role of event.teamRole){
+    //   fd.append('teamRole',role);
+    // }
+    // return await axios.post(this.apiURL,fd);
+  }
 }
