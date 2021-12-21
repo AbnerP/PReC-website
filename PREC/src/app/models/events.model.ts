@@ -6,12 +6,23 @@ export interface eventsDTO{
 export interface eventDTO{
   _id:string;
   name: string;
-  date:string;
+  date:Date;
   startTime: string;
   game:string;
   track:string;
   duration:string;
   description: string;
   imageURL:string;
+  contactInfo:string;
+}
+
+export interface eventCreationDTO{
+  name: string;
+  date:Date;
+  startTime: string;
+  game:string;
+  track:string;
+  duration:string;
+  description: string;
   contactInfo:string;
 }

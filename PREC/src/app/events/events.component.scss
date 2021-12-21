@@ -1,0 +1,44 @@
+$prec-yellow:#ffd000;
+$prec-yellowSecondary:#ffdb0e;
+$prec-blue:#252B42;
+
+.body{
+  border-top: 1px solid $prec-yellow;
+  width: 100%;
+  background-color: $prec-blue;
+}
+.cards{
+  display: flex;
+  justify-content: center;
+  flex-flow:wrap;
+  width: 100%;
+  padding: 2vh 0;
+}
+
+.card{
+  margin: 2vh 5vw;
+  display: flex;
+  max-width: 40vw;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addEvent{
+  margin-top: 1vh;
+  display: flex;
+  justify-content: center;
+}
+
+button{
+  margin: 0;
+}
+
+.deleteBTN{
+  margin: .5rem;
+  padding: .1rem;
+  color:white;
+  cursor: pointer;
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+}

@@ -1,0 +1,133 @@
+<div class="body">
+  <div class="eventForm" [formGroup]="form">
+
+    <mat-form-field  appearance="outline" >
+      <mat-label>Title</mat-label>
+
+      <input matInput
+      required
+      formControlName="name"
+      placeholder="2 Hours of Imola">
+
+
+      <mat-error *ngIf="form.controls.name.errors?.required" >
+        Event name is required
+      </mat-error>
+
+    </mat-form-field>
+
+    <div class="inline">
+      <mat-form-field appearance="fill">
+        <mat-label>Event date</mat-label>
+        <input matInput required formControlName="date" [min]="minDate" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+
+        <mat-error *ngIf="form.controls.date.errors?.required" >
+          A date is required
+        </mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field  appearance="outline" >
+        <mat-label>Time</mat-label>
+
+        <input matInput
+        required
+        formControlName="startTime"
+        placeholder="7:00 PM">
+
+
+        <mat-error *ngIf="form.controls.startTime.errors?.required" >
+          Time of event is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field  appearance="outline" >
+      <mat-label>Game</mat-label>
+
+      <input matInput
+      required
+      formControlName="game"
+      placeholder="GT Sport">
+
+
+      <mat-error *ngIf="form.controls.game.errors?.required" >
+        Game is required
+      </mat-error>
+
+    </mat-form-field>
+
+    <div class="inline">
+      <mat-form-field  appearance="outline" >
+        <mat-label>Track</mat-label>
+
+        <input matInput
+        required
+        formControlName="track"
+        placeholder="Spa Francorchamps">
+
+
+        <mat-error *ngIf="form.controls.track.errors?.required" >
+          Track is required
+        </mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field  appearance="outline" >
+        <mat-label>Race Length</mat-label>
+
+        <input matInput
+        required
+        formControlName="duration"
+        placeholder="2 Hours or 25 Laps">
+
+
+        <mat-error *ngIf="form.controls.duration.errors?.required" >
+          Race length is required
+        </mat-error>
+
+      </mat-form-field>
+    </div>
+
+    <mat-form-field  appearance="outline" >
+      <mat-label>Contact Information</mat-label>
+
+      <input matInput
+      required
+      formControlName="contactInfo"
+      placeholder="example@gmail.com">
+
+
+      <mat-error *ngIf="form.controls.contactInfo.errors?.required" >
+        Contact Information is required
+      </mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field  appearance="outline" >
+      <mat-label>Description</mat-label>
+
+      <textarea matInput
+      required
+      formControlName="description"
+      placeholder="Tire Wear / Restrictions "></textarea>
+
+
+      <mat-error *ngIf="form.controls.description.errors?.required" >
+        A race description is required
+      </mat-error>
+
+    </mat-form-field>
+
+
+
+    <input type="file" id="file" (change)="onImageUploaded($event)">
+    <label for="file" class="file-btn">Upload Image</label>
+
+    <button class="submitBTN" mat-stroked-button type="submit" [disabled]="!form.valid" (click)="saveChanges()">Submit</button>
+
+  </div>
+
+</div>

@@ -22,6 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { DriverCardComponent } from './drivers/driver-card/driver-card.component';
 import { AddDriverComponent } from './drivers/add-driver/add-driver.component';
 import { EventsComponent } from './events/events.component';
+import { EventCardComponent } from './events/event-card/event-card.component';
+import { EventPageComponent } from './events/event-page/event-page.component';
+import { AddEventComponent } from './events/add-event/add-event.component';
 
 
 @NgModule({
@@ -41,7 +44,10 @@ import { EventsComponent } from './events/events.component';
       AuthenticationFormComponent,
       DriverCardComponent,
       AddDriverComponent,
-      EventsComponent
+      EventsComponent,
+      EventCardComponent,
+      EventPageComponent,
+      AddEventComponent
    ],
   imports: [
     BrowserModule,
