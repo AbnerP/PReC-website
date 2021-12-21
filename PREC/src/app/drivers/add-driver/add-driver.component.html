@@ -59,7 +59,8 @@
 
     </mat-form-field>
 
-    <input type="file" (change)="onImageUploaded($event)">
+    <input type="file" id="file" (change)="onImageUploaded($event)">
+    <label for="file" class="file-btn">Upload Image</label>
 
     <button class="submitBTN" mat-stroked-button type="submit" [disabled]="!form.valid" (click)="saveChanges()">Submit</button>
 

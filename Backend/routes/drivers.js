@@ -93,7 +93,6 @@ router.post('/',upload.single('driverImage'),async (req,res) =>{
 });
 
 router.patch('/:driverId',async (req,res) =>{
-    // console.log(req.);
     try{
         const updateOptions = {};
         for(const option of req.body){

@@ -13,9 +13,7 @@ const postsRoute = require('./routes/drivers');
 //Middlewares
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.urlencoded({
-    extended:true
-}))
+app.use(express.urlencoded({extended:true}));
 app.use('/api/uploads',express.static('uploads'));
 app.use('/api/drivers',postsRoute);
 
