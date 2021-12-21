@@ -20,6 +20,10 @@ export class EventsComponent implements OnInit {
   }
 
   deleteEvent(id:string){
-    
+    this.service.deleteEvent(id).then(res =>{
+      this.service.getEvents().then((res) =>{
+        this.events = res.events;
+      })
+    });
   }
 }

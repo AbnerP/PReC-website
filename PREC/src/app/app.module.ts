@@ -24,6 +24,7 @@ import { AddDriverComponent } from './drivers/add-driver/add-driver.component';
 import { EventsComponent } from './events/events.component';
 import { EventCardComponent } from './events/event-card/event-card.component';
 import { EventPageComponent } from './events/event-page/event-page.component';
+import { AddEventComponent } from './events/add-event/add-event.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { EventPageComponent } from './events/event-page/event-page.component';
       AddDriverComponent,
       EventsComponent,
       EventCardComponent,
-      EventPageComponent
+      EventPageComponent,
+      AddEventComponent
    ],
   imports: [
     BrowserModule,
