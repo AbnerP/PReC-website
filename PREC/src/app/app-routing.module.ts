@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CalculatorComponent } from './calculator/Calculator.component';
 import { AddDriverComponent } from './drivers/add-driver/add-driver.component';
 import { DriversComponent } from './drivers/Drivers.component';
+import { AddEventComponent } from './events/add-event/add-event.component';
 import { EventPageComponent } from './events/event-page/event-page.component';
 import { EventsComponent } from './events/events.component';
 import { HomeComponent } from './home/home.component';
@@ -17,7 +18,7 @@ const routes: Routes = [
   {path:'drivers/new',component:AddDriverComponent},
 
   {path:'events',component:EventsComponent},
-  {path:'events/new',component:EventsComponent},
+  {path:'events/new',component:AddEventComponent},
   {path:'events/id/:id',component:EventPageComponent},
 
 

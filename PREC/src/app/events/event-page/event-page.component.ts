@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { eventDTO } from 'src/app/models/events.model';
 import { EventsService } from 'src/app/services/events.service';
+import { stringToMultiLineArray } from 'src/app/utilities/utils';
 
 @Component({
   selector: 'app-event-page',
@@ -10,7 +11,21 @@ import { EventsService } from 'src/app/services/events.service';
 })
 export class EventPageComponent implements OnInit {
   id:string;
-  event:eventDTO;
+  event:eventDTO = {
+    _id:'',
+    name: '',
+    date:new Date(),
+    startTime:'',
+    game:'',
+    track:'',
+    duration:'',
+    description:'',
+    contactInfo:'',
+    imageURL:'',
+  };
+
+  description : Array<string>;
+
   constructor(private service:EventsService,
     private route:ActivatedRoute) { }
 
@@ -18,6 +33,7 @@ export class EventPageComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.service.geteventByID(this.id).then(data => {
       this.event = data;
+      this.description =  stringToMultiLineArray(this.event.description);
     });
   }
 

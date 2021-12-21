@@ -7,7 +7,6 @@ $prec-blue:#252B42;
   display: flex;
   flex-direction: column;
   padding: 1vh;
-  cursor: pointer;
   background-color: $prec-blue;
 }
 
@@ -18,6 +17,10 @@ $prec-blue:#252B42;
   margin: 1rem 0 0 ;
   h2{
     color: $prec-yellow;
+  }
+  #dateAndTime{
+    color: white;
+    font-weight: 500;
   }
 }
 
@@ -63,8 +66,9 @@ span{
     .Label{
       margin-right: .2rem;
     }
-    span{
-      
+    p{
+      color: rgb(222, 222, 222);
+      text-align: center;
     }
   }
 }
