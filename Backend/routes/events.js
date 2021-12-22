@@ -1,16 +1,18 @@
 const express = require('express');
-const crypto = require('crypto');
+const router = express.Router();
+
 const fs = require('fs');
 const { promisify } = require('util');
-const router = express.Router();
 const Event = require('../models/Events');
+
+
+//Middleware
 const upload = require('../middleware/multer');
 const removeOldEvents = require('../middleware/events');
-
 const unlinkAsync = promisify(fs.unlink);
-
 router.use(removeOldEvents);
 
+//Routes
 router.get('/', async (req,res) =>{
     try{
         const events = req.query.limit === undefined ? await Event.find() : await Event.find().limit(parseInt(req.query.limit));

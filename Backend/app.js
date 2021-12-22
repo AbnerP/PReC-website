@@ -10,6 +10,7 @@ const app = express();
 //Routes
 const driversRoute = require('./routes/drivers');
 const eventsRoute = require('./routes/events');
+const userRoute = require('./routes/user');
 
 //Middlewares
 app.use(cors());
@@ -18,6 +19,7 @@ app.use(express.urlencoded({extended:true}));
 app.use('/api/uploads',express.static('uploads'));
 app.use('/api/drivers',driversRoute);
 app.use('/api/events',eventsRoute);
+app.use('/api/user',userRoute);
 
 //DB Connection
 mongoose.connect(process.env.DB_CONNECTION,() =>{
