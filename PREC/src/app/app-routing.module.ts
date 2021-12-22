@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
 import { CalculatorComponent } from './calculator/Calculator.component';
 import { AddDriverComponent } from './drivers/add-driver/add-driver.component';
 import { DriversComponent } from './drivers/Drivers.component';
@@ -25,6 +26,8 @@ const routes: Routes = [
   {path:'events/update/:id',component:AddEventComponent},
 
   {path:'calculator',component:CalculatorComponent},
+
+  {path:'about-us',component:AboutUsPageComponent},
 
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
