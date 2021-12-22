@@ -46,7 +46,7 @@ router.get('/:driverId',async (req,res) =>{
 
 router.post('/',upload.single('driverImage'),async (req,res) =>{
     
-    console.log(req);
+    // console.log(req);
     let imageURL; 
     if(req.file == undefined){
         imageURL = "uploads/defaultDriverIMG.jpeg";

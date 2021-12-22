@@ -20,14 +20,14 @@ const routes: Routes = [
   {path:'events',component:EventsComponent},
   {path:'events/new',component:AddEventComponent},
   {path:'events/id/:id',component:EventPageComponent},
-
+  {path:'events/update/:id',component:AddEventComponent},
 
   {path:'calculator',component:CalculatorComponent},
 
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
 
-  // {path:'**',redirectTo:'home'}
+  {path:'**',redirectTo:'home'}
 ];
 
 @NgModule({

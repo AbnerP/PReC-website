@@ -5,7 +5,10 @@
   <div class="cards">
     <div *ngFor="let event of events" class="card">
       <app-event-card [event]="event"></app-event-card>
-      <button mat-flat-button class="deleteBTN" (click)="deleteEvent(event._id)"><mat-icon>clear</mat-icon></button>
+      <div class="options">
+        <button mat-flat-button class="editBTN" (click)="editEvent(event._id)"><mat-icon>edit</mat-icon></button>
+        <button mat-flat-button class="deleteBTN" (click)="deleteEvent(event._id)"><mat-icon>clear</mat-icon></button>
+      </div>
     </div>
   </div>
 </div>
