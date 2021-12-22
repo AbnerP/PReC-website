@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { eventDTO, eventsDTO } from '../models/events.model';
 import { EventsService } from '../services/events.service';
 
@@ -11,7 +12,9 @@ export class EventsComponent implements OnInit {
 
   events:Array<eventDTO>;
 
-  constructor(private service:EventsService) { }
+  constructor(private service:EventsService,
+    private router:Router,
+    private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.service.getEvents().then((res) => {
@@ -25,5 +28,9 @@ export class EventsComponent implements OnInit {
         this.events = res.events;
       })
     });
+  }
+  
+  editEvent(id:string){
+    this.router.navigate([`update/${id}`], { relativeTo: this.route });
   }
 }

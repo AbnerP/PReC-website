@@ -71,11 +71,21 @@ router.post('/',upload.single('eventImage'),async (req,res) =>{
     } 
 });
 
-router.patch('/:eventId',async (req,res) =>{
+router.patch('/:eventId',upload.single('eventImage'),async (req,res) =>{
     try{
-        const updateOptions = {};
-        for(const option of req.body){
-            updateOptions[option.propName] = option.value;
+        const originalEvent = await Event.findById({_id:req.params.eventId});
+        
+        let updateOptions = {};
+        const obj = Object.entries(originalEvent)[2][1];
+        for (const [key, value] of Object.entries(obj)) {
+            if(value != req.body[key]){
+                updateOptions[key] = req.body[key];
+            }
+        }
+
+        if(req.file != undefined){
+            updateOptions["imageURL"] = req.file.path;
+            await unlinkAsync(originalEvent.imageURL);
         }
 
         const updatedEvent = await Event.updateOne(
@@ -84,8 +94,9 @@ router.patch('/:eventId',async (req,res) =>{
         );
 
         res.status(200).json(updatedEvent);
+
     }catch(e){
-        res.status(400).json({message:e});
+        console.log('Unable to get original event');
     } 
 });
 

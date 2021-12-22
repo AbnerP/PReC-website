@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { eventCreationDTO, eventDTO } from 'src/app/models/events.model';
 import { EventsService } from 'src/app/services/events.service';
 
@@ -12,13 +12,18 @@ import { EventsService } from 'src/app/services/events.service';
 export class AddEventComponent implements OnInit {
 
   eventIMG:File = null;
+  imageSrc:string;
+
+  id:string;
+
   form:FormGroup;
   minDate: Date;
   maxDate: Date;
 
   constructor(private fb:FormBuilder,
     private service:EventsService,
-    private router:Router){
+    private router:Router,
+    private route:ActivatedRoute){
     }
 
 
@@ -33,11 +38,20 @@ export class AddEventComponent implements OnInit {
       description: [''],
       contactInfo:['']
     });
+
+    this.id = this.route.snapshot.paramMap.get('id');
+    if(this.id != null){
+      this.service.geteventByID(this.id).then(data => {
+        this.form.patchValue(data);
+
+        this.imageSrc = data.imageURL;
+      });
+    }
+
     this.minDate = new Date();
   }
 
   saveChanges(){
-    // console.log(this.form.value.date.toJson());
     let event:eventCreationDTO = {
       name: this.form.value.name,
       date:this.form.value.date,
@@ -49,14 +63,34 @@ export class AddEventComponent implements OnInit {
       contactInfo:this.form.value.contactInfo
     };
 
-    this.service.createEvent(event,this.eventIMG).then(res =>{
-      this.router.navigate(['/events'])
-    });
+    if(this.id !== null){
+      this.service.updateEvent(this.id,event,this.eventIMG).then(res =>{
+        this.router.navigate(['/events']);
+      });
+    }else{
+      this.service.createEvent(event,this.eventIMG).then(res =>{
+        this.router.navigate(['/events']);
+      });
+    }
 
   }
 
   onImageUploaded(event){
     this.eventIMG = <File> event.target.files[0];
+    const reader = new FileReader();
+
+    if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+
+        this.form.patchValue({
+          fileSource: reader.result
+        });
+      };
+    }
   }
 
 }

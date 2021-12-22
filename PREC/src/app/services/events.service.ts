@@ -28,15 +28,26 @@ export class EventsService {
     return res.data;
   }
 
-  async updateEventImage(id:string,img:string){
-    const res = await axios.patch(this.apiURL+`/${id}`,{imageURL:img});
-    console.log(res.data);
-    return res.data;
+  async updateEvent(id:string,event:eventCreationDTO,img:File){
+    const fd = new FormData();
+    if(img != null){
+      fd.append('eventImage',img,img.name);
+    }
+    const date = new Date(event.date).toJSON();
+    fd.append('name',event.name);
+    fd.append('date',date);
+    fd.append('startTime',event.startTime);
+    fd.append('game',event.game);
+    fd.append('track',event.track);
+    fd.append('duration',event.duration);
+    fd.append('description',event.description);
+    fd.append('contactInfo',event.contactInfo);
+
+    return await axios.patch(this.apiURL+`/${id}`,fd);
   }
 
   async deleteEvent(id:string){
     const res = await axios.delete(this.apiURL+`/${id}`);
-    console.log(res.data);
     return res.data;
   }
 
