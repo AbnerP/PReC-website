@@ -16,6 +16,8 @@ const routes: Routes = [
 
   {path:'drivers',component:DriversComponent},
   {path:'drivers/new',component:AddDriverComponent},
+  {path:'drivers/update/:id',component:AddDriverComponent},
+
 
   {path:'events',component:EventsComponent},
   {path:'events/new',component:AddEventComponent},

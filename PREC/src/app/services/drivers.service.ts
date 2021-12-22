@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import axios from "axios";
-import { driversDTO } from '../models/driverInterfaces/driversDTO.model';
+import { driverDTO, driversDTO } from '../models/driverInterfaces/driversDTO.model';
 import { driverInfo } from '../models/driverInterfaces/drivers.model';
 import { HttpClient } from '@angular/common/http';
 @Injectable({
@@ -22,14 +22,23 @@ export class DriversService {
   }
 
   async getDriverByID(id:string){
-    const res = await axios.get<driversDTO>(this.apiURL+`/${id}`);
+    const res = await axios.get<driverDTO>(this.apiURL+`/${id}`);
+    res.data.imageURL = environment.backendAPIURL + '/'+ res.data.imageURL;
     return res.data;
   }
 
-  async updateDriverImage(id:string,img:string){
-    const res = await axios.patch(this.apiURL+`/${id}`,{imageURL:img});
-    console.log(res.data);
-    return res.data;
+  async updateDriver(id:string,driver:driverInfo,img:File){
+    const fd = new FormData();
+    if(img != null){
+      fd.append('driverImage',img,img.name);
+    }
+    fd.append('name',driver.name);
+    fd.append('gamertag',driver.gamertag);
+    fd.append('kudosPrimeLink',driver.kudosPrimeLink);
+    for(let role of driver.teamRole){
+      fd.append('teamRole',role);
+    }
+    return await axios.patch(this.apiURL+`/${id}`,fd);
   }
 
   async deleteDriver(id:string){

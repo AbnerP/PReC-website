@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { driverDTO } from 'src/app/models/driverInterfaces/driversDTO.model';
 
 @Component({
   selector: 'app-driver-card',
@@ -7,15 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DriverCardComponent implements OnInit {
 
-  @Input() imageURL:string;
-  @Input() name:string;
-  // consoles:Array<string>;
-  // games:Array<string>;
-  @Input() gamertag:string;
-  @Input() kudosPrimeLink:string;
-  @Input() teamRole:Array<string>;
-  // nativeTown:string;
-  // racingMemory:string;
+  @Input() driver:driverDTO;
 
   constructor() { }
 

@@ -45,8 +45,6 @@ router.get('/:driverId',async (req,res) =>{
 });
 
 router.post('/',upload.single('driverImage'),async (req,res) =>{
-    
-    // console.log(req);
     let imageURL; 
     if(req.file == undefined){
         imageURL = "uploads/defaultDriverIMG.jpeg";
@@ -69,11 +67,21 @@ router.post('/',upload.single('driverImage'),async (req,res) =>{
     } 
 });
 
-router.patch('/:driverId',async (req,res) =>{
+router.patch('/:driverId',upload.single('driverImage'),async (req,res) =>{
     try{
-        const updateOptions = {};
-        for(const option of req.body){
-            updateOptions[option.propName] = option.value;
+        const originalDriver = await Driver.findById({_id:req.params.driverId});
+
+        let updateOptions = {};
+        const obj = Object.entries(originalDriver)[2][1];
+        for (const [key, value] of Object.entries(obj)) {
+            if(value != req.body[key]){
+                updateOptions[key] = req.body[key];
+            }
+        }
+
+        if(req.file != undefined){
+            updateOptions["imageURL"] = req.file.path;
+            await unlinkAsync(originalDriver.imageURL);
         }
 
         const updatedDriver = await Driver.updateOne(
@@ -97,7 +105,7 @@ router.delete('/:driverId',async (req,res) =>{
         }else{
             res.status(404).json({message:`No driver with id:${req.params.driverId}`});
         }
-        const removedDriver = await Driver.remove({_id:req.params.driverId});
+        const removedDriver = await Driver.deleteOne({_id:req.params.driverId});
         res.status(200).json(removedDriver);
     }catch(e){
         res.status(400).json({message:e});

@@ -42,3 +42,18 @@ button{
   border: none;
   border-radius: 5px;
 }
+
+.editBTN{
+  margin: .5rem;
+  padding: .1rem;
+  color:white;
+  cursor: pointer;
+  background-color: grey;
+  border: none;
+  border-radius: 5px;
+}
+
+.options{
+  display: flex;
+  justify-content: space-evenly;
+}
