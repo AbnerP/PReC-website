@@ -4,6 +4,7 @@ const router = express.Router();
 const fs = require('fs');
 const { promisify } = require('util');
 const Event = require('../models/Events');
+const checkAuth = require('../middleware/check-auth');
 
 
 //Middleware
@@ -52,7 +53,7 @@ router.get('/:eventId',async (req,res) =>{
     } 
 });
 
-router.post('/',upload.single('eventImage'),async (req,res) =>{
+router.post('/', checkAuth, upload.single('eventImage'),async (req,res) =>{
     const event = new Event({
         name: req.body.name,
         date: req.body.date,
@@ -73,7 +74,7 @@ router.post('/',upload.single('eventImage'),async (req,res) =>{
     } 
 });
 
-router.patch('/:eventId',upload.single('eventImage'),async (req,res) =>{
+router.patch('/:eventId', checkAuth, upload.single('eventImage'),async (req,res) =>{
     try{
         const originalEvent = await Event.findById({_id:req.params.eventId});
         
@@ -102,7 +103,7 @@ router.patch('/:eventId',upload.single('eventImage'),async (req,res) =>{
     } 
 });
 
-router.delete('/:eventId',async (req,res) =>{
+router.delete('/:eventId', checkAuth, async (req,res) =>{
     try{
         const event = await Event.findById(req.params.eventId);
         if(event){

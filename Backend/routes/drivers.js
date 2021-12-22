@@ -4,10 +4,11 @@ const { promisify } = require('util');
 const router = express.Router();
 const Driver = require('../models/Drivers');
 const upload = require('../middleware/multer');
+const checkAuth = require('../middleware/check-auth');
+
 
 //Image Uploading
 const unlinkAsync = promisify(fs.unlink);
-
 
 router.get('/',async (req,res) =>{
     try{
@@ -44,7 +45,7 @@ router.get('/:driverId',async (req,res) =>{
     } 
 });
 
-router.post('/',upload.single('driverImage'),async (req,res) =>{
+router.post('/', checkAuth, upload.single('driverImage'),async (req,res) =>{
     let imageURL; 
     if(req.file == undefined){
         imageURL = "uploads/defaultDriverIMG.jpeg";
@@ -67,7 +68,7 @@ router.post('/',upload.single('driverImage'),async (req,res) =>{
     } 
 });
 
-router.patch('/:driverId',upload.single('driverImage'),async (req,res) =>{
+router.patch('/:driverId', checkAuth, upload.single('driverImage'),async (req,res) =>{
     try{
         const originalDriver = await Driver.findById({_id:req.params.driverId});
 
@@ -95,7 +96,7 @@ router.patch('/:driverId',upload.single('driverImage'),async (req,res) =>{
     } 
 });
 
-router.delete('/:driverId',async (req,res) =>{
+router.delete('/:driverId', checkAuth, async (req,res) =>{
     try{
         const driver = await Driver.findById(req.params.driverId);
         if(driver){
