@@ -14,8 +14,8 @@ $prec-blue:#252B42;
   justify-content: center;
   img{
     object-fit: cover;
-    height: 15vw;
-    width: 15vw;
+    height: 175px;
+    width: 175px;
     border-radius: 100%;
   }
   padding: 1vh;
@@ -32,6 +32,7 @@ span{
   padding: 1vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   #mainInfo{
     display: flex;
     flex-direction: column;

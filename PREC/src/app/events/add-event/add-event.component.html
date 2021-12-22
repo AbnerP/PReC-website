@@ -125,8 +125,8 @@
 
     <input type="file" id="file" (change)="onImageUploaded($event)">
     <label for="file" class="file-btn">Upload Image</label>
-    
-    <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width:500px">
+
+    <img [src]="imageSrc" *ngIf="imageSrc" class="preview">
 
     <button class="submitBTN" mat-stroked-button type="submit" [disabled]="!form.valid" (click)="saveChanges()">Submit</button>
 
