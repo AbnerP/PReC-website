@@ -105,7 +105,7 @@ router.delete('/:driverId',async (req,res) =>{
         }else{
             res.status(404).json({message:`No driver with id:${req.params.driverId}`});
         }
-        const removedDriver = await Driver.remove({_id:req.params.driverId});
+        const removedDriver = await Driver.deleteOne({_id:req.params.driverId});
         res.status(200).json(removedDriver);
     }catch(e){
         res.status(400).json({message:e});
