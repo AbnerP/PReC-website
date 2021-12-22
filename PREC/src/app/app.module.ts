@@ -25,6 +25,7 @@ import { EventsComponent } from './events/events.component';
 import { EventCardComponent } from './events/event-card/event-card.component';
 import { EventPageComponent } from './events/event-page/event-page.component';
 import { AddEventComponent } from './events/add-event/add-event.component';
+import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { AddEventComponent } from './events/add-event/add-event.component';
       EventsComponent,
       EventCardComponent,
       EventPageComponent,
-      AddEventComponent
+      AddEventComponent,
+      AboutUsPageComponent
    ],
   imports: [
     BrowserModule,

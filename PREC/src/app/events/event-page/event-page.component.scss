@@ -6,6 +6,7 @@ $prec-blue:#252B42;
   // border-top:1px solid $prec-yellow ;
   display: flex;
   flex-direction: column;
+  min-height: 90vh;
   padding: 1vh;
   background-color: $prec-blue;
 }

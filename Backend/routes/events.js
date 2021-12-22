@@ -13,7 +13,7 @@ router.use(removeOldEvents);
 
 router.get('/', async (req,res) =>{
     try{
-        const events = await Event.find();
+        const events = req.query.limit === undefined ? await Event.find() : await Event.find().limit(parseInt(req.query.limit));
         const response = {
             events: events.map(event =>{
                 return{

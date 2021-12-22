@@ -1,4 +1,4 @@
-<div id="body">
+<div id="body" *ngIf="event._id !== ''">
   <div id="mainInfo">
     <h2>{{event.name}}</h2>
     <span id="dateAndTime">{{event.date | date:'MMM d yy'}}</span>
@@ -40,5 +40,8 @@
       <span>{{event.contactInfo}}</span>
     </div>
   </div>
+</div>
 
+
+<div id="body" *ngIf="event._id === ''">
 </div>

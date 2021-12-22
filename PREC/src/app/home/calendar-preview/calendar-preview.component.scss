@@ -3,19 +3,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .paragraph{
   width:90%;
 }
 
-h1{
-  flex-grow: 1;
+
+h2{
   color: white;
   font-family: "Montserrat-SemiBold";
 }
 
 h3{
-  flex-grow: 1;
   color: white;
+}
+.events{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.card{
+  min-width: 300px;
 }

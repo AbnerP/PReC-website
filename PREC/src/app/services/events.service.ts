@@ -22,6 +22,14 @@ export class EventsService {
     return res.data;
   }
 
+  async getEventsLimit(limit:number){
+    const res = await axios.get<eventsDTO>(this.apiURL  , { params: { limit: limit } });
+    for(let event of res.data.events){
+      event.imageURL = environment.backendAPIURL + '/'+ event.imageURL;
+    }
+    return res.data;
+  }
+
   async geteventByID(id:string){
     const res = await axios.get<eventDTO>(this.apiURL+`/${id}`);
     res.data.imageURL = environment.backendAPIURL + '/'+ res.data.imageURL;
