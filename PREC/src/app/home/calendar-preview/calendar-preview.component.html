@@ -1,5 +1,5 @@
 <div class="box">
-  <h2>Upcoming Events</h2>
+  <a routerLink="../events" routerLinkActive="active" style="text-decoration: none;"><h2>Upcoming Events</h2></a>
   <div class="events">
     <div *ngFor="let event of events" class="card">
       <app-event-card [event]="event"></app-event-card>
