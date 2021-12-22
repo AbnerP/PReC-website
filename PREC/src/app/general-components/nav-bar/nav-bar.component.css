@@ -6,6 +6,9 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items:center;
+
+  border-bottom:1px solid hsl(49, 98%, 50%) ;
+
 }
 
 .logo-container{

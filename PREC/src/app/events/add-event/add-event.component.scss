@@ -3,19 +3,14 @@ $prec-yellowSecondary:#ffdb0e;
 $prec-blue:#252B42;
 
 .body{
-  border-top: 1px solid $prec-yellow;
+  // border-top: 1px solid $prec-yellow;
   width: 100%;
   min-height: 100vh;
   background-color: $prec-blue;
 }
-.backToDrivers{
-  margin-top: 1vh;
-  display: flex;
-  justify-content: center;
-}
 
 .eventForm{
-  margin-top: 2vh;
+  padding-top: 2vh;
   display: flex;
   flex-direction: column;
   align-items: center;
