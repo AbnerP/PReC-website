@@ -16,6 +16,6 @@ export class EventCardComponent implements OnInit {
   ngOnInit(): void {
   }
   redirect(){
-    this.router.navigate([`id/${this.event._id}`], { relativeTo: this.route });
+    this.router.navigate([`events/id/${this.event._id}`]);
   }
 }

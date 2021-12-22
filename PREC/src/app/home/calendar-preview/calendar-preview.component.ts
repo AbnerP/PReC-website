@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { eventDTO, eventsDTO } from 'src/app/models/events.model';
+import { EventsService } from 'src/app/services/events.service';
 
 @Component({
   selector: 'app-calendar-preview',
@@ -7,11 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarPreviewComponent implements OnInit {
 
-  constructor() { }
+  events:Array<eventDTO>;
+
+  constructor(private service:EventsService) { }
 
   ngOnInit() {
+    this.service.getEventsLimit(3).then(res =>{
+      this.events = res.events;
+    });
   }
-
-  //CalendarId:o8afnuu88ljllo20b0qriaqp74
-
 }
