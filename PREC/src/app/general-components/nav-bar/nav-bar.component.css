@@ -65,5 +65,7 @@ a{
 }
 
 .active{
-  border-bottom:1px solid #FBCC02 ;
+  font-weight: bolder;
+  color: #FBCC02;
+  /* border-bottom:1px solid hsl(49, 98%, 50%) ; */
 }
