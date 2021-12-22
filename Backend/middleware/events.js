@@ -7,7 +7,7 @@ const unlinkAsync = promisify(fs.unlink);
 let removeOldEvents = async (req, res, next) => {
     const events = await Event.find();
     if(events.length > 0){
-        let now = new Date('2021-12-26T04:00:00.00');
+        let now = new Date();
         now.setHours(0,0,0,0);
         events.forEach( async event => {
             // console.log(event.date);
