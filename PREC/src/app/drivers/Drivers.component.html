@@ -5,12 +5,16 @@
   <div class="cards">
     <div *ngFor="let driver of drivers" class="card">
       <app-driver-card
-          [driver]="driver"></app-driver-card>
-      <div class="options">
-        <button mat-flat-button class="editBTN" (click)="editDriver(driver._id)"><mat-icon>edit</mat-icon></button>
-        <button tton mat-flat-button class="deleteBTN" (click)="deleteDriver(driver._id)"><mat-icon>clear</mat-icon></button>
-      </div>
+          [driver]="driver">
+      </app-driver-card>
+      <app-authorize-view [role]="'admin'">
+        <ng-container authorized>
+          <div class="options">
+            <button mat-flat-button class="editBTN" (click)="editDriver(driver._id)"><mat-icon>edit</mat-icon></button>
+            <button tton mat-flat-button class="deleteBTN" (click)="deleteDriver(driver._id)"><mat-icon>clear</mat-icon></button>
+          </div>
+        </ng-container>
+      </app-authorize-view>
     </div>
   </div>
 </div>
-

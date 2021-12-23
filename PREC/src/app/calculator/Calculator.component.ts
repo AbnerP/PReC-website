@@ -5,7 +5,7 @@ import { Lap, Telemetry,tireFormTelemetry,tireTelemetry } from 'src/app/models/c
 import { CalculatorService } from 'src/app/services/calculator.service';
 import * as mockData from "./telemetry.json";
 import * as mockResults from "./strategy.json";
-import {secondsAndMilisecondsRE,integerRE, compoundRE, lapTimeRE, timeInSec, secondsToMMSS} from "../utilities/utils";
+import {secondsAndMilisecondsRE,integerRE, compoundRE, lapTimeRE, timeInSec, secondsToMMSS} from "../utils";
 
 @Component({
   selector: 'app-Calculator',
