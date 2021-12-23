@@ -98,10 +98,11 @@ exports.login = (req,res,next) => {
                                 expiresIn:'7d'
                             }
                         );
-                    
+                    date = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
                     return res.status(200).json({
                         message: 'Auth succesful',
-                        token:token
+                        token:token,
+                        expiresIn: date
                     });
                 }
 

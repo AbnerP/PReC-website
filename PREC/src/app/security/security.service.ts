@@ -13,11 +13,30 @@ export class SecurityService {
   constructor() { }
 
   isAuthenticated():boolean{
+    const token = localStorage.getItem("JWT");
+
+    if(!token){
+      return false;
+    }
+
+    const expiration = localStorage.getItem("JWT-Expiration");
+    const expirationDate = new Date(expiration);
+
+    if(expirationDate <= new Date()){
+      this.logout();
+      return false;
+    }
     return true;
+  }
+  getFieldFromJWT(field: string): string {
+    const token = localStorage.getItem("JWT");
+    if (!token){return '';}
+    const dataToken = JSON.parse(atob(token.split('.')[1]));
+    return dataToken[field];
   }
 
   getRole():string{
-    return '';
+    return this.getFieldFromJWT('role');
   }
 
   async signup(user:userCredentials){
@@ -30,7 +49,14 @@ export class SecurityService {
     return res;
   }
 
+  logout(){
+    localStorage.removeItem("JWT");
+    localStorage.removeItem("JWT-Expiration");
+  }
+
   saveToken(res:loginResponse){
     localStorage.setItem("JWT",res.token);
+    localStorage.setItem("JWT-Expiration",res.expiresIn);
   }
+
 }

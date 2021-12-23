@@ -1,7 +1,7 @@
 export interface userCredentials{
   firstName: string;
   lastName: string;
-  email: string,
+  email: string;
   password:string;
   steamID:string;
   psnID:string;
@@ -9,11 +9,12 @@ export interface userCredentials{
 }
 
 export interface loginUserCredentials{
-  email: string,
+  email: string;
   password:string;
 }
 
 export interface loginResponse{
-  message:string,
-  token:string
+  message:string;
+  token:string;
+  expiresIn:string;
 }
