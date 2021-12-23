@@ -2,6 +2,14 @@ const mongoose = require('mongoose');
 
 const driverSchema = mongoose.Schema({
     _id:mongoose.Schema.Types.ObjectId,
+    firstName: {
+        type:String,
+        required:true
+    },
+    lastName: {
+        type:String,
+        required:true
+    },
     email: {
         type:String,
         required:true,
@@ -11,6 +19,19 @@ const driverSchema = mongoose.Schema({
     password: {
         type:String,
         required:true
+    },
+    steamID: {
+        type:String,
+    },
+    psnID: {
+        type:String,
+    },
+    xboxgamertag: {
+        type:String,
+    },
+    role: {
+        type:String,
+        default:'user'
     }
 });
 
