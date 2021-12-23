@@ -12,7 +12,7 @@ exports.getAllUsers = async (req,res,next) =>{
                     _id:user._id,
                     firstName: user.firstName,
                     lastName: user.lastName,
-                    email: user.name,
+                    email: user.email,
                     role:user.role,
                 };
             }),
@@ -119,18 +119,34 @@ exports.login = (req,res,next) => {
         });
 };
 
+exports.makeAdmin = async (req,res,next) =>{
+    try{
+        const updatedUser = await User.updateOne(
+            {_id:req.params.userId},
+            {$set: {role:'admin'}});
+        console.log(updatedUser);
+        res.status(200).json(updatedUser);
+    }catch(e){
+        res.status(400).json({message:'Driver not found'});
+    }
+}
+
 exports.delete = (req,res,next)=>{
-    User.deleteOne({_id:req.params.userId})
-        .exec()
-        .then(result =>{
-            res.status(200).json({
-                message: "User deleted"
+    if(req.userData._id !== req.params.userId){
+        User.deleteOne({_id:req.params.userId})
+            .exec()
+            .then(result =>{
+                res.status(200).json({
+                    message: "User deleted"
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                    error:err
+                });
             });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error:err
-            });
-        });
+    }else{
+        res.status(400).json({message:'Admin cannot delete himself'});
+    }
 };

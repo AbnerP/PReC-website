@@ -11,8 +11,9 @@ router.get('/',checkAuth,UserController.getAllUsers);
 //POST
 router.post('/signup',UserController.signup);
 router.post('/login', UserController.login);
+router.post('/makeAdmin/:userId',checkAuth,UserController.makeAdmin);
 
 //DELETE
-router.delete('/:userId',UserController.delete);
+router.delete('/:userId', checkAuth, UserController.delete);
 
 module.exports = router;
