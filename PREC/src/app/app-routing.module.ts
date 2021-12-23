@@ -8,20 +8,21 @@ import { AddEventComponent } from './events/add-event/add-event.component';
 import { EventPageComponent } from './events/event-page/event-page.component';
 import { EventsComponent } from './events/events.component';
 import { HomeComponent } from './home/home.component';
+import { IsAdminGuard } from './is-admin.guard';
 
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
 
   {path:'drivers',component:DriversComponent},
-  {path:'drivers/new',component:AddDriverComponent},
-  {path:'drivers/update/:id',component:AddDriverComponent},
+  {path:'drivers/new',component:AddDriverComponent, canActivate:[IsAdminGuard]},
+  {path:'drivers/update/:id',component:AddDriverComponent, canActivate:[IsAdminGuard]},
 
 
   {path:'events',component:EventsComponent},
-  {path:'events/new',component:AddEventComponent},
+  {path:'events/new',component:AddEventComponent, canActivate:[IsAdminGuard]},
   {path:'events/id/:id',component:EventPageComponent},
-  {path:'events/update/:id',component:AddEventComponent},
+  {path:'events/update/:id',component:AddEventComponent, canActivate:[IsAdminGuard]},
 
   {path:'calculator',component:CalculatorComponent},
 
