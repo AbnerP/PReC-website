@@ -23,11 +23,18 @@
       <a routerLink="calculator" routerLinkActive="active">Calculator</a>
       <a routerLink="about-us" routerLinkActive="active">About Us</a>
     </div>
-
-    <div class="authentication">
-      <a class="signup" routerLink="signup">Sign Up</a>
-      <a class="login" routerLink="login">Log In</a>
-    </div>
+    <app-authorize-view [role]="'admin'">
+      <ng-container authorized>
+        <span>Hello</span>
+        <a mat-button>Logout</a>
+      </ng-container>
+      <ng-container notAuthorized>
+        <div class="authentication">
+          <a class="signup" routerLink="signup">Sign Up</a>
+          <a class="login" routerLink="login">Log In</a>
+        </div>
+      </ng-container>
+    </app-authorize-view>
 
   </div>
 

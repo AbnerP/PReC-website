@@ -9,6 +9,8 @@ import { EventPageComponent } from './events/event-page/event-page.component';
 import { EventsComponent } from './events/events.component';
 import { HomeComponent } from './home/home.component';
 import { IsAdminGuard } from './is-admin.guard';
+import { LoginComponent } from './security/login/login.component';
+import { SignupComponent } from './security/signup/signup.component';
 
 
 const routes: Routes = [
@@ -28,8 +30,8 @@ const routes: Routes = [
 
   {path:'about-us',component:AboutUsPageComponent},
 
-  // {path:'login',component:LoginComponent},
-  // {path:'signup',component:SignupComponent},
+  {path:'login',component:LoginComponent},
+  {path:'signup',component:SignupComponent},
 
   {path:'**',redirectTo:'home'}
 ];

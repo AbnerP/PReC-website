@@ -23,6 +23,8 @@ import { EventPageComponent } from './events/event-page/event-page.component';
 import { AddEventComponent } from './events/add-event/add-event.component';
 import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
 import { AuthorizeViewComponent } from './security/authorize-view/authorize-view.component';
+import { LoginComponent } from './security/login/login.component';
+import { SignupComponent } from './security/signup/signup.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { AuthorizeViewComponent } from './security/authorize-view/authorize-view
       EventPageComponent,
       AddEventComponent,
       AboutUsPageComponent,
-      AuthorizeViewComponent
+      AuthorizeViewComponent,
+      LoginComponent,
+      SignupComponent,
    ],
   imports: [
     BrowserModule,
