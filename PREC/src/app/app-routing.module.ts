@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { IsAdminGuard } from './is-admin.guard';
 import { LoginComponent } from './security/login/login.component';
 import { SignupComponent } from './security/signup/signup.component';
+import { UsersComponent } from './users/users.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,8 @@ const routes: Routes = [
   {path:'events/new',component:AddEventComponent, canActivate:[IsAdminGuard]},
   {path:'events/id/:id',component:EventPageComponent},
   {path:'events/update/:id',component:AddEventComponent, canActivate:[IsAdminGuard]},
+
+  {path:'users',component:UsersComponent, canActivate:[IsAdminGuard]},
 
   {path:'calculator',component:CalculatorComponent},
 

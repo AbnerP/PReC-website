@@ -22,6 +22,11 @@
       <a mat-button routerLink="drivers" routerLinkActive="active">Drivers</a>
       <a mat-button routerLink="events" routerLinkActive="active">Events</a>
       <a mat-button routerLink="calculator" routerLinkActive="active">Calculator</a>
+      <app-authorize-view [role]="'admin'">
+        <ng-container authorized>
+          <a mat-button routerLink="users" routerLinkActive="active">Users</a>
+        </ng-container>
+      </app-authorize-view>
       <a mat-button routerLink="about-us" routerLinkActive="active">About Us</a>
     </div>
 
