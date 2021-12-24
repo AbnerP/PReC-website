@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { userCredentials } from 'src/app/models/user.model';
 import { SecurityService } from '../../services/users.service';
@@ -23,10 +23,22 @@ export class SignupComponent implements OnInit {
       lastName: ['',Validators.required],
       email: ['',{validators:[Validators.required,Validators.email]}],
       password:['',Validators.required],
+      platforms:this.fb.array([]),
       steamID:['',],
       psnID:['',],
       xboxgamertag:['',]
     });
+  }
+
+  get platforms(){
+    let arr:FormArray = this.form.controls["platforms"] as FormArray;
+    return arr;
+  }
+
+  addTeamRole(){
+    this.platforms.push(this.fb.group({
+      platform:['']
+    }));
   }
 
   saveChanges(){
@@ -34,6 +46,7 @@ export class SignupComponent implements OnInit {
       firstName: this.form.value.firstName,
       lastName:this.form.value.lastName,
       email: this.form.value.email,
+      platforms:this.form.value.platforms,
       password:this.form.value.password,
       steamID:this.form.value.steamID,
       psnID:this.form.value.psnID,
