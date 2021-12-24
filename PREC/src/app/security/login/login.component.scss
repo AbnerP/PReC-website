@@ -4,15 +4,15 @@ $prec-blue:#252B42;
 
 .body{
   width: 100%;
-  min-height: 100vh;
+  min-height: 82vh;
   background-color: $prec-blue;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 h1{
-  padding-top: 2vh;
   color: white;
   font-family: "Montserrat-Medium";
 }
