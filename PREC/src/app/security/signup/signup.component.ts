@@ -59,7 +59,7 @@ export class SignupComponent implements OnInit {
       firstName: this.form.value.firstName,
       lastName:this.form.value.lastName,
       email: this.form.value.email,
-      platforms:this.form.value.platforms,
+      platforms:userPlatforms,
       password:this.form.value.password,
       steamID:this.form.value.steamID,
       psnID:this.form.value.psnID,
