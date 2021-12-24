@@ -45,8 +45,12 @@ export class SecurityService {
   }
 
   async login(user:loginUserCredentials){
-    const res = await axios.post<loginResponse>(this.apiURL+"/login",user);
-    return res;
+    try{
+      const res = await axios.post<loginResponse>(this.apiURL+"/login",user);
+      return res;
+    }catch(e){
+      return Promise.reject(e);
+    }
   }
 
   logout(){
