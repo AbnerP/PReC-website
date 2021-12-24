@@ -16,21 +16,37 @@
   </div>
 
   <div class="routes">
+
     <div class="pages">
-      <a routerLink="home" routerLinkActive="active">Home</a>
-      <a routerLink="drivers" routerLinkActive="active">Drivers</a>
-      <a routerLink="events" routerLinkActive="active">Events</a>
-      <a routerLink="calculator" routerLinkActive="active">Calculator</a>
-      <a routerLink="about-us" routerLinkActive="active">About Us</a>
+      <a mat-button routerLink="home" routerLinkActive="active">Home</a>
+      <a mat-button routerLink="drivers" routerLinkActive="active">Drivers</a>
+      <a mat-button routerLink="events" routerLinkActive="active">Events</a>
+      <a mat-button routerLink="calculator" routerLinkActive="active">Calculator</a>
+      <app-authorize-view [role]="'admin'">
+        <ng-container authorized>
+          <a mat-button routerLink="users" routerLinkActive="active">Users</a>
+        </ng-container>
+      </app-authorize-view>
+      <a mat-button routerLink="about-us" routerLinkActive="active">About Us</a>
     </div>
 
-    <div class="authentication">
-      <a class="signup" routerLink="signup">Sign Up</a>
-      <a class="login" routerLink="login">Log In</a>
-    </div>
+    <app-authorize-view>
+      <ng-container authorized>
+        <div class="authorized">
+          <button mat-icon-button (click)="service.logout()" class="logout"><mat-icon>logout</mat-icon></button>
+        </div>
+      </ng-container>
+      <ng-container notAuthorized>
+
+        <div class="authentication">
+          <a class="login" routerLink="login">Log In</a>
+          <a class="signup" routerLink="signup">Sign Up</a>
+        </div>
+
+      </ng-container>
+    </app-authorize-view>
 
   </div>
-
 
 </div>
 

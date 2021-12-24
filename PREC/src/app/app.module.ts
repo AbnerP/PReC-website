@@ -5,18 +5,14 @@ import { MaterialModule } from './material/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { NavBarComponent } from './general-components/nav-bar/nav-bar.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DriversComponent } from './drivers/Drivers.component';
 import { CalculatorComponent } from './calculator/Calculator.component';
-import { LoginComponent } from './security/login/login.component';
-import { SignupComponent } from './security/signup/signup.component';
 import { AboutUsComponent } from './home/about-us/about-us.component';
 import { JoinUsComponent } from './home/join-us/join-us.component';
 import { CalendarPreviewComponent } from './home/calendar-preview/calendar-preview.component';
-import { FooterComponent } from './general-components/nav-bar/footer/footer.component';
-import { DisplayErrorsComponent } from './utilities/display-errors/display-errors.component';
-import { AuthenticationFormComponent } from './security/authentication-form/authentication-form.component';
+import { FooterComponent } from './footer/footer.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DriverCardComponent } from './drivers/driver-card/driver-card.component';
@@ -26,6 +22,10 @@ import { EventCardComponent } from './events/event-card/event-card.component';
 import { EventPageComponent } from './events/event-page/event-page.component';
 import { AddEventComponent } from './events/add-event/add-event.component';
 import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
+import { AuthorizeViewComponent } from './security/authorize-view/authorize-view.component';
+import { LoginComponent } from './security/login/login.component';
+import { SignupComponent } from './security/signup/signup.component';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
@@ -35,21 +35,21 @@ import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
     NavBarComponent,
       DriversComponent,
       CalculatorComponent,
-      LoginComponent,
-      SignupComponent,
       AboutUsComponent,
       JoinUsComponent,
       CalendarPreviewComponent,
       FooterComponent,
-      DisplayErrorsComponent,
-      AuthenticationFormComponent,
       DriverCardComponent,
       AddDriverComponent,
       EventsComponent,
       EventCardComponent,
       EventPageComponent,
       AddEventComponent,
-      AboutUsPageComponent
+      AboutUsPageComponent,
+      AuthorizeViewComponent,
+      LoginComponent,
+      SignupComponent,
+      UsersComponent,
    ],
   imports: [
     BrowserModule,

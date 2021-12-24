@@ -28,6 +28,14 @@ export class DriversService {
   }
 
   async updateDriver(id:string,driver:driverInfo,img:File){
+    const token = localStorage.getItem("JWT")
+    const jwt = `Bearer ${token}`;
+    const config = {
+      headers: {
+        Authorization: jwt,
+      }
+    };
+
     const fd = new FormData();
     if(img != null){
       fd.append('driverImage',img,img.name);
@@ -38,16 +46,31 @@ export class DriversService {
     for(let role of driver.teamRole){
       fd.append('teamRole',role);
     }
-    return await axios.patch(this.apiURL+`/${id}`,fd);
+    return await axios.patch(this.apiURL+`/${id}`,fd,config);
   }
 
   async deleteDriver(id:string){
-    const res = await axios.delete(this.apiURL+`/${id}`);
+    const token = localStorage.getItem("JWT")
+    const jwt = `Bearer ${token}`;
+    const config = {
+      headers: {
+        Authorization: jwt,
+      }
+    };
+    const res = await axios.delete(this.apiURL+`/${id}`,config);
     console.log(res.data);
     return res.data;
   }
 
   async createDriver(driver:driverInfo,img:File){
+    const token = localStorage.getItem("JWT")
+    const jwt = `Bearer ${token}`;
+    const config = {
+      headers: {
+        Authorization: jwt,
+      }
+    };
+
     const fd = new FormData();
     if(img != null){
       fd.append('driverImage',img,img.name);
@@ -58,7 +81,7 @@ export class DriversService {
     for(let role of driver.teamRole){
       fd.append('teamRole',role);
     }
-    return await axios.post(this.apiURL,fd);
+    return await axios.post(this.apiURL,fd,config);
   }
 
 }

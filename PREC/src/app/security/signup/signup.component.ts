@@ -1,31 +1,59 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { parseWebAPIErrors } from '../../utilities/utils';
-import { userCredentials } from '../security.models';
+import { userCredentials } from 'src/app/models/user.model';
+import { SecurityService } from '../../services/users.service';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
 
-  constructor(/*private securityService:SecurityService,*/
+  form:FormGroup;
+
+  constructor(private fb:FormBuilder,
+    private service:SecurityService,
     private router:Router) { }
 
-  errors:string[] = [];
-
   ngOnInit(): void {
+    this.form = this.fb.group({
+      firstName: ['',Validators.required],
+      lastName: ['',Validators.required],
+      email: ['',{validators:[Validators.required,Validators.email]}],
+      password:['',Validators.required],
+      steamID:['',],
+      psnID:['',],
+      xboxgamertag:['',]
+    });
   }
 
-  register(userCredentials:userCredentials){
-    // this.errors = [];
-    // this.securityService.register(userCredentials).subscribe(authenticationResponse => {
-    //   console.log(authenticationResponse);
-    //   this.securityService.saveToken(authenticationResponse);
-    //
-    // }, error => this.errors = parseWebAPIErrors(error));
-    this.router.navigate(['/']);
-  }
+  saveChanges(){
+    let user:userCredentials = {
+      firstName: this.form.value.firstName,
+      lastName:this.form.value.lastName,
+      email: this.form.value.email,
+      password:this.form.value.password,
+      steamID:this.form.value.steamID,
+      psnID:this.form.value.psnID,
+      xboxgamertag: this.form.value.xboxgamertag
+    };
 
+    this.service.signup(user).then((res)=>{
+      this.router.navigate(['/login']);
+    });
+
+
+    // if(this.id !== null){
+    //   this.service.updateEvent(this.id,event,this.eventIMG).then(res =>{
+    //     this.router.navigate(['/events']);
+    //   });
+    // }else{
+    //   this.service.createEvent(event,this.eventIMG).then(res =>{
+    //     this.router.navigate(['/events']);
+    //   });
+    // }
+
+  }
 }

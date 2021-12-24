@@ -1,27 +1,49 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { userCredentials } from '../security.models';
+import { loginUserCredentials } from 'src/app/models/user.model';
+import { SecurityService } from '../../services/users.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  form:FormGroup
+  error:string;
 
-  constructor(private router:Router) { }
+  constructor(private fb:FormBuilder,
+    private router:Router,
+    private service:SecurityService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      email:['',[Validators.required,Validators.email]],
+      password:['',Validators.required]
+    })
   }
-  // constructor(private security:SecurityService,
 
-  errors:string[]= [];
+  saveChanges(){
+    this.error = null;
+    let user:loginUserCredentials = {
+      email: this.form.value.email,
+      password:this.form.value.password
+    };
 
-  login(userCredentials:userCredentials){
-  //   this.security.login(userCredentials).subscribe(authenticationResponse =>{
-  //     this.security.saveToken(authenticationResponse);
-  //
-  //   },error => this.errors = parseWebAPIErrors(error));
-    this.router.navigate(['/']);
+    try{
+      this.service.login(user).then((res)=>{
+        // console.log(res.data);
+        if(res.data.message === "Auth succesful"){
+          console.log(res);
+          this.service.saveToken(res.data);
+          this.router.navigate(['/home']);
+        }else{
+          this.error = "Email or password incorrect";
+        }
+      });
+    }catch(e){
+      this.error = "Email or password incorrect";
+    }
   }
 }

@@ -13,7 +13,7 @@
 
 .logo-container{
   margin-left: 10px;
-  width: 30%;
+  width: 20vw;
   height: auto;
 }
 
@@ -24,21 +24,29 @@
 }
 
 .routes{
-  width: 50%;
+  width: 70vw;
   display: flex;
-  justify-content: space-evenly;
+  justify-content:flex-end;
   align-items: center;
+  margin-right: 1vw;
 }
 
 .pages{
-  width: 50%;
   display: flex;
   justify-content: space-around;
   align-items: baseline;
+  margin-right: 3vh;
+}
+.pages a{
+  padding: 0 1vw;
+}
+.authorized{
+  background-color: #FBCC02;
+  border-radius: 3px;
 }
 
 .authentication{
-  width: 40%;
+  /* width: 40%; */
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -47,7 +55,8 @@
 .signup{
   border-radius: 10px;
   background-color: #FBCC02;
-  padding: 20px 25px;
+  margin-left: 1.5vh;
+  padding: 1.5vh 1.5vh;
 }
 
 .login{
@@ -55,9 +64,13 @@
   border-style: solid;
   border-width: .5px;
   border-color: #FBCC02;
-  padding: 20px 25px;
+  padding: 1.5vh 1.5vh;
 }
 
+.logout{
+  /* padding: 0 2vw 0 1vw; */
+  margin: 0 1vw 0 1vw;
+}
 
 a{
   /* color: #FBCC02; */
@@ -72,3 +85,4 @@ a{
   color: #FBCC02;
   /* border-bottom:1px solid hsl(49, 98%, 50%) ; */
 }
+

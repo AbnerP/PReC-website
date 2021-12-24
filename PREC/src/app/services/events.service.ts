@@ -37,6 +37,14 @@ export class EventsService {
   }
 
   async updateEvent(id:string,event:eventCreationDTO,img:File){
+    const token = localStorage.getItem("JWT")
+    const jwt = `Bearer ${token}`;
+    const config = {
+      headers: {
+        Authorization: jwt,
+      }
+    };
+
     const fd = new FormData();
     if(img != null){
       fd.append('eventImage',img,img.name);
@@ -51,15 +59,31 @@ export class EventsService {
     fd.append('description',event.description);
     fd.append('contactInfo',event.contactInfo);
 
-    return await axios.patch(this.apiURL+`/${id}`,fd);
+    return await axios.patch(this.apiURL+`/${id}`,fd,config);
   }
 
   async deleteEvent(id:string){
-    const res = await axios.delete(this.apiURL+`/${id}`);
+    const token = localStorage.getItem("JWT")
+    const jwt = `Bearer ${token}`;
+    const config = {
+      headers: {
+        Authorization: jwt,
+      }
+    };
+
+    const res = await axios.delete(this.apiURL+`/${id}`,config);
     return res.data;
   }
 
   async createEvent(event:eventCreationDTO,img:File){
+    const token = localStorage.getItem("JWT")
+    const jwt = `Bearer ${token}`;
+    const config = {
+      headers: {
+        Authorization: jwt,
+      }
+    };
+
     const fd = new FormData();
     if(img != null){
       fd.append('eventImage',img,img.name);
@@ -73,6 +97,6 @@ export class EventsService {
     fd.append('description',event.description);
     fd.append('contactInfo',event.contactInfo);
 
-    return await axios.post(this.apiURL,fd);
+    return await axios.post(this.apiURL,fd,config);
   }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { eventDTO } from 'src/app/models/events.model';
 import { EventsService } from 'src/app/services/events.service';
-import { stringToMultiLineArray } from 'src/app/utilities/utils';
+import { stringToMultiLineArray } from 'src/app/utils';
 
 @Component({
   selector: 'app-event-page',
