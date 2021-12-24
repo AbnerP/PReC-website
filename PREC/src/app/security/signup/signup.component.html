@@ -1,96 +1,105 @@
-<form (submit)="saveChanges()" [formGroup]="form">
-  <mat-form-field  appearance="outline" >
-    <mat-label>First Name</mat-label>
+<div class="body">
+  <h1>Sign Up</h1>
 
-    <input matInput
-    required
-    formControlName="firstName"
-    placeholder="John">
+  <form (submit)="saveChanges()" [formGroup]="form" autocomplete="on">
+    <div>
+      <mat-form-field  appearance="outline" >
+        <mat-label>First Name</mat-label>
 
-
-    <mat-error *ngIf="form.controls.firstName.errors?.required" >
-      Field is required
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field  appearance="outline" >
-    <mat-label>Last Name</mat-label>
-
-    <input matInput
-    required
-    formControlName="lastName"
-    placeholder="Doe">
+        <input matInput
+        required
+        formControlName="firstName"
+        placeholder="John">
 
 
-    <mat-error *ngIf="form.controls.lastName.errors?.required" >
-      Field is required
-    </mat-error>
-  </mat-form-field>
+        <mat-error *ngIf="form.controls.firstName.errors?.required" >
+          Field is required
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field  appearance="outline" >
-    <mat-label>Email</mat-label>
+      <mat-form-field  appearance="outline" >
+        <mat-label>Last Name</mat-label>
 
-    <input matInput
-    required
-    formControlName="email"
-    placeholder="example@example.com">
-
-
-    <mat-error *ngIf="form.controls.email.errors?.required" >
-      Field is required
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field  appearance="outline" >
-    <mat-label>Password</mat-label>
-
-    <input matInput
-    type="password"
-    required
-    formControlName="password">
+        <input matInput
+        required
+        formControlName="lastName"
+        placeholder="Doe">
 
 
-    <mat-error *ngIf="form.controls.password.errors?.required" >
-      Field is required
-    </mat-error>
-  </mat-form-field>
+        <mat-error *ngIf="form.controls.lastName.errors?.required" >
+          Field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field  appearance="outline" >
+        <mat-label>Email</mat-label>
 
-  <mat-form-field  appearance="outline" >
-    <mat-label>Steam ID</mat-label>
-
-    <input matInput
-    formControlName="steamID">
-
-
-    <mat-error *ngIf="form.controls.steamID.errors?.required" >
-      Field is required
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field  appearance="outline" >
-    <mat-label>Playstation ID</mat-label>
-
-    <input matInput
-    formControlName="psnID">
+        <input matInput
+        required
+        formControlName="email"
+        placeholder="example@example.com">
 
 
-    <mat-error *ngIf="form.controls.psnID.errors?.required" >
-      Field is required
-    </mat-error>
-  </mat-form-field>
+        <mat-error *ngIf="form.controls.email.errors?.required" >
+          Field is required
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field  appearance="outline" >
-    <mat-label>Xbox ID</mat-label>
+      <mat-form-field  appearance="outline" >
+        <mat-label>Password</mat-label>
 
-    <input matInput
-    formControlName="xboxgamertag">
+        <input matInput
+        type="password"
+        required
+        autocomplete="on"
+        formControlName="password">
 
 
-    <mat-error *ngIf="form.controls.xboxgamertag.errors?.required" >
-      Field is required
-    </mat-error>
-  </mat-form-field>
+        <mat-error *ngIf="form.controls.password.errors?.required" >
+          Field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field  appearance="outline" >
+        <mat-label>Steam ID</mat-label>
 
-  <button class="submitBTN" mat-stroked-button type="submit" [disabled]="!form.valid">Submit</button>
+        <input matInput
+        formControlName="steamID">
 
-</form>
+
+        <mat-error *ngIf="form.controls.steamID.errors?.required" >
+          Field is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field  appearance="outline" >
+        <mat-label>Playstation ID</mat-label>
+
+        <input matInput
+        formControlName="psnID">
+
+
+        <mat-error *ngIf="form.controls.psnID.errors?.required" >
+          Field is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field  appearance="outline" >
+        <mat-label>Xbox ID</mat-label>
+
+        <input matInput
+        formControlName="xboxgamertag">
+
+
+        <mat-error *ngIf="form.controls.xboxgamertag.errors?.required" >
+          Field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <button class="submitBTN" type="submit" [disabled]="!form.valid" (click)="saveChanges()">Create account</button>
+
+  </form>
+</div>
