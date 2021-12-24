@@ -18,3 +18,15 @@ export interface loginResponse{
   token:string;
   expiresIn:string;
 }
+export interface userDTO{
+    _id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    role: string;
+}
+
+export interface allUsers{
+  users:Array<userDTO>;
+  count:number;
+}

@@ -25,6 +25,7 @@ import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
 import { AuthorizeViewComponent } from './security/authorize-view/authorize-view.component';
 import { LoginComponent } from './security/login/login.component';
 import { SignupComponent } from './security/signup/signup.component';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { SignupComponent } from './security/signup/signup.component';
       AuthorizeViewComponent,
       LoginComponent,
       SignupComponent,
+      UsersComponent,
    ],
   imports: [
     BrowserModule,

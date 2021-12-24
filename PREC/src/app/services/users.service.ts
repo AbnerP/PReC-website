@@ -63,9 +63,29 @@ export class SecurityService {
     localStorage.setItem("JWT-Expiration",res.expiresIn);
   }
 
-  async makeAdmin(id:string){
-    const res = await axios.post(this.apiURL+`/makeAdmin/${id}`);
+  async getAllUsers(){
+    const token = localStorage.getItem("JWT")
+    const jwt = `Bearer ${token}`;
+    const config = {
+      headers: {
+        Authorization: jwt,
+      }
+    };
+    const res = await axios.get(this.apiURL,config);
     return res.data;
   }
+
+  async makeAdmin(id:string){
+    const token = localStorage.getItem("JWT")
+    const jwt = `Bearer ${token}`;
+    const config = {
+      headers: {
+        Authorization: jwt,
+      }
+    };
+    const res = await axios.post(this.apiURL+`/makeAdmin/${id}`,{},config);
+    return res.data;
+  }
+
 
 }
