@@ -20,6 +20,10 @@ const driverSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    platforms: {
+        type:[String],
+        required:true
+    },
     steamID: {
         type:String,
     },
