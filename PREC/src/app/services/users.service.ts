@@ -63,4 +63,9 @@ export class SecurityService {
     localStorage.setItem("JWT-Expiration",res.expiresIn);
   }
 
+  async makeAdmin(id:string){
+    const res = await axios.post(this.apiURL+`/makeAdmin/${id}`);
+    return res.data;
+  }
+
 }

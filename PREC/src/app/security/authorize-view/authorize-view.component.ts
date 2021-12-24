@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SecurityService } from '../security.service';
+import { SecurityService } from '../../services/users.service';
 
 @Component({
   selector: 'app-authorize-view',
