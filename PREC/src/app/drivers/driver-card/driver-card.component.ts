@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { driverDTO } from 'src/app/models/driverInterfaces/driversDTO.model';
+import { driverDTO } from 'src/app/models/driversDTO.model';
 
 @Component({
   selector: 'app-driver-card',

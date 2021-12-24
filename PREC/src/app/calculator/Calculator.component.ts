@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { strategy } from 'src/app/models/calculatorInterfaces/strategy.model';
-import { Lap, Telemetry,tireFormTelemetry,tireTelemetry } from 'src/app/models/calculatorInterfaces/tiretelemetry.model';
+import { strategy } from 'src/app/models/strategy.model';
+import { Lap, Telemetry,tireFormTelemetry,tireTelemetry } from 'src/app/models/tiretelemetry.model';
 import { CalculatorService } from 'src/app/services/calculator.service';
 import * as mockData from "./telemetry.json";
 import * as mockResults from "./strategy.json";

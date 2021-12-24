@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { driverInfo } from 'src/app/models/driverInterfaces/drivers.model';
+import { driverInfo } from 'src/app/models/drivers.model';
 import { DriversService } from 'src/app/services/drivers.service';
 
 @Component({

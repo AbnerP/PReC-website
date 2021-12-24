@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import axios from "axios";
-import { driverDTO, driversDTO } from '../models/driverInterfaces/driversDTO.model';
-import { driverInfo } from '../models/driverInterfaces/drivers.model';
+import { driverDTO, driversDTO } from '../models/driversDTO.model';
+import { driverInfo } from '../models/drivers.model';
 import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'

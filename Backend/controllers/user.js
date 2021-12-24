@@ -87,11 +87,11 @@ exports.login = (req,res,next) => {
                 
                 if(result){
                     const token = jwt.sign({
+                                userId: user[0]._id,
                                 firstName:user[0].firstName,
                                 lastName:user[0].lastName,
                                 email:user[0].email,
                                 role:user[0].role,
-                                userId: user[0]._id,
                             },
                             process.env.JWT_KEY,
                             {

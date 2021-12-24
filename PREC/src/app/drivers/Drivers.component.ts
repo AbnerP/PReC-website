@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { driverInfo } from '../models/driverInterfaces/drivers.model';
-import { driverDTO } from '../models/driverInterfaces/driversDTO.model';
+import { driverInfo } from '../models/drivers.model';
+import { driverDTO } from '../models/driversDTO.model';
 import { DriversService } from '../services/drivers.service';
 
 @Component({
