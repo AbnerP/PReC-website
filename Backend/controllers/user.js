@@ -45,9 +45,11 @@ exports.signup = (req,res,next) =>{
                             lastName:req.body.lastName,
                             email:req.body.email,
                             password:hash,
+                            platforms:req.body.platforms,
                             steamID:req.body.steamID,
                             psnID:req.body.psnID,
-                            xboxgamertag:req.body.xboxgamertag                        });
+                            xboxgamertag:req.body.xboxgamertag                        
+                        });
             
                         user.save()
                             .then( result =>{
