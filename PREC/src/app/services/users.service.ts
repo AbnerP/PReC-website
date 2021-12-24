@@ -87,5 +87,18 @@ export class SecurityService {
     return res.data;
   }
 
+  async delete(id:string){
+    const token = localStorage.getItem("JWT")
+    const jwt = `Bearer ${token}`;
+    const config = {
+      headers: {
+        Authorization: jwt,
+      }
+    };
+    const res = await axios.delete(this.apiURL+`/${id}`,config);
+    return res.data;
+  }
+
+
 
 }
