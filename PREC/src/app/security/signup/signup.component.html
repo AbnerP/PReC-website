@@ -61,20 +61,15 @@
         </mat-error>
       </mat-form-field>
     </div>
+
+    <div class="checkboxes">
+      <div *ngFor="let platform of checkBoxPlatforms; let i = index" formArrayName="platforms">
+        <mat-checkbox [formControlName]="i" >{{platform}}</mat-checkbox>
+      </div>
+    </div>
+
     <div>
-      <mat-form-field  appearance="outline" >
-        <mat-label>Steam ID</mat-label>
-
-        <input matInput
-        formControlName="steamID">
-
-
-        <mat-error *ngIf="form.controls.steamID.errors?.required" >
-          Field is required
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field  appearance="outline" >
+      <mat-form-field  *ngIf="this.form.value['platforms'][0]" appearance="outline" >
         <mat-label>Playstation ID</mat-label>
 
         <input matInput
@@ -86,7 +81,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field  appearance="outline" >
+      <mat-form-field *ngIf="this.form.value['platforms'][1]" appearance="outline" >
         <mat-label>Xbox ID</mat-label>
 
         <input matInput
@@ -94,6 +89,18 @@
 
 
         <mat-error *ngIf="form.controls.xboxgamertag.errors?.required" >
+          Field is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="this.form.value['platforms'][2]" appearance="outline" >
+        <mat-label>Steam ID</mat-label>
+
+        <input matInput
+        formControlName="steamID">
+
+
+        <mat-error *ngIf="form.controls.steamID.errors?.required" >
           Field is required
         </mat-error>
       </mat-form-field>

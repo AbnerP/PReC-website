@@ -12,6 +12,7 @@ import { SecurityService } from '../../services/users.service';
 export class SignupComponent implements OnInit {
 
   form:FormGroup;
+  checkBoxPlatforms:Array<string> = ["PlayStation", "Xbox", "Steam"];
 
   constructor(private fb:FormBuilder,
     private service:SecurityService,
@@ -23,7 +24,7 @@ export class SignupComponent implements OnInit {
       lastName: ['',Validators.required],
       email: ['',{validators:[Validators.required,Validators.email]}],
       password:['',Validators.required],
-      platforms:this.fb.array([]),
+      platforms:this.fb.array(this.checkBoxPlatforms.map(x => !1)),
       steamID:['',],
       psnID:['',],
       xboxgamertag:['',]
@@ -41,7 +42,19 @@ export class SignupComponent implements OnInit {
     }));
   }
 
+  convertCheckboxToValue(booleans: Array<string>) {
+    let vals:Array<string>=[];
+    for(let i = 0; i<booleans.length;i++){
+      if(booleans[i]){
+        vals.push(this.checkBoxPlatforms[i]);
+      }
+    }
+    return vals.length > 0 ? vals : [""];
+  }
+
   saveChanges(){
+    let userPlatforms:Array<string> = this.convertCheckboxToValue(this.form.value["platforms"]);
+
     let user:userCredentials = {
       firstName: this.form.value.firstName,
       lastName:this.form.value.lastName,
@@ -52,6 +65,7 @@ export class SignupComponent implements OnInit {
       psnID:this.form.value.psnID,
       xboxgamertag: this.form.value.xboxgamertag
     };
+
 
     this.service.signup(user).then((res)=>{
       this.router.navigate(['/login']);
