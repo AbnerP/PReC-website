@@ -12,6 +12,16 @@ export class SecurityService {
 
   constructor() { }
 
+  configureAuthorizationHeader(){
+    const token = localStorage.getItem("JWT")
+    const jwt = `Bearer ${token}`;
+    return {
+      headers: {
+        Authorization: jwt,
+      }
+    };
+  }
+
   isAuthenticated():boolean{
     const token = localStorage.getItem("JWT");
 
@@ -28,6 +38,7 @@ export class SecurityService {
     }
     return true;
   }
+  
   getFieldFromJWT(field: string): string {
     const token = localStorage.getItem("JWT");
     if (!token){return '';}
@@ -64,40 +75,33 @@ export class SecurityService {
   }
 
   async getAllUsers(){
-    const token = localStorage.getItem("JWT")
-    const jwt = `Bearer ${token}`;
-    const config = {
-      headers: {
-        Authorization: jwt,
-      }
-    };
+    const config = this.configureAuthorizationHeader();
+
     const res = await axios.get(this.apiURL,config);
     return res.data;
   }
 
   async makeAdmin(id:string){
-    const token = localStorage.getItem("JWT")
-    const jwt = `Bearer ${token}`;
-    const config = {
-      headers: {
-        Authorization: jwt,
-      }
-    };
+    const config = this.configureAuthorizationHeader();
+
     const res = await axios.post(this.apiURL+`/makeAdmin/${id}`,{},config);
     return res.data;
   }
 
   async delete(id:string){
-    const token = localStorage.getItem("JWT")
-    const jwt = `Bearer ${token}`;
-    const config = {
-      headers: {
-        Authorization: jwt,
-      }
-    };
+    const config = this.configureAuthorizationHeader();
+
     const res = await axios.delete(this.apiURL+`/${id}`,config);
     return res.data;
   }
+
+  async updateUser(id:string){
+    const config = this.configureAuthorizationHeader();
+
+    const res = await axios.delete(this.apiURL+`/update/${id}`,config);
+    return res.data;
+  }
+
 
 
 
