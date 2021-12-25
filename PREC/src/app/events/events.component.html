@@ -1,7 +1,11 @@
 <div class="body">
-  <div class="addEvent">
-    <button mat-flat-button routerLink="new" routerLinkActive="active">New Event</button>
-  </div>
+  <app-authorize-view [role]="'admin'">
+    <ng-container authorized>
+      <div class="addEvent">
+        <button mat-flat-button routerLink="new" routerLinkActive="active">New Event</button>
+      </div>
+    </ng-container>
+  </app-authorize-view>
   <div class="cards">
     <div *ngFor="let event of events" class="card">
       <app-event-card [event]="event"></app-event-card>
