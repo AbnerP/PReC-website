@@ -9,10 +9,16 @@
       required
       formControlName="email"
       placeholder="example@example.com">
+      <!-- <mat-placeholder class="placeholder">example@example.com</mat-placeholder> -->
+
 
 
       <mat-error *ngIf="form.controls.email.errors?.required" >
-        Field is required
+        Email is required
+      </mat-error>
+
+      <mat-error *ngIf="form.controls.email.errors?.email" >
+        Not a valid email address
       </mat-error>
     </mat-form-field>
 
@@ -27,12 +33,13 @@
 
 
       <mat-error *ngIf="form.controls.password.errors?.required" >
-        Field is required
+        Password is required
       </mat-error>
     </mat-form-field>
 
     <button class="submitBTN" type="submit" [disabled]="!form.valid">Log In</button>
 
   </form>
+  <a routerLink="../signup" routerLinkActive="active">Dont have an account? Sign up</a>
   {{error}}
 </div>
