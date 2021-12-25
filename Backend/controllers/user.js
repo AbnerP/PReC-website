@@ -138,6 +138,43 @@ exports.makeAdmin = async (req,res,next) =>{
     }
 }
 
+exports.updateUser = async (req,res,next) =>{
+    try{
+        User.findById(req.params.userId)
+            .exec()
+            .then(async (originalUser) => {
+                let updateOptions = {};
+                console.log(originalUser);
+                const obj = Object.entries(originalUser)[2][1];
+                for (const [key, value] of Object.entries(obj)) {
+                    if(value != req.body[key]){
+                        updateOptions[key] = req.body[key];
+                    }
+                }
+
+                const updatedUser = await User.updateOne(
+                    {_id:req.params.userId},
+                    {$set: updateOptions}
+                );
+        
+                res.status(200).json(updatedUser);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                    error:err,
+                    message:'Error ocurred in route.'
+                });
+            });;;
+
+        
+
+        
+    }catch(e){
+        res.status(400).json({message:'Driver not updated.'});
+    }
+}
+
 exports.delete = (req,res,next)=>{
     if(req.userData._id !== req.params.userId){
         User.deleteOne({_id:req.params.userId})
