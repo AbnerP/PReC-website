@@ -3,6 +3,7 @@ export interface userCredentials{
   lastName: string;
   email: string;
   password:string;
+  platforms:Array<string>;
   steamID:string;
   psnID:string;
   xboxgamertag:string;

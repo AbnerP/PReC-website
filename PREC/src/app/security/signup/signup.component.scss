@@ -95,4 +95,35 @@ mat-form-field{
   width: 9.5%;
 }
 
+a{
+  padding: 2vh;
+  color: $prec-yellow;
+}
 
+::placeholder {
+  color: rgb(180, 180, 180);
+}
+
+.checkboxes{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+::ng-deep .mat-checkbox {
+  padding: 0 1vw 2vh 1vh;
+  color: gray;
+  .mat-checkbox-frame {
+    border-color: $prec-yellow;
+  }
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent{
+  color: #ffd000;
+  .mat-checkbox-frame {
+    border-color: white;
+  }
+  .mat-checkbox-background {
+    background-color: #ffd000;
+  }
+}
