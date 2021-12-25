@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { CalculatorComponent } from './calculator/Calculator.component';
 import { AddDriverComponent } from './drivers/add-driver/add-driver.component';
 import { DriversComponent } from './drivers/Drivers.component';
@@ -9,6 +10,7 @@ import { EventPageComponent } from './events/event-page/event-page.component';
 import { EventsComponent } from './events/events.component';
 import { HomeComponent } from './home/home.component';
 import { IsAdminGuard } from './is-admin.guard';
+import { IsUserGuard } from './is-user.guard';
 import { LoginComponent } from './security/login/login.component';
 import { SignupComponent } from './security/signup/signup.component';
 import { UsersComponent } from './users/users.component';
@@ -28,6 +30,7 @@ const routes: Routes = [
   {path:'events/update/:id',component:AddEventComponent, canActivate:[IsAdminGuard]},
 
   {path:'users',component:UsersComponent, canActivate:[IsAdminGuard]},
+  {path:'settings',component:AccountSettingsComponent,canActivate:[IsUserGuard]},
 
   {path:'calculator',component:CalculatorComponent},
 

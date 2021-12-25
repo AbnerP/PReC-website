@@ -21,7 +21,7 @@
         <mat-label>Event date</mat-label>
         <input matInput required formControlName="date" [min]="minDate" [matDatepicker]="picker">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker color="accent" #picker></mat-datepicker>
 
         <mat-error *ngIf="form.controls.date.errors?.required" >
           A date is required

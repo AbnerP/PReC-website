@@ -1,0 +1,73 @@
+$prec-yellow:#ffd000;
+$prec-yellowSecondary:#ffdb0e;
+$prec-blue:#252B42;
+
+$yellow-pallete: (
+ 50: #fff9e0,
+ 100: #ffeeb1,
+ 200: #ffe47d,
+ 300: #ffdb44,
+ 400: #ffd000,
+ 500: #ffc800,
+ 600: #ffb900,
+ 700: #ffa500,
+ 800: #ff9300,
+ 900: #ff7200,
+ contrast: (
+  50: black,
+  100: black,
+  200: black,
+  300: black,
+  400: black,
+  500: black,
+  600: black,
+  700: black,
+  800: black,
+  900: black
+ )
+);
+
+$prec-blue:#252B42;
+$blue-pallete: (
+ 50: #ececff,
+ 100: #cdd4ed,
+ 200: #b1b7d5,
+ 300: #949bbc,
+ 400: #7f86aa,
+ 500: #697298,
+ 600: #5a6487,
+ 700: #495170,
+ 800: #393f5a,
+ 900: #252B42,
+ contrast: (
+  50: black,
+  100: white,
+  200: white,
+  300: white,
+  400: white,
+  500: white,
+  600: white,
+  700: white,
+  800: white,
+  900: white
+ )
+);
+
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$my-primary: mat.define-palette($blue-pallete, 900);
+$my-accent: mat.define-palette($yellow-pallete, 400,200,600);
+$my-warn: mat.define-palette(mat.$red-palette);
+
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+   warn: $my-warn,
+ )
+));
+
+@include mat.all-component-themes($my-theme);
+
