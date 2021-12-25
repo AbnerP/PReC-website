@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SecurityService } from 'src/app/services/users.service';
 
 @Component({
@@ -8,9 +9,14 @@ import { SecurityService } from 'src/app/services/users.service';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(public service:SecurityService) { }
+  constructor(public service:SecurityService,
+    private router:Router) { }
 
   ngOnInit() {
   }
 
+  logout(){
+    this.service.logout();
+    this.router.navigate(['/']);
+  }
 }
