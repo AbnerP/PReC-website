@@ -29,3 +29,8 @@ export interface eventCreationDTO{
   registrationLimit:number;
   host:string;
 }
+
+export interface registeredUserEmails{
+  emails:Array<string>;
+  count:number;
+}
