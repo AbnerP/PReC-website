@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import axios from "axios";
 import { environment } from 'src/environments/environment';
-import { eventCreationDTO, eventDTO, eventsDTO } from '../models/events.model';
+import { eventCreationDTO, eventDTO, eventsDTO, registeredUserEmails } from '../models/events.model';
 
 
 @Injectable({
@@ -102,4 +102,10 @@ export class EventsService {
 
     return await axios.post(this.apiURL,fd,config);
   }
+
+  async getRegisteredUserEmails(id:string){
+    const res = await axios.get<registeredUserEmails>(this.apiURL+`/users/${id}`);
+    return res.data;
+  }
+  
 }
