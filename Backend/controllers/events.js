@@ -40,6 +40,22 @@ exports.eventsGetByID = async (req,res,next) =>{
     } 
 };
 
+exports.getRegisteredUserEmails = async (req,res,next) =>{
+    try{
+        Event.findById(req.params.eventId)
+            .exec()
+            .then(event =>{
+                const response = {
+                    emails:event.registeredUserEmailsList,
+                    count: event.registeredUserEmailsList.length
+                }
+                res.status(200).json(response);
+            });
+    }catch(e){
+        res.status(404).json({message:e});
+    } 
+};
+
 exports.eventsCreate = async (req,res,next) =>{
     const event = new Event({
         name: req.body.name,

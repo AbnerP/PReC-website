@@ -11,6 +11,7 @@ router.use(removeOldEvents);
 //GET
 router.get('/', EventsController.eventsGetAll);
 router.get('/:eventId',EventsController.eventsGetByID);
+router.get('/users/:eventId',EventsController.getRegisteredUserEmails);
 
 //POST
 router.post('/', checkAuth, upload.single('eventImage'), EventsController.eventsCreate);
