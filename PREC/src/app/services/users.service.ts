@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { loginResponse, loginUserCredentials, userCredentials } from '../models/user.model';
+import { loginResponse, loginUserCredentials, userCredentials, userInfo } from '../models/user.model';
 import axios from "axios";
 
 @Injectable({
@@ -11,6 +11,16 @@ export class SecurityService {
   private apiURL = environment.backendAPIURL + '/user';
 
   constructor() { }
+
+  configureAuthorizationHeader(){
+    const token = localStorage.getItem("JWT")
+    const jwt = `Bearer ${token}`;
+    return {
+      headers: {
+        Authorization: jwt,
+      }
+    };
+  }
 
   isAuthenticated():boolean{
     const token = localStorage.getItem("JWT");
@@ -28,6 +38,7 @@ export class SecurityService {
     }
     return true;
   }
+
   getFieldFromJWT(field: string): string {
     const token = localStorage.getItem("JWT");
     if (!token){return '';}
@@ -39,7 +50,7 @@ export class SecurityService {
     return this.getFieldFromJWT('role');
   }
 
-  async signup(user:userCredentials){
+  async signup(user:userInfo){
     const res = await axios.post(this.apiURL+"/signup",user);
     return res;
   }
@@ -64,40 +75,40 @@ export class SecurityService {
   }
 
   async getAllUsers(){
-    const token = localStorage.getItem("JWT")
-    const jwt = `Bearer ${token}`;
-    const config = {
-      headers: {
-        Authorization: jwt,
-      }
-    };
+    const config = this.configureAuthorizationHeader();
+
     const res = await axios.get(this.apiURL,config);
     return res.data;
   }
 
+  async getUserById(id:string){
+    const config = this.configureAuthorizationHeader();
+
+    const res = await axios.get<userInfo>(this.apiURL+`/${id}`,config);
+    return res.data;
+  }
+
   async makeAdmin(id:string){
-    const token = localStorage.getItem("JWT")
-    const jwt = `Bearer ${token}`;
-    const config = {
-      headers: {
-        Authorization: jwt,
-      }
-    };
+    const config = this.configureAuthorizationHeader();
+
     const res = await axios.post(this.apiURL+`/makeAdmin/${id}`,{},config);
     return res.data;
   }
 
   async delete(id:string){
-    const token = localStorage.getItem("JWT")
-    const jwt = `Bearer ${token}`;
-    const config = {
-      headers: {
-        Authorization: jwt,
-      }
-    };
+    const config = this.configureAuthorizationHeader();
+
     const res = await axios.delete(this.apiURL+`/${id}`,config);
     return res.data;
   }
+
+  async updateUser(user:userCredentials){
+    const config = this.configureAuthorizationHeader();
+
+    const res = await axios.patch(this.apiURL+`/update/${this.getFieldFromJWT("userId")}`,user,config);
+    return res.data;
+  }
+
 
 
 

@@ -35,7 +35,7 @@
   display: flex;
   justify-content: space-around;
   align-items: baseline;
-  margin-right: 3vh;
+  margin-right: 1vh;
 }
 .pages a{
   padding: 0 1vw;
@@ -43,7 +43,11 @@
 .authorized{
   background-color: #FBCC02;
   border-radius: 3px;
+  margin: 0 1vh 0 1vh;
 }
+
+
+
 
 .authentication{
   /* width: 40%; */
@@ -67,10 +71,6 @@
   padding: 1.5vh 1.5vh;
 }
 
-.logout{
-  /* padding: 0 2vw 0 1vw; */
-  margin: 0 1vw 0 1vw;
-}
 
 a{
   /* color: #FBCC02; */
@@ -86,3 +86,12 @@ a{
   /* border-bottom:1px solid hsl(49, 98%, 50%) ; */
 }
 
+
+
+.options{
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  border-radius: 1vh;
+  border: #FBCC02 solid 1px;
+}

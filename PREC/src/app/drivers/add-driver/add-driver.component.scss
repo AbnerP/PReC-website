@@ -165,3 +165,7 @@ button{
   height: auto;
   margin-bottom: 2vh;
 }
+
+::placeholder {
+  color: rgb(180, 180, 180);
+}

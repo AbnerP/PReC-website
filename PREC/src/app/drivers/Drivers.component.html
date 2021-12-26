@@ -1,7 +1,11 @@
 <div class="body">
-  <div class="addDriver">
-    <button mat-flat-button routerLink="new" routerLinkActive="active">Add Driver</button>
-  </div>
+  <app-authorize-view [role]="'admin'">
+    <ng-container authorized>
+      <div class="addDriver">
+        <button mat-flat-button routerLink="new" routerLinkActive="active">Add Driver</button>
+      </div>
+    </ng-container>
+  </app-authorize-view>
   <div class="cards">
     <div *ngFor="let driver of drivers" class="card">
       <app-driver-card

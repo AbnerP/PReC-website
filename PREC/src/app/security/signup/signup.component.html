@@ -1,7 +1,7 @@
 <div class="body">
   <h1>Sign Up</h1>
 
-  <form (submit)="saveChanges()" [formGroup]="form" autocomplete="on">
+  <form (submit)="submitForm()" [formGroup]="form" autocomplete="on">
     <div>
       <mat-form-field  appearance="outline" >
         <mat-label>First Name</mat-label>
@@ -13,7 +13,7 @@
 
 
         <mat-error *ngIf="form.controls.firstName.errors?.required" >
-          Field is required
+          First Name is required
         </mat-error>
       </mat-form-field>
 
@@ -27,7 +27,7 @@
 
 
         <mat-error *ngIf="form.controls.lastName.errors?.required" >
-          Field is required
+          Last Name is required
         </mat-error>
       </mat-form-field>
     </div>
@@ -42,11 +42,14 @@
 
 
         <mat-error *ngIf="form.controls.email.errors?.required" >
-          Field is required
+          An email is required to sign up
+        </mat-error>
+        <mat-error *ngIf="form.controls.email.errors?.email" >
+          Not a valid email address
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field  appearance="outline" >
+      <mat-form-field *ngIf="mode !== 'settings'" appearance="outline" >
         <mat-label>Password</mat-label>
 
         <input matInput
@@ -55,51 +58,46 @@
         autocomplete="on"
         formControlName="password">
 
-
         <mat-error *ngIf="form.controls.password.errors?.required" >
-          Field is required
+          Password is required
         </mat-error>
       </mat-form-field>
     </div>
+
+    <div class="checkboxes">
+      <div *ngFor="let platform of checkBoxPlatforms; let i = index" formArrayName="platforms">
+        <mat-checkbox [formControlName]="i" >{{platform}}</mat-checkbox>
+      </div>
+    </div>
+
     <div>
-      <mat-form-field  appearance="outline" >
-        <mat-label>Steam ID</mat-label>
-
-        <input matInput
-        formControlName="steamID">
-
-
-        <mat-error *ngIf="form.controls.steamID.errors?.required" >
-          Field is required
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field  appearance="outline" >
+      <mat-form-field  *ngIf="this.form.value['platforms'][0]" appearance="outline" >
         <mat-label>Playstation ID</mat-label>
 
         <input matInput
         formControlName="psnID">
 
-
-        <mat-error *ngIf="form.controls.psnID.errors?.required" >
-          Field is required
-        </mat-error>
       </mat-form-field>
 
-      <mat-form-field  appearance="outline" >
+      <mat-form-field *ngIf="this.form.value['platforms'][1]" appearance="outline" >
         <mat-label>Xbox ID</mat-label>
 
         <input matInput
         formControlName="xboxgamertag">
+      </mat-form-field>
 
+      <mat-form-field *ngIf="this.form.value['platforms'][2]" appearance="outline" >
+        <mat-label>Steam ID</mat-label>
 
-        <mat-error *ngIf="form.controls.xboxgamertag.errors?.required" >
-          Field is required
-        </mat-error>
+        <input matInput
+        formControlName="steamID">
       </mat-form-field>
     </div>
 
-    <button class="submitBTN" type="submit" [disabled]="!form.valid" (click)="saveChanges()">Create account</button>
+    <button class="submitBTN" *ngIf="mode !== 'settings'" type="submit" [disabled]="!form.valid" >Create account</button>
+    <button class="submitBTN" *ngIf="mode === 'settings'" type="submit" [disabled]="!form.valid" >Update</button>
 
   </form>
+
+  <a routerLink="../login" routerLinkActive="active" >Have an account?</a>
 </div>

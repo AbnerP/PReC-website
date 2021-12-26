@@ -32,8 +32,9 @@
 
     <app-authorize-view>
       <ng-container authorized>
-        <div class="authorized">
-          <button mat-icon-button (click)="service.logout()" class="logout"><mat-icon>logout</mat-icon></button>
+        <div class="options">
+          <button mat-icon-button color="accent" (click)="logout()" ><mat-icon>logout</mat-icon></button>
+          <a mat-icon-button routerLink="../settings" routerLinkActive="active"><mat-icon>settings</mat-icon></a>
         </div>
       </ng-container>
       <ng-container notAuthorized>

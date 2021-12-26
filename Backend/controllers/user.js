@@ -24,6 +24,26 @@ exports.getAllUsers = async (req,res,next) =>{
     } 
 };
 
+exports.getUserByID = async (req,res,next) =>{
+    try{
+        const user = await User.findById(req.params.userId);
+        const response = {
+            _id:user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            platforms: user.platforms,
+            psnID: user.psnID,
+            steamID: user.steamID,
+            xboxgamertag: user.xboxgamertag,
+            role:user.role,
+        }
+        res.status(200).json(response);
+    }catch(e){
+        res.status(400).json({message:e});
+    } 
+};
+
 exports.signup = (req,res,next) =>{
     User.find({email:req.body.email})
         .exec()
@@ -45,9 +65,11 @@ exports.signup = (req,res,next) =>{
                             lastName:req.body.lastName,
                             email:req.body.email,
                             password:hash,
+                            platforms:req.body.platforms,
                             steamID:req.body.steamID,
                             psnID:req.body.psnID,
-                            xboxgamertag:req.body.xboxgamertag                        });
+                            xboxgamertag:req.body.xboxgamertag                        
+                        });
             
                         user.save()
                             .then( result =>{
@@ -56,12 +78,12 @@ exports.signup = (req,res,next) =>{
                                     message:'User created'
                                 });
                             })
-                            .catch(err => {
-                                console.log(err);
-                                res.status(500).json({
-                                    error:err
-                                });
-                            });
+                            // .catch(err => {
+                            //     console.log(err);
+                            //     res.status(500).json({
+                            //         error:err
+                            //     });
+                            // });
                         
                     }
                 });
@@ -91,6 +113,10 @@ exports.login = (req,res,next) => {
                                 firstName:user[0].firstName,
                                 lastName:user[0].lastName,
                                 email:user[0].email,
+                                platforms:user[0].platforms,
+                                steamID:user[0].steamID,
+                                psnID:user[0].psnID,
+                                xboxgamertag:user[0].xboxgamertag,
                                 role:user[0].role,
                             },
                             process.env.JWT_KEY,
@@ -129,6 +155,45 @@ exports.makeAdmin = async (req,res,next) =>{
         res.status(200).json(updatedUser);
     }catch(e){
         res.status(400).json({message:'Driver not found'});
+    }
+}
+
+exports.updateUser = async (req,res,next) =>{
+    try{
+        User.findById(req.params.userId)
+            .exec()
+            .then(async (originalUser) => {
+                let updateOptions = {};
+                console.log(originalUser);
+                const obj = Object.entries(originalUser)[2][1];
+                for (const [key, value] of Object.entries(obj)) {
+                    if(value != req.body[key]){
+                        updateOptions[key] = req.body[key];
+                    }
+                }
+
+                const updatedUser = await User.updateOne(
+                    {_id:req.params.userId},
+                    {$set: updateOptions}
+                );
+
+                console.log(updatedUser);
+        
+                res.status(200).json(updatedUser);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                    error:err,
+                    message:'Error ocurred in route.'
+                });
+            });;;
+
+        
+
+        
+    }catch(e){
+        res.status(400).json({message:'Driver not updated.'});
     }
 }
 

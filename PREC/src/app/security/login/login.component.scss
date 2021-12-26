@@ -4,7 +4,7 @@ $prec-blue:#252B42;
 
 .body{
   width: 100%;
-  min-height: 82vh;
+  min-height: 82.5vh;
   background-color: $prec-blue;
 
   display: flex;
@@ -35,6 +35,10 @@ form{
   .mat-form-field-required-marker {
     color: $prec-yellow;
   }
+}
+
+::placeholder {
+  color: rgb(180, 180, 180);
 }
 
 ::ng-deep .mat-form-field.mat-focused {
@@ -91,5 +95,7 @@ mat-form-field{
   cursor:pointer;
 }
 
-
-
+a{
+  padding: 2vh;
+  color: $prec-yellow;
+}
