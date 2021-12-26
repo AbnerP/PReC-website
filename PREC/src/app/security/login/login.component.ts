@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
       this.service.login(user).then((res)=>{
         // console.log(res.data);
         if(res.data.message === "Auth succesful"){
-          console.log(res);
           this.service.saveToken(res.data);
           this.router.navigate(['/home']);
         }else{

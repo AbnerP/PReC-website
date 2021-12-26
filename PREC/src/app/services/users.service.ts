@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { loginResponse, loginUserCredentials, userCredentials } from '../models/user.model';
+import { loginResponse, loginUserCredentials, userCredentials, userInfo } from '../models/user.model';
 import axios from "axios";
 
 @Injectable({
@@ -38,7 +38,7 @@ export class SecurityService {
     }
     return true;
   }
-  
+
   getFieldFromJWT(field: string): string {
     const token = localStorage.getItem("JWT");
     if (!token){return '';}
@@ -50,7 +50,7 @@ export class SecurityService {
     return this.getFieldFromJWT('role');
   }
 
-  async signup(user:userCredentials){
+  async signup(user:userInfo){
     const res = await axios.post(this.apiURL+"/signup",user);
     return res;
   }
@@ -81,6 +81,13 @@ export class SecurityService {
     return res.data;
   }
 
+  async getUserById(id:string){
+    const config = this.configureAuthorizationHeader();
+
+    const res = await axios.get<userInfo>(this.apiURL+`/${id}`,config);
+    return res.data;
+  }
+
   async makeAdmin(id:string){
     const config = this.configureAuthorizationHeader();
 
@@ -95,10 +102,10 @@ export class SecurityService {
     return res.data;
   }
 
-  async updateUser(id:string){
+  async updateUser(user:userCredentials){
     const config = this.configureAuthorizationHeader();
 
-    const res = await axios.delete(this.apiURL+`/update/${id}`,config);
+    const res = await axios.patch(this.apiURL+`/update/${this.getFieldFromJWT("userId")}`,user,config);
     return res.data;
   }
 

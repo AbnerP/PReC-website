@@ -8,7 +8,7 @@ const checkPersonalAdmin = require('../middleware/check-personal-admin');
 
 //GET
 router.get('/',checkAuth,UserController.getAllUsers);
-
+router.get('/:userId',checkPersonalAdmin,UserController.getUserByID)
 //POST
 router.post('/signup',UserController.signup);
 router.post('/login', UserController.login);

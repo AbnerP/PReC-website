@@ -24,6 +24,26 @@ exports.getAllUsers = async (req,res,next) =>{
     } 
 };
 
+exports.getUserByID = async (req,res,next) =>{
+    try{
+        const user = await User.findById(req.params.userId);
+        const response = {
+            _id:user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            platforms: user.platforms,
+            psnID: user.psnID,
+            steamID: user.steamID,
+            xboxgamertag: user.xboxgamertag,
+            role:user.role,
+        }
+        res.status(200).json(response);
+    }catch(e){
+        res.status(400).json({message:e});
+    } 
+};
+
 exports.signup = (req,res,next) =>{
     User.find({email:req.body.email})
         .exec()
@@ -156,6 +176,8 @@ exports.updateUser = async (req,res,next) =>{
                     {_id:req.params.userId},
                     {$set: updateOptions}
                 );
+
+                console.log(updatedUser);
         
                 res.status(200).json(updatedUser);
             })
