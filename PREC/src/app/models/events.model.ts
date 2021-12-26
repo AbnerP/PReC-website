@@ -25,4 +25,7 @@ export interface eventCreationDTO{
   duration:string;
   description: string;
   contactInfo:string;
+  platform:string;
+  registrationLimit:number;
+  host:string;
 }
