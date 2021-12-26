@@ -85,3 +85,19 @@ const lapTimeRE =/^([0-9]+):([0-5][0-9]):([0-5][0-9])$/;
 
 export {secondsAndMilisecondsRE,integerRE,compoundRE,lapTimeRE};
 
+export const configureAuthorizationHeader = () => {
+  const token = localStorage.getItem("JWT")
+  const jwt = `Bearer ${token}`;
+  return {
+    headers: {
+      Authorization: jwt,
+    }
+  };
+}
+
+export const getFieldFromJWT = (field: string): string => {
+  const token = localStorage.getItem("JWT");
+  if (!token){return '';}
+  const dataToken = JSON.parse(atob(token.split('.')[1]));
+  return dataToken[field];
+}

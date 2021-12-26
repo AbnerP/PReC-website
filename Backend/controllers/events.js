@@ -5,20 +5,7 @@ exports.eventsGetAll = async (req,res,next) =>{
     try{
         const events = req.query.limit === undefined ? await Event.find() : await Event.find().limit(parseInt(req.query.limit));
         const response = {
-            events: events.map(event =>{
-                return{
-                    _id:event._id,
-                    name: event.name,
-                    date: event.date,
-                    startTime: event.startTime,
-                    game:event.game,
-                    track: event.track,
-                    duration: event.duration,
-                    description: event.description,
-                    imageURL: event.imageURL,
-                    contactInfo:event.contactInfo
-                }
-            }),
+            events: events,
             count: events.length
         }
         res.status(200).json(response);
@@ -40,20 +27,62 @@ exports.eventsGetByID = async (req,res,next) =>{
     } 
 };
 
-exports.getRegisteredUserEmails = async (req,res,next) =>{
+exports.getRegisteredUserIDs = async (req,res,next) =>{
     try{
         Event.findById(req.params.eventId)
             .exec()
             .then(event =>{
                 const response = {
-                    emails:event.registeredUserEmailsList,
-                    count: event.registeredUserEmailsList.length
+                    ids:event.registeredUserIDsList,
+                    count: event.registeredUserIDsList.length
                 }
                 res.status(200).json(response);
             });
     }catch(e){
         res.status(404).json({message:e});
     } 
+};
+
+exports.registerUserToEvent = async (req,res,next) =>{
+    try{
+        Event.findById({_id:req.query.eventId})
+            .exec()
+            .then(async (originalEvent) =>{
+                if(originalEvent.registeredUserIDsList.includes(req.userData.userId)){
+                    res.status(404).json({message:'Already registered to event'})
+                }else{
+                    const updatedEvent = await Event.updateOne(
+                        {_id:req.query.eventId},
+                        {$inc : {numberRegisteredUsers : 1}
+                        ,$push : {registeredUserIDsList: req.userData.userId}}
+                    );
+                    res.status(200).json(updatedEvent);
+                }
+            });
+    }catch(e){
+        res.status(400).json({message:e});
+    }         
+};
+
+exports.withdrawUserFromEvent = async (req,res,next) =>{
+    try{
+        Event.findById({_id:req.query.eventId})
+            .exec()
+            .then(async (originalEvent) =>{
+                if(originalEvent.registeredUserIDsList.includes(req.userData.userId)){
+                    const updatedEvent = await Event.updateOne(
+                        {_id:req.query.eventId},
+                        {$inc : {numberRegisteredUsers : -1}
+                        ,$pull : {registeredUserIDsList: req.userData.userId}}
+                    );
+                    res.status(200).json(updatedEvent);
+                }else{
+                    res.status(404).json({message:'Not registered to event'})
+                }
+            });
+    }catch(e){
+        res.status(400).json({message:e});
+    }        
 };
 
 exports.eventsCreate = async (req,res,next) =>{

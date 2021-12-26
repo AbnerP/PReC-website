@@ -3,8 +3,10 @@ const User = require('../models/User');
 
 module.exports = (req,res,next) => {
     try{
+        // console.log(req.headers.authorization);
         const token = req.headers.authorization.split(" ")[1];
         const decoded = jwt.verify(token,process.env.JWT_KEY);
+        // console.log(decoded);
         User.findById(req.params.userId)
             .exec()
             .then(usr =>{
@@ -14,7 +16,7 @@ module.exports = (req,res,next) => {
                     console.log('PERSONAL-ADMIN MIDDLEWARE: IS ADMIN OR USER');
                     next();
                 }else{
-                    console.log('ADMIN MIDDLEWARE: NOT ADMIN');
+                    console.log('PERSONAL-ADMIN MIDDLEWARE: NOT ADMIN');
                     return res.status(401).json({
                         message: 'Not admin'
                     });
@@ -25,10 +27,9 @@ module.exports = (req,res,next) => {
                 res.status(500).json({
                     error:err
                 });
-            });;
-        
+            });
     }catch(error) {
-        console.log('ADMIN MIDDLEWARE: ERROR');
+        console.log('PERSONAL-ADMIN MIDDLEWARE: ERROR');
         return res.status(401).json({
             message: 'Auth failed'
         });

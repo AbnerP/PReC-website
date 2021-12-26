@@ -72,6 +72,7 @@ export class AddEventComponent implements OnInit {
 
     if(this.id !== null){
       this.service.updateEvent(this.id,event,this.eventIMG).then(res =>{
+        
         this.router.navigate(['/events']);
       });
     }else{

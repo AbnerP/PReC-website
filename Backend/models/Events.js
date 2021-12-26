@@ -14,7 +14,7 @@ const eventSchema = mongoose.Schema({
     contactInfo:{type:String,required:true},
     registrationLimit:{type:Number,required:true},
     numberRegisteredUsers:{type:Number, default:0},
-    registeredUserEmailsList:{type:[String],default:[]},
+    registeredUserIDsList:{type:[String],default:[]},
 });
 
 module.exports = mongoose.model('Events',eventSchema);

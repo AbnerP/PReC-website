@@ -2,7 +2,8 @@
 import { Injectable } from '@angular/core';
 import axios from "axios";
 import { environment } from 'src/environments/environment';
-import { eventCreationDTO, eventDTO, eventsDTO, registeredUserEmails } from '../models/events.model';
+import { eventCreationDTO, eventDTO, eventsDTO, registeredUserIDs } from '../models/events.model';
+import { configureAuthorizationHeader } from '../utils';
 
 
 @Injectable({
@@ -58,6 +59,9 @@ export class EventsService {
     fd.append('duration',event.duration);
     fd.append('description',event.description);
     fd.append('contactInfo',event.contactInfo);
+    fd.append('platform',event.platform);
+    fd.append('registrationLimit',event.registrationLimit.toString());
+    fd.append('host',event.host);
 
     return await axios.patch(this.apiURL+`/${id}`,fd,config);
   }
@@ -104,8 +108,20 @@ export class EventsService {
   }
 
   async getRegisteredUserEmails(id:string){
-    const res = await axios.get<registeredUserEmails>(this.apiURL+`/users/${id}`);
+    const res = await axios.get<registeredUserIDs>(this.apiURL+`/users/${id}`);
     return res.data;
   }
-  
+
+  async registerToEvent(eventId:string,userId:string){
+    const config =configureAuthorizationHeader();
+    const res = await axios.patch(this.apiURL+`/register/${userId}?eventId=${eventId}`,{},config);
+    return res.data;
+  }
+
+  async withdrawFromEvent(eventId:string,userId:string){
+    const config = configureAuthorizationHeader();
+    const res = await axios.patch(this.apiURL+`/withdraw/${userId}?eventId=${eventId}`,{},config);
+    return res.data;
+  }
+
 }
