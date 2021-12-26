@@ -5,20 +5,7 @@ exports.eventsGetAll = async (req,res,next) =>{
     try{
         const events = req.query.limit === undefined ? await Event.find() : await Event.find().limit(parseInt(req.query.limit));
         const response = {
-            events: events.map(event =>{
-                return{
-                    _id:event._id,
-                    name: event.name,
-                    date: event.date,
-                    startTime: event.startTime,
-                    game:event.game,
-                    track: event.track,
-                    duration: event.duration,
-                    description: event.description,
-                    imageURL: event.imageURL,
-                    contactInfo:event.contactInfo
-                }
-            }),
+            events: events,
             count: events.length
         }
         res.status(200).json(response);
@@ -54,6 +41,18 @@ exports.getRegisteredUserEmails = async (req,res,next) =>{
     }catch(e){
         res.status(404).json({message:e});
     } 
+};
+
+exports.registerUserToEvent = async (req,res,next) =>{
+    let eventId = req.query.eventId;
+    Event.findOneAndUpdate({_id :eventId},
+         {$inc : {numberRegisteredUsers : 1}
+         ,$push : {registeredUserEmailsList: req.userData.userId}})
+         .exec()
+         .then(event =>{
+            res.status(204).json(event);
+         })
+         .catch(e => res.status(404).json({message:'No event found'}));        
 };
 
 exports.eventsCreate = async (req,res,next) =>{

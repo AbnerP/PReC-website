@@ -5,6 +5,7 @@ const EventsController = require('../controllers/events');
 //Middleware
 const upload = require('../middleware/multer');
 const checkAuth = require('../middleware/check-auth');
+const checkPersonalAdmin = require('../middleware/check-personal-admin');
 const removeOldEvents = require('../middleware/events');
 router.use(removeOldEvents);
 
@@ -18,6 +19,7 @@ router.post('/', checkAuth, upload.single('eventImage'), EventsController.events
 
 //PATCH
 router.patch('/:eventId', checkAuth, upload.single('eventImage'),EventsController.eventsUpdate);
+router.patch('/register/:userId', checkPersonalAdmin, EventsController.registerUserToEvent);
 
 //DELETE
 router.delete('/:eventId', checkAuth,EventsController.eventsDelete);
