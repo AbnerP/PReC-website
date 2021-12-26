@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import axios from "axios";
 import { environment } from 'src/environments/environment';
 import { eventCreationDTO, eventDTO, eventsDTO, registeredUserEmails } from '../models/events.model';
+import { configureAuthorizationHeader } from '../utils';
 
 
 @Injectable({
@@ -107,5 +108,19 @@ export class EventsService {
     const res = await axios.get<registeredUserEmails>(this.apiURL+`/users/${id}`);
     return res.data;
   }
-  
+
+  async registerToEvent(eventId:string,userId:string){
+    const config = configureAuthorizationHeader();
+    config['params'] = {eventId:eventId};
+    const res = await axios.patch(this.apiURL+`/register/${userId}`,config);
+    return res.data;
+  }
+
+  async withdrawFromEvent(eventId:string,userId:string){
+    const config = configureAuthorizationHeader();
+    config['params'] = {eventId:eventId};
+    const res = await axios.patch(this.apiURL+`/withdraw/${userId}`,config);
+    return res.data;
+  }
+
 }
