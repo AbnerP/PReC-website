@@ -16,6 +16,21 @@
 
     </mat-form-field>
 
+    <mat-form-field  appearance="outline" >
+      <mat-label>Registration Limit</mat-label>
+
+      <input matInput
+      required
+      formControlName="registrationLimit"
+      placeholder="20">
+
+
+      <mat-error *ngIf="form.controls.registrationLimit.errors?.required" >
+        Registration limit is required
+      </mat-error>
+
+    </mat-form-field>
+
     <div class="inline">
       <mat-form-field appearance="fill">
         <mat-label>Event date</mat-label>
@@ -44,20 +59,29 @@
       </mat-form-field>
     </div>
 
-    <mat-form-field  appearance="outline" >
-      <mat-label>Game</mat-label>
+    <div class="inline">
+      <mat-form-field  appearance="outline" >
+        <mat-label>Game</mat-label>
 
-      <input matInput
-      required
-      formControlName="game"
-      placeholder="GT Sport">
+        <input matInput
+        required
+        formControlName="game"
+        placeholder="GT Sport">
 
 
-      <mat-error *ngIf="form.controls.game.errors?.required" >
-        Game is required
-      </mat-error>
+        <mat-error *ngIf="form.controls.game.errors?.required" >
+          Game is required
+        </mat-error>
 
-    </mat-form-field>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Platform</mat-label>
+        <mat-select style="text-color: red;" color="primary" formControlName="platform" >
+          <mat-option  color="primary" *ngFor="let platform of platforms" [value]="platform">{{platform}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
     <div class="inline">
       <mat-form-field  appearance="outline" >
@@ -107,6 +131,15 @@
     </mat-form-field>
 
     <mat-form-field  appearance="outline" >
+      <mat-label>Host ID</mat-label>
+
+      <input matInput
+      formControlName="host"
+      placeholder="PReC_ ...">
+
+    </mat-form-field>
+
+    <mat-form-field  appearance="outline" >
       <mat-label>Description</mat-label>
 
       <textarea matInput
@@ -120,8 +153,6 @@
       </mat-error>
 
     </mat-form-field>
-
-
 
     <input type="file" id="file" (change)="onImageUploaded($event)">
     <label for="file" class="file-btn">Upload Image</label>

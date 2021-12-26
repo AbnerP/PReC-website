@@ -17,6 +17,7 @@ export class AddEventComponent implements OnInit {
   id:string;
 
   form:FormGroup;
+  platforms:string[] = ["PlayStation", "Xbox", "PC"];
   minDate: Date;
   maxDate: Date;
 
@@ -36,7 +37,10 @@ export class AddEventComponent implements OnInit {
       track:[''],
       duration:[''],
       description: [''],
-      contactInfo:['']
+      contactInfo:[''],
+      platform:['Platform'],
+      registrationLimit:[''],
+      host:['']
     });
 
     this.id = this.route.snapshot.paramMap.get('id');
@@ -60,7 +64,10 @@ export class AddEventComponent implements OnInit {
       track:this.form.value.track,
       duration:this.form.value.duration,
       description: this.form.value.description,
-      contactInfo:this.form.value.contactInfo
+      contactInfo:this.form.value.contactInfo,
+      platform:this.form.value.platform,
+      registrationLimit:this.form.value.registrationLimit,
+      host:this.form.value.host,
     };
 
     if(this.id !== null){

@@ -96,6 +96,9 @@ export class EventsService {
     fd.append('duration',event.duration);
     fd.append('description',event.description);
     fd.append('contactInfo',event.contactInfo);
+    fd.append('platform',event.platform);
+    fd.append('registrationLimit',event.registrationLimit.toString());
+    fd.append('host',event.host);
 
     return await axios.post(this.apiURL,fd,config);
   }

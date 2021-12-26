@@ -39,6 +39,10 @@ hr{
   }
 }
 
+::ng-deep .mat-select-value{
+  color:white;
+}
+
 ::ng-deep .mat-form-field.mat-focused {
   .mat-form-field-label {
     color: white;
@@ -177,3 +181,4 @@ button{
 ::placeholder {
   color: rgb(180, 180, 180);
 }
+
