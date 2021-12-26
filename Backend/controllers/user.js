@@ -24,6 +24,26 @@ exports.getAllUsers = async (req,res,next) =>{
     } 
 };
 
+exports.getUserByID = async (req,res,next) =>{
+    try{
+        const user = await User.findById(req.params.userId);
+        const response = {
+            _id:user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            platforms: user.platforms,
+            psnID: user.psnID,
+            steamID: user.steamID,
+            xboxgamertag: user.xboxgamertag,
+            role:user.role,
+        }
+        res.status(200).json(response);
+    }catch(e){
+        res.status(400).json({message:e});
+    } 
+};
+
 exports.signup = (req,res,next) =>{
     User.find({email:req.body.email})
         .exec()
@@ -135,6 +155,45 @@ exports.makeAdmin = async (req,res,next) =>{
         res.status(200).json(updatedUser);
     }catch(e){
         res.status(400).json({message:'Driver not found'});
+    }
+}
+
+exports.updateUser = async (req,res,next) =>{
+    try{
+        User.findById(req.params.userId)
+            .exec()
+            .then(async (originalUser) => {
+                let updateOptions = {};
+                console.log(originalUser);
+                const obj = Object.entries(originalUser)[2][1];
+                for (const [key, value] of Object.entries(obj)) {
+                    if(value != req.body[key]){
+                        updateOptions[key] = req.body[key];
+                    }
+                }
+
+                const updatedUser = await User.updateOne(
+                    {_id:req.params.userId},
+                    {$set: updateOptions}
+                );
+
+                console.log(updatedUser);
+        
+                res.status(200).json(updatedUser);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                    error:err,
+                    message:'Error ocurred in route.'
+                });
+            });;;
+
+        
+
+        
+    }catch(e){
+        res.status(400).json({message:'Driver not updated.'});
     }
 }
 
