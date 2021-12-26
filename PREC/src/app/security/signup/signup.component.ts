@@ -31,7 +31,6 @@ export class SignupComponent implements OnInit {
       });
       this.service.getUserById(this.service.getFieldFromJWT("userId")).then(res =>{
         const checkBoxVals:Array<number> = this.checkBoxPlatforms.map((x,i) => res.platforms.includes(x) ? 1 : 0);
-        console.log(res);
         this.form.controls["firstName"].patchValue(res.firstName);
         this.form.controls["lastName"].patchValue(res.lastName);
         this.form.controls["email"].patchValue(res.email);
