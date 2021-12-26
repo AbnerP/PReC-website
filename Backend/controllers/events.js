@@ -50,7 +50,10 @@ exports.eventsCreate = async (req,res,next) =>{
         duration:req.body.duration, 
         description:req.body.description, 
         contactInfo:req.body.contactInfo,
-        imageURL:req.file.path
+        imageURL:req.file.path,
+        host:req.body.host,
+        registrationLimit:req.body.registrationLimit,
+        platform:req.body.platform,
     });
 
     try{
