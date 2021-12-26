@@ -3,9 +3,10 @@ const User = require('../models/User');
 
 module.exports = (req,res,next) => {
     try{
+        // console.log(req.headers.authorization);
         const token = req.headers.authorization.split(" ")[1];
         const decoded = jwt.verify(token,process.env.JWT_KEY);
-        console.log(req.params.userId);
+        // console.log(decoded);
         User.findById(req.params.userId)
             .exec()
             .then(usr =>{
@@ -26,8 +27,7 @@ module.exports = (req,res,next) => {
                 res.status(500).json({
                     error:err
                 });
-            });;
-        
+            });
     }catch(error) {
         console.log('PERSONAL-ADMIN MIDDLEWARE: ERROR');
         return res.status(401).json({

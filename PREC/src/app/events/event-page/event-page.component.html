@@ -40,6 +40,28 @@
       <span>{{event.contactInfo}}</span>
     </div>
   </div>
+
+  <app-authorize-view>
+    <ng-container authorized>
+      <div *ngIf="registeredUserIDs">
+        <div *ngIf="registeredUserIDs.includes(userId)">
+          <button *ngIf="userPlatforms.includes(event.platform)" mat-button color="warn" (click)="withdraw(event._id)">Withdraw</button>
+        </div>
+        <div *ngIf="!registeredUserIDs.includes(userId)">
+          <div *ngIf="userPlatforms">
+            <button *ngIf="userPlatforms.includes(event.platform)" mat-button color="accent" (click)="register(event._id)">Register</button>
+          </div>
+        </div>
+      </div>
+
+      <a routerLink="../../../settings" *ngIf="!userPlatforms.includes(event.platform)" mat-button color="accent" >Add platform to account</a>
+
+    </ng-container>
+    <ng-container notAuthorized>
+      <a mat-button color="accent" routerLink="../../../login" routerLinkActive="active">Log in to Register</a>
+    </ng-container>
+  </app-authorize-view>
+
 </div>
 
 

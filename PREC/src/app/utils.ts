@@ -94,3 +94,10 @@ export const configureAuthorizationHeader = () => {
     }
   };
 }
+
+export const getFieldFromJWT = (field: string): string => {
+  const token = localStorage.getItem("JWT");
+  if (!token){return '';}
+  const dataToken = JSON.parse(atob(token.split('.')[1]));
+  return dataToken[field];
+}

@@ -14,6 +14,10 @@ export interface eventDTO{
   description: string;
   imageURL:string;
   contactInfo:string;
+  numberRegisteredUsers:string;
+  platform:string;
+  registrationLimit:number;
+  host:string;
 }
 
 export interface eventCreationDTO{
@@ -30,7 +34,7 @@ export interface eventCreationDTO{
   host:string;
 }
 
-export interface registeredUserEmails{
-  emails:Array<string>;
+export interface registeredUserIDs{
+  ids:Array<string>;
   count:number;
 }
