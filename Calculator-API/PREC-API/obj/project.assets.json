@@ -250,11 +250,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/abnerpena/Desktop/PReC-website/PREC-API/PREC-API/PREC-API.csproj",
+      "projectUniqueName": "/Users/abnerpena/Desktop/PReC-website/Calculator-API/PREC-API/PREC-API.csproj",
       "projectName": "PREC-API",
-      "projectPath": "/Users/abnerpena/Desktop/PReC-website/PREC-API/PREC-API/PREC-API.csproj",
+      "projectPath": "/Users/abnerpena/Desktop/PReC-website/Calculator-API/PREC-API/PREC-API.csproj",
       "packagesPath": "/Users/abnerpena/.nuget/packages/",
-      "outputPath": "/Users/abnerpena/Desktop/PReC-website/PREC-API/PREC-API/obj/",
+      "outputPath": "/Users/abnerpena/Desktop/PReC-website/Calculator-API/PREC-API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/abnerpena/.config/NuGet/NuGet.Config"
