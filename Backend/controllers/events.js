@@ -86,6 +86,7 @@ exports.withdrawUserFromEvent = async (req,res,next) =>{
 };
 
 exports.eventsCreate = async (req,res,next) =>{
+    const imgId = req.file.id.toString();
     const event = new Event({
         name: req.body.name,
         date: req.body.date,
@@ -95,7 +96,7 @@ exports.eventsCreate = async (req,res,next) =>{
         duration:req.body.duration, 
         description:req.body.description, 
         contactInfo:req.body.contactInfo,
-        imageURL:req.file.path,
+        imageURL:imgId,
         host:req.body.host,
         registrationLimit:req.body.registrationLimit,
         platform:req.body.platform,
@@ -152,4 +153,25 @@ exports.eventsDelete =  async (req,res,next) =>{
         res.status(400).json({message:e});
     } 
 };
+
+//Image
+
+
+const methodOverride = require('method-override');
+const multer = require('multer');
+let gfs;
+
+exports.saveImageForEvent = (req,res) =>{
+    //Init stream
+    gfs = Grid(mongoose.connection,mongoose.mongo);
+    gfs.collection('uploads');
+    
+    //Create Storage engine
+    
+
+
+    // res.status(200).json()
+    // var gfs = Grid(mongoose.connection,mongoose.mongo);
+    // saveImage(gfs, req, res)
+}
 
