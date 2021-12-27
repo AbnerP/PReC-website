@@ -13,13 +13,13 @@ $prec-blue:#252B42;
   justify-content: center;
   flex-flow:wrap;
   width: 100%;
-  padding: 2vh 0;
+  // padding: 2vh 0;
 }
 
 .card{
   margin: 2vh 5vw;
   display: flex;
-  max-width: 40vw;
+  // max-width: 40vw;
   flex-direction: column;
   align-items: center;
 }
@@ -57,4 +57,16 @@ button{
 .options{
   display: flex;
   justify-content: space-evenly;
+}
+
+.header{
+  padding-top: 3vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  h1{
+    font-size: 26px;
+    color: white;
+  }
 }

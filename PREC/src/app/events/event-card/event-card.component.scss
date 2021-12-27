@@ -1,25 +1,38 @@
 $prec-yellow:rgb(255, 208, 0);
 $prec-yellowSecondary:#ffdb0e;
 $prec-blue:#252B42;
+$img-dims: 250px;
 
 #card{
   display: flex;
   flex-direction: row;
-  padding: 1vh;
-  cursor: pointer;
+  // padding: 1vh;
+  // cursor: pointer;
+
+  background-color: white;
+  width: 500px;
+  height: $img-dims;
+  border-radius: 1vh;
+  box-shadow: 0 10px 100px black;
+  transition: transform .5s;
+  transform: scale(.85);
+}
+
+#card:hover{
+  transform: scale(.87) ;
 }
 
 #imageContainer{
   display: flex;
   justify-content: center;
   img{
-    object-fit: cover;
-    height: 175px;
-    width: 175px;
-    border-radius: 100%;
+    object-fit: fill;
+    height: $img-dims;
+    width: $img-dims;
+    border-radius: 1vh 0 0 1vh;
   }
-  padding: 1vh;
 }
+
 span{
   color: rgb(222, 222, 222);
 }
@@ -29,30 +42,96 @@ span{
 }
 
 #infoContainer{
-  padding: 1vh;
+  width: $img-dims;
+  height: $img-dims;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+
   #mainInfo{
     display: flex;
     flex-direction: column;
+    align-items: center;
+
     h2{
-      color: white;
+      color: black;
+      font-size: 20px;
+      line-height: 20px;
+      font-weight: 900;
+      margin: 0;
+    }
+
+    #dateAndTime{
+      color: rgb(163, 163, 163);
+      font-size: 12px;
+      font-weight: 200;
+      margin: 0;
     }
   }
 
   #raceInfo{
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content:space-evenly;
     flex-wrap: wrap;
+
+    hr{
+      border-top: 1px solid #FBCC02;
+      border-radius: 100%;
+      background-color: #FBCC02;
+      width: 150px;
+    }
+
     div{
-      margin: .1rem;
-      .Label{
-        margin-right: .2rem;
+
+      span{
+        color: rgb(163, 163, 163);
+        font-size: 13px;
+        font-weight: 500;
       }
+
+      .openContainer{
+        display: flex;
+        align-items: center;
+      }
+
+      .open{
+        padding-left: 1vh;
+        color: #00DB00;
+      }
+
+      .openCircle{
+        height: 12px;
+        width: 12px;
+        background-color: #00DB00;
+        border-radius: 100%;
+        margin-left: 1vh;
+        animation: glow 1s infinite alternate;
+      }
+    }
+
+    .registration{
+      width: 250px;
+      display: flex;
+      justify-content: space-evenly;
     }
   }
 }
 
+.icon-display {
+  transform: scale(.7);
+}
 
+$ani-intensity:5px;
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 $ani-intensity -$ani-intensity #aef4af;
+  }
+  to {
+    box-shadow: 0 0 $ani-intensity $ani-intensity #aef4af;
+  }
+}

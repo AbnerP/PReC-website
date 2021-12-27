@@ -14,7 +14,7 @@ export class CalendarPreviewComponent implements OnInit {
   constructor(private service:EventsService) { }
 
   ngOnInit() {
-    this.service.getEventsLimit(3).then(res =>{
+    this.service.getEventsLimit(2).then(res =>{
       this.events = res.events;
     });
   }
