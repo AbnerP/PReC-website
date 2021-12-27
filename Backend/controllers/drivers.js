@@ -1,5 +1,19 @@
 const Driver = require('../models/Drivers');
-const unlinkAsync = require('../middleware/imageDelete');
+const mongoose = require('mongoose');
+require('dotenv').config();
+
+const mongoURI = process.env.DB_CONNECTION;
+const conn = mongoose.createConnection(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+let gfs;
+conn.once('open', () => {
+  gfs = new mongoose.mongo.GridFSBucket(conn.db, {
+    bucketName: 'images',
+  });
+});
 
 exports.driversGetAll = async (req,res,next) =>{
     try{
@@ -41,7 +55,7 @@ exports.driversCreateNew = async (req,res,next) =>{
     if(req.file == undefined){
         imageURL = "uploads/defaultDriverIMG.jpeg";
     }else{
-        imageURL = req.file.path;
+        imageURL = req.file.id.toString();
     }
     const driver = new Driver({
         name: req.body.name,
@@ -72,8 +86,8 @@ exports.driversUpdate = async (req,res,next) =>{
         }
 
         if(req.file != undefined){
-            updateOptions["imageURL"] = req.file.path;
-            await unlinkAsync(originalDriver.imageURL);
+            updateOptions["imageURL"] = req.file.id.toString();
+            deleteImage(originalDriver.imageURL);
         }
 
         const updatedDriver = await Driver.updateOne(
@@ -92,7 +106,12 @@ exports.driversDelete = async (req,res,next) =>{
         const driver = await Driver.findById(req.params.driverId);
         if(driver){
             if(driver.imageURL != "uploads/defaultDriverIMG.jpeg"){
-                await unlinkAsync(driver.imageURL);
+                try{
+                    console.log(driver.imageURL);
+                    deleteImage(driver.imageURL);
+                }catch(err){
+                    res.status(400).json({message:`Unable to delete Image with ID ${driver.name}`});
+                }
             }
         }else{
             res.status(404).json({message:`No driver with id:${req.params.driverId}`});
@@ -103,3 +122,11 @@ exports.driversDelete = async (req,res,next) =>{
         res.status(400).json({message:e});
     } 
 };
+
+const deleteImage = (id) => {
+    if (!id || id === 'undefined') return res.status(400).send('no image id');
+    const _id = new mongoose.Types.ObjectId(id);
+    gfs.delete(_id, (err) => {
+      if (err) return res.status(500).send('image deletion error');
+    });
+  };
