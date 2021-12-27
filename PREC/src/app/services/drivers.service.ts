@@ -16,14 +16,14 @@ export class DriversService {
   async getDrivers(){
     const res = await axios.get<driversDTO>(this.apiURL);
     for(let driver of res.data.drivers){
-      driver.imageURL = environment.backendAPIURL + '/'+ driver.imageURL;
+      driver.imageURL = environment.backendAPIURL + '/api/images/'+ driver.imageURL;
     }
     return res.data;
   }
 
   async getDriverByID(id:string){
     const res = await axios.get<driverDTO>(this.apiURL+`/${id}`);
-    res.data.imageURL = environment.backendAPIURL + '/'+ res.data.imageURL;
+    res.data.imageURL = environment.backendAPIURL + '/api/images/'+ res.data.imageURL;
     return res.data;
   }
 
