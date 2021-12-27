@@ -38,7 +38,7 @@ export class DriversService {
 
     const fd = new FormData();
     if(img != null){
-      fd.append('driverImage',img,img.name);
+      fd.append('image',img,img.name);
     }
     fd.append('name',driver.name);
     fd.append('gamertag',driver.gamertag);
@@ -73,7 +73,7 @@ export class DriversService {
 
     const fd = new FormData();
     if(img != null){
-      fd.append('driverImage',img,img.name);
+      fd.append('image',img,img.name);
     }
     fd.append('name',driver.name);
     fd.append('gamertag',driver.gamertag);

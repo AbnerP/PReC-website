@@ -48,7 +48,7 @@ export class EventsService {
 
     const fd = new FormData();
     if(img != null){
-      fd.append('eventImage',img,img.name);
+      fd.append('image',img,img.name);
     }
     const date = new Date(event.date).toJSON();
     fd.append('name',event.name);
@@ -90,7 +90,7 @@ export class EventsService {
 
     const fd = new FormData();
     if(img != null){
-      fd.append('eventImage',img,img.name);
+      fd.append('image',img,img.name);
     }
     fd.append('name',event.name);
     fd.append('date',event.date.toJSON());
