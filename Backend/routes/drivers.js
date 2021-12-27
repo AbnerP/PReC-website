@@ -3,7 +3,6 @@ const router = express.Router();
 const DriversController = require('../controllers/drivers');
 
 //Midlleware
-const upload = require('../middleware/multer');
 const uploadMiddleware = require('../middleware/multer-gridfs');
 const checkAuth = require('../middleware/check-auth');
 

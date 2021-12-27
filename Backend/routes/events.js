@@ -17,11 +17,10 @@ router.get('/:eventId',EventsController.eventsGetByID);
 router.get('/users/:eventId',EventsController.getRegisteredUserIDs);
 
 //POST
-// router.post('/', checkAuth, upload.single('eventImage'), EventsController.eventsCreate);
-router.post('/', uploadMiddleware, EventsController.eventsCreate);
+router.post('/', checkAuth, uploadMiddleware, EventsController.eventsCreate);
 
 //PATCH
-router.patch('/:eventId', checkAuth, upload.single('eventImage'),EventsController.eventsUpdate);
+router.patch('/:eventId', checkAuth, uploadMiddleware,EventsController.eventsUpdate);
 router.patch('/register/:userId', checkPersonalAdmin, EventsController.registerUserToEvent);
 router.patch('/withdraw/:userId', checkPersonalAdmin, EventsController.withdrawUserFromEvent);
 

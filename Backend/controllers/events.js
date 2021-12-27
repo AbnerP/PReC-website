@@ -1,5 +1,19 @@
 const Event = require('../models/Events');
-const unlinkAsync = require('../middleware/imageDelete');
+const mongoose = require('mongoose');
+require('dotenv').config();
+
+const mongoURI = process.env.DB_CONNECTION;
+const conn = mongoose.createConnection(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+let gfs;
+conn.once('open', () => {
+  gfs = new mongoose.mongo.GridFSBucket(conn.db, {
+    bucketName: 'images',
+  });
+});
 
 exports.eventsGetAll = async (req,res,next) =>{
     try{
@@ -123,8 +137,8 @@ exports.eventsUpdate = async (req,res,next) =>{
         }
 
         if(req.file != undefined){
-            updateOptions["imageURL"] = req.file.path;
-            await unlinkAsync(originalEvent.imageURL);
+            updateOptions["imageURL"] = req.file.id.toString();
+            deleteImage(originalEvent.imageURL);
         }
 
         const updatedEvent = await Event.updateOne(
@@ -143,7 +157,12 @@ exports.eventsDelete =  async (req,res,next) =>{
     try{
         const event = await Event.findById(req.params.eventId);
         if(event){
-            await unlinkAsync(event.imageURL);
+            try{
+                console.log(event.imageURL);
+                deleteImage(event.imageURL);
+            }catch(err){
+                res.status(400).json({message:`Unable to delete Image with ID ${event.name}`});
+            }
         }else{
             res.status(404).json({message:`No event with id:${req.params.eventId}`});
         }
@@ -154,24 +173,10 @@ exports.eventsDelete =  async (req,res,next) =>{
     } 
 };
 
-//Image
-
-
-const methodOverride = require('method-override');
-const multer = require('multer');
-let gfs;
-
-exports.saveImageForEvent = (req,res) =>{
-    //Init stream
-    gfs = Grid(mongoose.connection,mongoose.mongo);
-    gfs.collection('uploads');
-    
-    //Create Storage engine
-    
-
-
-    // res.status(200).json()
-    // var gfs = Grid(mongoose.connection,mongoose.mongo);
-    // saveImage(gfs, req, res)
-}
-
+const deleteImage = (id) => {
+    if (!id || id === 'undefined') return res.status(400).send('no image id');
+    const _id = new mongoose.Types.ObjectId(id);
+    gfs.delete(_id, (err) => {
+      if (err) return res.status(500).send('image deletion error');
+    });
+  };
