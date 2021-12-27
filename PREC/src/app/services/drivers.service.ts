@@ -16,14 +16,14 @@ export class DriversService {
   async getDrivers(){
     const res = await axios.get<driversDTO>(this.apiURL);
     for(let driver of res.data.drivers){
-      driver.imageURL = environment.backendAPIURL + '/'+ driver.imageURL;
+      driver.imageURL = environment.backendAPIURL + '/images/'+ driver.imageURL;
     }
     return res.data;
   }
 
   async getDriverByID(id:string){
     const res = await axios.get<driverDTO>(this.apiURL+`/${id}`);
-    res.data.imageURL = environment.backendAPIURL + '/'+ res.data.imageURL;
+    res.data.imageURL = environment.backendAPIURL + '/images/'+ res.data.imageURL;
     return res.data;
   }
 
@@ -38,7 +38,7 @@ export class DriversService {
 
     const fd = new FormData();
     if(img != null){
-      fd.append('driverImage',img,img.name);
+      fd.append('image',img,img.name);
     }
     fd.append('name',driver.name);
     fd.append('gamertag',driver.gamertag);
@@ -73,7 +73,7 @@ export class DriversService {
 
     const fd = new FormData();
     if(img != null){
-      fd.append('driverImage',img,img.name);
+      fd.append('image',img,img.name);
     }
     fd.append('name',driver.name);
     fd.append('gamertag',driver.gamertag);

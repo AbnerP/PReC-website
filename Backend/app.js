@@ -9,11 +9,7 @@ require('dotenv/config');
 const driversRoute = require('./routes/drivers');
 const eventsRoute = require('./routes/events');
 const userRoute = require('./routes/user');
-
-//DB Connection
-mongoose.connect(process.env.DB_CONNECTION,() =>{
-    console.log("Connected to DB");
-});
+const imageRoute = require('./routes/image');
 
 //Middleware
 app.use(morgan("dev"));
@@ -24,9 +20,20 @@ app.use('/api/uploads',express.static('uploads'));
 app.use('/api/drivers',driversRoute);
 app.use('/api/events',eventsRoute);
 app.use('/api/user',userRoute);
+app.use('/api/images',imageRoute);
 
 
 //Listening
-app.listen(3000,() =>{
-    console.log(`Listening on: http://localhost:3000/`);
-});
+mongoose
+  .connect(process.env.DB_CONNECTION, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    // useCreateIndex: true,
+  })
+  .then(() => {
+    app.listen(3000,() =>{
+        console.log(`Listening on: http://localhost:3000/`);
+    });
+  });
+
+module.exports = app;

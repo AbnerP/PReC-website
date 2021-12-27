@@ -18,7 +18,7 @@ export class EventsService {
   async getEvents(){
     const res = await axios.get<eventsDTO>(this.apiURL);
     for(let event of res.data.events){
-      event.imageURL = environment.backendAPIURL + '/'+ event.imageURL;
+      event.imageURL = environment.backendAPIURL + '/images/'+ event.imageURL;
     }
     return res.data;
   }
@@ -26,14 +26,14 @@ export class EventsService {
   async getEventsLimit(limit:number){
     const res = await axios.get<eventsDTO>(this.apiURL  , { params: { limit: limit } });
     for(let event of res.data.events){
-      event.imageURL = environment.backendAPIURL + '/'+ event.imageURL;
+      event.imageURL = environment.backendAPIURL + '/images/'+ event.imageURL;
     }
     return res.data;
   }
 
   async geteventByID(id:string){
     const res = await axios.get<eventDTO>(this.apiURL+`/${id}`);
-    res.data.imageURL = environment.backendAPIURL + '/'+ res.data.imageURL;
+    res.data.imageURL = environment.backendAPIURL + '/images/'+ res.data.imageURL;
     return res.data;
   }
 
@@ -48,7 +48,7 @@ export class EventsService {
 
     const fd = new FormData();
     if(img != null){
-      fd.append('eventImage',img,img.name);
+      fd.append('image',img,img.name);
     }
     const date = new Date(event.date).toJSON();
     fd.append('name',event.name);
@@ -90,7 +90,7 @@ export class EventsService {
 
     const fd = new FormData();
     if(img != null){
-      fd.append('eventImage',img,img.name);
+      fd.append('image',img,img.name);
     }
     fd.append('name',event.name);
     fd.append('date',event.date.toJSON());
