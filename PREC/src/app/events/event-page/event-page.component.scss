@@ -2,8 +2,11 @@ $prec-yellow:rgb(255, 208, 0);
 $prec-yellowSecondary:#ffdb0e;
 $prec-blue:#252B42;
 $image-dim:300px;
+$table-width:100%;
+$grey:rgb(115, 115, 115);
+
+
 #body{
-  // border-top:1px solid $prec-yellow ;
   display: flex;
   flex-direction: column;
   padding: 2vw 2vw;
@@ -63,20 +66,56 @@ $image-dim:300px;
 
     #registered{
       width: 62vw;
+      padding: 2vh 0 0 0;
       margin-right: 2vw;
-      min-height: $image-dim;
+      height: fit-content;
       background-color: white;
 
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content:left;
       align-items: center;
 
-      h3{
-        padding-top: 2vh;
-        color: black;
-        font-size: 25px;
-        line-height: 22px;
+      // h3{
+      //   color: black;
+      //   font-size: 20px;
+      //   font-weight: 300;
+      //   // line-height: 22px;
+      //   margin: 0;
+      // }
+      table {
+        width: $table-width;
+        box-shadow: none;
+        th{
+          color: #252B42;
+          font-weight: 600;
+          border-bottom: 1px solid $prec-yellow;
+        }
+        tr td{
+          color: $grey;
+          font-weight: 200;
+        }
+        .mat-column-firstName{
+          text-align: center;
+          width: $table-width/4;
+        }
+        .mat-column-lastName{
+          text-align: center;
+          width: $table-width/4;
+        }
+        .mat-column-position{
+          text-align: center;
+          width: $table-width/4;
+        }
+        .mat-column-_id{
+          text-align: center;
+          width: $table-width/4;
+        }
+
+        .idRow{
+          margin: 0 5vw;
+        }
+
       }
     }
 
@@ -89,13 +128,14 @@ $image-dim:300px;
       flex-direction: column;
       justify-content: space-evenly;
       align-items: center;
+
       div{
         width: 65%;
         margin: 1vh 0;
         display: flex;
         justify-content: space-between;
         span{
-          color: rgb(161, 161, 161);
+          color: $grey;
           font-weight: 200;
         }
       }
@@ -110,9 +150,18 @@ $image-dim:300px;
 
 
 
+
+
     }
 
   }
+}
+h3{
+  color: black;
+  font-size: 18px;
+  font-weight: 300;
+  // line-height: 22px;
+  margin: 0;
 }
 
 button{
@@ -180,6 +229,7 @@ span{
     }
   }
 }
+
 
 
 

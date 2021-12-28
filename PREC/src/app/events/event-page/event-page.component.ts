@@ -12,6 +12,8 @@ import { getFieldFromJWT, stringToMultiLineArray } from 'src/app/utils';
   styleUrls: ['./event-page.component.scss']
 })
 export class EventPageComponent implements OnInit {
+  displayedColumns: string[] = ['position','firstName', 'lastName','_id'];
+
   id:string;
   event:eventDTO = {
     _id:'',
@@ -46,7 +48,9 @@ export class EventPageComponent implements OnInit {
       this.description =  stringToMultiLineArray(this.event.description);
       this.service.getRegisteredUsers(this.event._id).then(res =>{
         this.registeredUsers = res.users;
-        console.log(this.registeredUsers);
+        for(let i = 0; i < this.registeredUsers.length; i++){
+          this.registeredUsers[i]["position"] = i+1;
+        }
       });
       console.log(this.checkID());
     });
@@ -70,6 +74,21 @@ export class EventPageComponent implements OnInit {
 
   checkID():boolean{
     return this.registeredUsers.filter(u => u._id === this.userId).length > 0
+  }
+
+  getPlatformId(id:string){
+    const user = this.registeredUsers.filter(u => u._id === id)[0];
+    if(this.event.platform === "Steam") {
+      return user.steamID;
+    }else if(this.event.platform === "Xbox"){
+      return user.xboxgamertag;
+    }else{
+      return user.psnID;
+    }
+  }
+
+  registrationLimit():boolean{
+    return parseInt(this.event.numberRegisteredUsers) < this.event.registrationLimit;
   }
 
 }

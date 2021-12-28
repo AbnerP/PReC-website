@@ -17,7 +17,38 @@
   <div id="generalInfo">
 
     <div id="registered">
-      <p *ngFor="let user of registeredUsers">{{user | json}}</p>
+      <h3>Drivers</h3>
+      <table mat-table [dataSource]="registeredUsers" class="mat-elevation-z8">
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.position}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef>First</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.firstName}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef>Last</th>
+          <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="_id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td class="idRow" mat-cell *matCellDef="let element">
+            {{getPlatformId(element._id)}}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
     </div>
 
     <div class="info">
@@ -64,7 +95,8 @@
             </div>
             <div *ngIf="!checkID()">
               <div *ngIf="userPlatforms">
-                <button *ngIf="userPlatforms.includes(event.platform)" mat-button color="accent" (click)="register(event._id)">Register</button>
+                <button *ngIf="userPlatforms.includes(event.platform) && registrationLimit()" mat-button color="accent" (click)="register(event._id)">Register</button>
+                <h2 *ngIf="!registrationLimit()" mat-button color="accent" >Event Full</h2>
               </div>
             </div>
           </div>
@@ -80,49 +112,6 @@
 
 
   </div>
-
-  <!-- <div id="mainInfo">
-    <h2>{{event.name}}</h2>
-    <span id="dateAndTime">{{event.date | date:'MMM d yy'}}</span>
-  </div>
-
-  <div id="imageContainer">
-    <img src="{{event.imageURL}}" alt="">
-  </div>
-
-  <div id="raceInfo">
-    <div>
-      <span class="Label">Track</span>
-      <span>{{event.track}}</span>
-    </div>
-
-    <div>
-      <span class="Label">Length</span>
-      <span>{{event.duration}}</span>
-    </div>
-
-    <div>
-      <span class="Label">Game</span>
-      <span>{{event.game}}</span>
-    </div>
-
-    <div>
-      <span class="Label">Time</span>
-      <span>{{event.startTime}}</span>
-    </div>
-  </div>
-
-  <div id="misc">
-    <div>
-      <span class="Label">Details</span>
-      <p *ngFor="let line of description">{{line}}</p>
-    </div>
-    <div>
-      <span class="Label">Contact Information</span>
-      <span>{{event.contactInfo}}</span>
-    </div>
-  </div> -->
-
 
 
 </div>
