@@ -1,3 +1,5 @@
+import {userInfoWithId } from "./user.model";
+
 export interface eventsDTO{
   events: Array<eventDTO>;
   count:number;
@@ -35,6 +37,6 @@ export interface eventCreationDTO{
 }
 
 export interface registeredUserIDs{
-  ids:Array<string>;
+  users:Array<userInfoWithId>;
   count:number;
 }

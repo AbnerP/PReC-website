@@ -107,7 +107,7 @@ export class EventsService {
     return await axios.post(this.apiURL,fd,config);
   }
 
-  async getRegisteredUserEmails(id:string){
+  async getRegisteredUsers(id:string){
     const res = await axios.get<registeredUserIDs>(this.apiURL+`/users/${id}`);
     return res.data;
   }

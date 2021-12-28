@@ -17,7 +17,7 @@
   <div id="generalInfo">
 
     <div id="registered">
-
+      <p *ngFor="let user of registeredUsers">{{user | json}}</p>
     </div>
 
     <div class="info">
@@ -58,11 +58,11 @@
 
       <app-authorize-view>
         <ng-container authorized>
-          <div *ngIf="registeredUserIDs">
-            <div *ngIf="registeredUserIDs.includes(userId)">
+          <div *ngIf="registeredUsers">
+            <div *ngIf="checkID()">
               <button *ngIf="userPlatforms.includes(event.platform)" mat-button color="warn" (click)="withdraw(event._id)">Withdraw</button>
             </div>
-            <div *ngIf="!registeredUserIDs.includes(userId)">
+            <div *ngIf="!checkID()">
               <div *ngIf="userPlatforms">
                 <button *ngIf="userPlatforms.includes(event.platform)" mat-button color="accent" (click)="register(event._id)">Register</button>
               </div>
