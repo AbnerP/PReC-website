@@ -15,6 +15,16 @@ conn.once('open', () => {
     bucketName: 'images',
   });
 });
+router.post('/upload/', uploadMiddleware, async (req, res) => {
+  const { file } = req;
+  const { id } = file;
+  if (file.size > 5000000) {
+    deleteImage(id);
+    return res.status(400).send('file may not exceed 5mb');
+  }
+  console.log('uploaded file: ', file);
+  return res.send(file.id);
+});
 
 router.get('/:id', ({ params: { id } }, res) => {
     if (!id || id === 'undefined') return res.status(400).send('no image id');

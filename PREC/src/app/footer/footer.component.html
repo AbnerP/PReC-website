@@ -1,3 +1,53 @@
-<div class="container">
+<!-- <div class="container">
   <div style="font-family: 'Montserrat-Medium';">Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+</div> -->
+
+<div class="container">
+  <div class="linksContainer">
+    <div class="route">
+      <h3 class="head">Puerto Rico eRacing Club</h3>
+      <div class="links">
+        <a routerLink="home" routerLinkActive="active">Home</a>
+        <a routerLink="drivers" routerLinkActive="active">Drivers</a>
+        <a routerLink="events" routerLinkActive="active">Events</a>
+      </div>
+    </div>
+    <div class="vr"></div>
+    <div class="route">
+      <h3 class="head">Miscellaneous</h3>
+      <div class="links">
+        <a routerLink="calculator" routerLinkActive="active">Calculator</a>
+        <a routerLink="about-us" routerLinkActive="active">About Us</a>
+      </div>
+    </div>
+    <div class="vr"></div>
+    <div class="route">
+      <h3 class="head">Account</h3>
+      <app-authorize-view>
+        <ng-container authorized>
+          <div class="links">
+            <a (click)="service.logout()">Log Out</a>
+          </div>
+        </ng-container>
+        <ng-container notAuthorized>
+          <div class="links">
+            <a routerLink="login" routerLinkActive="active">Log In</a>
+            <a routerLink="signup" routerLinkActive="active">Sign Up</a>
+          </div>
+        </ng-container>
+      </app-authorize-view>
+    </div>
+  </div>
+
+  <div class="copyright">
+    <img [src]="imgURL" alt="" >
+    <div class="p">
+      <p>
+        Copyright 2022 © All rights Reserved. Designed by Abner Peña.
+      </p>
+      <p>
+        All trademarks referenced on this site are property of their respective owners.
+      </p>
+    </div>
+  </div>
 </div>
