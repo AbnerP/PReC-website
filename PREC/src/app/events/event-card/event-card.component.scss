@@ -13,7 +13,7 @@ $img-dims: 250px;
   width: 500px;
   height: $img-dims;
   border-radius: 1vh;
-  box-shadow: 0 10px 100px black;
+  box-shadow: 0 10px 10px black;
   transition: transform .5s;
   transform: scale(.85);
 }
