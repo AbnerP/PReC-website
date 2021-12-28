@@ -1,5 +1,87 @@
 <div id="body" *ngIf="event._id !== ''">
-  <div id="mainInfo">
+  <div id="header">
+
+    <img src="{{event.imageURL}}" alt="">
+    <div id="titleContainer">
+      <div id="title">
+        <h2>{{event.name}}</h2>
+        <span id="dateAndTime">{{event.date | date:'MMMM d'}} at {{event.startTime}}</span>
+      </div>
+      <div id="details">
+        <span id="dateAndTime" *ngFor="let line of description">{{line}}</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="generalInfo">
+
+    <div id="registered">
+
+    </div>
+
+    <div class="info">
+      <h3>Details</h3>
+      <div>
+        <span>Platform</span>
+        <span>{{event.platform}}</span>
+      </div>
+
+      <hr>
+
+      <div>
+        <span>Game</span>
+        <span>{{event.game}}</span>
+      </div>
+
+      <hr>
+
+      <div>
+        <span>Length</span>
+        <span>{{event.duration}}</span>
+      </div>
+
+      <hr>
+
+      <div>
+        <span>Registered</span>
+        <span>{{event.numberRegisteredUsers}} / {{event.registrationLimit}} </span>
+      </div>
+
+      <hr>
+
+      <div>
+        <span>Host</span>
+        <span>{{event.host}}</span>
+      </div>
+
+
+      <app-authorize-view>
+        <ng-container authorized>
+          <div *ngIf="registeredUserIDs">
+            <div *ngIf="registeredUserIDs.includes(userId)">
+              <button *ngIf="userPlatforms.includes(event.platform)" mat-button color="warn" (click)="withdraw(event._id)">Withdraw</button>
+            </div>
+            <div *ngIf="!registeredUserIDs.includes(userId)">
+              <div *ngIf="userPlatforms">
+                <button *ngIf="userPlatforms.includes(event.platform)" mat-button color="accent" (click)="register(event._id)">Register</button>
+              </div>
+            </div>
+          </div>
+
+          <a routerLink="../../../settings" *ngIf="!userPlatforms.includes(event.platform)" mat-button color="accent" >Add platform to account</a>
+
+        </ng-container>
+        <ng-container notAuthorized>
+          <a mat-button color="accent" routerLink="../../../login" routerLinkActive="active">Log in to Register</a>
+        </ng-container>
+      </app-authorize-view>
+    </div>
+
+
+  </div>
+
+  <!-- <div id="mainInfo">
     <h2>{{event.name}}</h2>
     <span id="dateAndTime">{{event.date | date:'MMM d yy'}}</span>
   </div>
@@ -39,28 +121,9 @@
       <span class="Label">Contact Information</span>
       <span>{{event.contactInfo}}</span>
     </div>
-  </div>
+  </div> -->
 
-  <app-authorize-view>
-    <ng-container authorized>
-      <div *ngIf="registeredUserIDs">
-        <div *ngIf="registeredUserIDs.includes(userId)">
-          <button *ngIf="userPlatforms.includes(event.platform)" mat-button color="warn" (click)="withdraw(event._id)">Withdraw</button>
-        </div>
-        <div *ngIf="!registeredUserIDs.includes(userId)">
-          <div *ngIf="userPlatforms">
-            <button *ngIf="userPlatforms.includes(event.platform)" mat-button color="accent" (click)="register(event._id)">Register</button>
-          </div>
-        </div>
-      </div>
 
-      <a routerLink="../../../settings" *ngIf="!userPlatforms.includes(event.platform)" mat-button color="accent" >Add platform to account</a>
-
-    </ng-container>
-    <ng-container notAuthorized>
-      <a mat-button color="accent" routerLink="../../../login" routerLinkActive="active">Log in to Register</a>
-    </ng-container>
-  </app-authorize-view>
 
 </div>
 
