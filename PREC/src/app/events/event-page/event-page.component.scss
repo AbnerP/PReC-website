@@ -153,12 +153,6 @@ $grey:rgb(115, 115, 115);
         color: $prec-yellow;
         width: 70%;
       }
-
-
-
-
-
-
     }
 
   }
@@ -174,69 +168,3 @@ h3{
 button{
   padding: 0 2vw;
 }
-
-#mainInfo{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 1rem 0 0 ;
-  h3{
-    color: $prec-yellow;
-    font-size: 30px;
-    line-height: 30px;
-  }
-
-}
-
-#imageContainer{
-  display: flex;
-  justify-content: center;
-  img{
-    object-fit: cover;
-    width: 50vw;
-    height: auto;
-    border-radius: .5rem;
-  }
-}
-
-span{
-  color: rgb(222, 222, 222);
-}
-
-.Label{
-  color: $prec-yellow;
-  font-weight: 500;
-}
-
-#raceInfo{
-  margin: 2vh 0;
-  display: flex;
-  flex-direction: row;
-  justify-content:space-evenly;
-  flex-wrap: wrap;
-  div{
-    margin: .1rem;
-    .Label{
-      margin-right: .2rem;
-    }
-  }
-}
-
-#misc{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  div{
-    .Label{
-      margin-right: .2rem;
-    }
-    p{
-      color: rgb(222, 222, 222);
-      text-align: center;
-    }
-  }
-}
-
-
-
-

@@ -21,11 +21,14 @@
       <div>
         <th mat-header-cell *matHeaderCellDef> Role </th>
         <td mat-cell *matCellDef="let element">
-          {{element.role}}
-          <button mat-stroked-button *ngIf="element.role != 'admin'" (click)="makeAdmin(element._id)">Make admin</button>
-          <button mat-flat-button color="warn" *ngIf="element.role != 'admin'" (click)="deleteUser(element._id)">Delete</button>
+          <div class="role">
+            {{element.role}}
+            <div>
+              <button mat-stroked-button *ngIf="element.role != 'admin'" (click)="makeAdmin(element._id)">Make admin</button>
+              <button mat-flat-button color="warn" *ngIf="element.role != 'admin'" (click)="deleteUser(element._id)">Delete</button>
+            </div>
+          </div>
         </td>
-        hey
       </div>
     </ng-container>
 

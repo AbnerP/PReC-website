@@ -18,7 +18,7 @@
 
     <div id="registered">
       <h3>Drivers</h3>
-      <table mat-table [dataSource]="registeredUsers" class="mat-elevation-z8">
+      <table *ngIf="registeredUsers.length > 0" mat-table [dataSource]="registeredUsers" class="mat-elevation-z8">
         <ng-container matColumnDef="position">
           <th mat-header-cell *matHeaderCellDef>No.</th>
           <td mat-cell *matCellDef="let element">
