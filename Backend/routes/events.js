@@ -13,7 +13,7 @@ router.use(removeOldEvents);
 //GET
 router.get('/', EventsController.eventsGetAll);
 router.get('/:eventId',EventsController.eventsGetByID);
-router.get('/users/:eventId',EventsController.getRegisteredUserIDs);
+router.get('/users/:eventId',EventsController.getRegisteredUsers);
 
 //POST
 router.post('/', checkAuth, uploadMiddleware, EventsController.eventsCreate);

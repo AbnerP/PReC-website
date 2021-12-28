@@ -1,4 +1,5 @@
 const Event = require('../models/Events');
+const User = require('../models/User');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -41,16 +42,24 @@ exports.eventsGetByID = async (req,res,next) =>{
     } 
 };
 
-exports.getRegisteredUserIDs = async (req,res,next) =>{
+exports.getRegisteredUsers = async (req,res,next) =>{
     try{
         Event.findById(req.params.eventId)
             .exec()
             .then(event =>{
-                const response = {
-                    ids:event.registeredUserIDsList,
-                    count: event.registeredUserIDsList.length
+                let users = [];
+                for(let i = 0; i<event.registeredUserIDsList.length;i++){
+                    User.findById(event.registeredUserIDsList[i]).exec().then((user)=>{
+                        users.push(user)
+                        if(i == event.registeredUserIDsList.length - 1){
+                            const response = {
+                                users:users,
+                                count: event.registeredUserIDsList.length
+                            }
+                            res.status(200).json(response);
+                        }
+                    });
                 }
-                res.status(200).json(response);
             });
     }catch(e){
         res.status(404).json({message:e});

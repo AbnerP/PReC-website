@@ -20,6 +20,17 @@ export interface userInfo{
   xboxgamertag:string;
 }
 
+export interface userInfoWithId{
+  _id:string,
+  firstName: string;
+  lastName: string;
+  email: string;
+  platforms:Array<string>;
+  steamID:string;
+  psnID:string;
+  xboxgamertag:string;
+}
+
 
 
 

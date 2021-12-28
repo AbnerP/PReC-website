@@ -17,7 +17,7 @@ export class AddEventComponent implements OnInit {
   id:string;
 
   form:FormGroup;
-  platforms:string[] = ["PlayStation", "Xbox", "PC"];
+  platforms:string[] = ["PlayStation", "Xbox", "Steam"];
   minDate: Date;
   maxDate: Date;
 
@@ -72,7 +72,7 @@ export class AddEventComponent implements OnInit {
 
     if(this.id !== null){
       this.service.updateEvent(this.id,event,this.eventIMG).then(res =>{
-        
+
         this.router.navigate(['/events']);
       });
     }else{
