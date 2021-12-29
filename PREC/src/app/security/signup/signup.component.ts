@@ -19,6 +19,7 @@ export class SignupComponent implements OnInit {
     private router:Router) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     if(this.mode === "settings"){
       this.form = this.fb.group({
         firstName: ['',Validators.required],

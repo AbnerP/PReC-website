@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
     private service:SecurityService) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.form = this.fb.group({
       email:['',[Validators.required,Validators.email]],
       password:['',Validators.required]

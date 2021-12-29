@@ -34,6 +34,7 @@ export class CalculatorComponent {
 
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     // this.formTestValues();
     this.initializeForm();
   }

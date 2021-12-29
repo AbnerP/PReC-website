@@ -19,6 +19,7 @@ export class DriversComponent implements OnInit {
     private route:ActivatedRoute){}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.service.getDrivers().then(data =>{
       this.drivers = data.drivers;
     });

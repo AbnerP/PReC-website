@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { eventDTO, eventsDTO } from '../models/events.model';
 import { EventsService } from '../services/events.service';
 
@@ -17,6 +17,7 @@ export class EventsComponent implements OnInit {
     private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.service.getEvents().then((res) => {
       this.events = res.events;
     });
@@ -29,7 +30,7 @@ export class EventsComponent implements OnInit {
       })
     });
   }
-  
+
   editEvent(id:string){
     this.router.navigate([`update/${id}`], { relativeTo: this.route });
   }

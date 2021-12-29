@@ -1,10 +1,11 @@
 <!-- {{formData | json}} -->
 <div class="calculator-form" [formGroup]="form">
   <div class="miscData">
-    <mat-form-field class="raceLengthField" appearance="outline" >
-      <mat-label>Race Length</mat-label>
+    <mat-form-field class="raceLengthField" floatLabel="always" appearance="outline" >
+      <mat-label>Length</mat-label>
 
       <input matInput
+
       formControlName="raceLength"
       placeholder="23">
 
@@ -19,7 +20,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="pitLossField" appearance="outline">
+    <mat-form-field class="pitLossField" floatLabel="always" appearance="outline">
       <mat-label>Pit Loss</mat-label>
 
       <input matInput
@@ -63,7 +64,8 @@
 
           </mat-form-field>
 
-          <button mat-icon-button color="warn" class="delTire" (click)="removeTire(t)"><mat-icon>delete_outline</mat-icon></button>
+          <!-- <button mat-icon-button color="primary" class="delTire" (click)="removeTire(t)"><mat-icon (click)="removeTire(t)">delete_outline</mat-icon></button> -->
+          <a mat-icon-button ><mat-icon color="warn" (click)="removeTire(t)">delete_outline</mat-icon></a>
         </div>
 
         <div formArrayName="times">
@@ -101,24 +103,24 @@
     <button class="calculateBTN" mat-stroked-button type="submit" [disabled]="!form.valid" (click)="saveChanges()">Calculate</button>
   </div>
 
+  <div *ngIf="pits" class="results">
+    <table>
+      <tr>
+        <th>Lap</th>
+        <th>Tire</th>
+        <th>Total Time</th>
+      </tr>
+      <tr *ngFor="let pit of generatePitKeys(pits)">
+        <td class="data" *ngIf="pit.key == '0'"> Start</td>
+        <td class="data" *ngIf="pit.key != '0'">{{parseLap(pit.key)+1}}</td>
+        <td class="data">{{pit.value}}</td>
+      </tr>
+      <tr>
+        <td class="data" ></td>
+        <td class="data"></td>
+        <td class="totalTime">{{secsToMins(totalTime)}}</td>
+      </tr>
+    </table>
+  </div>
 </div>
 
-<div *ngIf="pits" class="results">
-  <table>
-    <tr>
-      <th>Lap</th>
-      <th>Tire</th>
-      <th>Total Time</th>
-    </tr>
-    <tr *ngFor="let pit of generatePitKeys(pits)">
-      <td class="data" *ngIf="pit.key == '0'"> Start</td>
-      <td class="data" *ngIf="pit.key != '0'">{{parseLap(pit.key)+1}}</td>
-      <td class="data">{{pit.value}}</td>
-    </tr>
-    <tr>
-      <td class="data" ></td>
-      <td class="data"></td>
-      <td class="totalTime">{{secsToMins(totalTime)}}</td>
-    </tr>
-  </table>
-</div>
