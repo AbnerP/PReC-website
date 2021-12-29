@@ -185,3 +185,20 @@ button{
 ::ng-deep .field input,textarea {
   caret-color: $prec-yellow;
 }
+
+@media (max-width:550px) {
+  .inline{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+@media (max-width:650px) {
+  .inline-3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

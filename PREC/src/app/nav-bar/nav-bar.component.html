@@ -12,10 +12,10 @@
 
 <div class="container">
   <div class="logo-container">
-    <a routerLink=""><img src="logo.png" width="275px" height="auto" alt=""></a>
+    <img [src]="imgURL">
   </div>
 
-  <div class="routes">
+  <div class="routes" *ngIf="!cutOff">
 
     <div class="pages">
       <a mat-button routerLink="home" routerLinkActive="active">Home</a>
@@ -49,44 +49,35 @@
 
   </div>
 
+  <div class="menu" *ngIf="cutOff">
+    <button mat-icon-button [matMenuTriggerFor]="beforeMenu"  id="menuBTN"><mat-icon color="accent">menu</mat-icon></button>
+    <mat-menu class="customize" #beforeMenu="matMenu" xPosition="before">
+      <a mat-menu-item routerLink="home" routerLinkActive="active" class="menuLinks">Home</a>
+      <a mat-menu-item routerLink="drivers" routerLinkActive="active" class="menuLinks">Drivers</a>
+      <a mat-menu-item routerLink="events" routerLinkActive="active" class="menuLinks">Events</a>
+      <a mat-menu-item routerLink="calculator" routerLinkActive="active" class="menuLinks">Calculator</a>
+      <app-authorize-view [role]="'admin'">
+        <ng-container authorized>
+          <a mat-menu-item routerLink="users" routerLinkActive="active" class="menuLinks">Users</a>
+        </ng-container>
+      </app-authorize-view>
+      <a mat-menu-item routerLink="about-us" routerLinkActive="active" class="menuLinks">About Us</a>
+      <app-authorize-view>
+        <ng-container authorized>
+          <div class="options">
+            <button mat-icon-button color="accent" (click)="logout()" ><mat-icon>logout</mat-icon></button>
+            <a mat-icon-button routerLink="../settings" routerLinkActive="active"><mat-icon color="accent">settings</mat-icon></a>
+          </div>
+        </ng-container>
+        <ng-container notAuthorized>
+
+          <div class="authentication">
+            <a class="login" routerLink="login">Log In</a>
+            <a class="signup" routerLink="signup">Sign Up</a>
+          </div>
+
+        </ng-container>
+      </app-authorize-view>
+    </mat-menu>
+  </div>
 </div>
-
-
-
-
-<!-- <app-authorize-view [role]="'admin'">
-    <ng-container authorized>
-      <div>
-        <a mat-button routerLink="genres">Genres</a>
-      </div>
-
-      <div>
-        <a mat-button routerLink="actors">Actors</a>
-      </div>
-
-      <div>
-        <a mat-button routerLink="movietheaters">Movie Theaters</a>
-      </div>
-
-      <div>
-        <a mat-button routerLink="movie/create">Create Movie</a>
-      </div>
-
-      <div>
-        <a mat-button routerLink="users">Users</a>
-      </div>
-    </ng-container>
-  </app-authorize-view>
-
-  <div class="space"></div>
-
-  <app-authorize-view >
-    <ng-container authorized>
-      <span>Hello, {{security.getFieldFromJWT('email')}}</span>
-      <a mat-button (click)="security.logout()">Logout</a>
-    </ng-container>
-    <ng-container notAuthorized>
-      <a mat-button routerLink="login">Log in</a>
-      <a mat-button routerLink="register">Register</a>
-    </ng-container>
-  </app-authorize-view> -->

@@ -20,6 +20,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 
@@ -44,7 +45,8 @@ import {MatListModule} from '@angular/material/list';
     MatChipsModule,
     MatDialogModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule
   ],
   imports: [
     CommonModule
