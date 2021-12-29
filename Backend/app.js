@@ -18,6 +18,7 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended:true}));
+app.get('',(req,res)=>res.send('Hello'));
 app.use('/api/uploads',express.static('uploads'));
 app.use('/api/drivers',driversRoute);
 app.use('/api/events',eventsRoute);
