@@ -92,6 +92,11 @@ span{
   margin:1.5vh;
 }
 
+@media (max-width:500px){
+  .addTireButton{
+    margin:1.5vh 4.5vh;
+  }
+}
 .pitLossField{
   width: 10rem;
   margin: 0 5vw;
@@ -119,14 +124,10 @@ span{
   background-color: $prec-yellow;
   color: white;
   border-radius: 1vh;
-  width: 40%;
-}
+  height: 35px;
+  min-width: 10rem;
 
-.calculateBTNContainer{
-  display: flex;
-  justify-content: center;
 }
-
 
 @keyframes glowing {
   0% {
@@ -143,25 +144,27 @@ span{
   }
 }
 
-.calculateBTN:enabled{
-  background-color: $prec-yellow;
+.calculateBTNContainer{
+  display: flex;
+  justify-content: center;
+}
+
+.calculateBTN{
   color: white;
   cursor: pointer;
   border: none;
   border-radius: 1vh;
-  height: 6vh;
-  width: 18vw;
+  height: 35px;
+  min-width: 10rem;
+}
+
+.calculateBTN:enabled{
+  background-color: $prec-yellow;
   animation: glowing 1300ms infinite;
 }
 
 .calculateBTN:disabled{
   background-color: rgb(219, 219, 219);
-  color: white;
-  cursor:default;
-  border: none;
-  border-radius: 1vh;
-  height: 6vh;
-  width: 18vw;
   animation: none;
 }
 
