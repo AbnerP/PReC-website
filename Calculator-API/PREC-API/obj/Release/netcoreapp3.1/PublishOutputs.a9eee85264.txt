@@ -1,0 +1,12 @@
+/Users/abnerpena/Desktop/PReC-website/Calculator-API/PREC-API/obj/Release/netcoreapp3.1/PubTmp/Out/appsettings.Development.json
+/Users/abnerpena/Desktop/PReC-website/Calculator-API/PREC-API/obj/Release/netcoreapp3.1/PubTmp/Out/appsettings.json
+/Users/abnerpena/Desktop/PReC-website/Calculator-API/PREC-API/obj/Release/netcoreapp3.1/PubTmp/Out/Models/EmptyJSONFile.json
+/Users/abnerpena/Desktop/PReC-website/Calculator-API/PREC-API/obj/Release/netcoreapp3.1/PubTmp/Out/PREC-API.dll
+/Users/abnerpena/Desktop/PReC-website/Calculator-API/PREC-API/obj/Release/netcoreapp3.1/PubTmp/Out/PREC-API.deps.json
+/Users/abnerpena/Desktop/PReC-website/Calculator-API/PREC-API/obj/Release/netcoreapp3.1/PubTmp/Out/PREC-API.runtimeconfig.json
+/Users/abnerpena/Desktop/PReC-website/Calculator-API/PREC-API/obj/Release/netcoreapp3.1/PubTmp/Out/PREC-API.pdb
+/Users/abnerpena/Desktop/PReC-website/Calculator-API/PREC-API/obj/Release/netcoreapp3.1/PubTmp/Out/Microsoft.OpenApi.dll
+/Users/abnerpena/Desktop/PReC-website/Calculator-API/PREC-API/obj/Release/netcoreapp3.1/PubTmp/Out/Newtonsoft.Json.dll
+/Users/abnerpena/Desktop/PReC-website/Calculator-API/PREC-API/obj/Release/netcoreapp3.1/PubTmp/Out/Swashbuckle.AspNetCore.Swagger.dll
+/Users/abnerpena/Desktop/PReC-website/Calculator-API/PREC-API/obj/Release/netcoreapp3.1/PubTmp/Out/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/abnerpena/Desktop/PReC-website/Calculator-API/PREC-API/obj/Release/netcoreapp3.1/PubTmp/Out/Swashbuckle.AspNetCore.SwaggerUI.dll

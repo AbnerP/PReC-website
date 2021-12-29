@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv/config');
 
+const port = process.env.PORT | 3000;
+
 const driversRoute = require('./routes/drivers');
 const eventsRoute = require('./routes/events');
 const userRoute = require('./routes/user');
@@ -31,8 +33,8 @@ mongoose
     // useCreateIndex: true,
   })
   .then(() => {
-    app.listen(3000,() =>{
-        console.log(`Listening on: http://localhost:3000/`);
+    app.listen(port,() =>{
+        console.log(`Listening on: http://localhost:${port}/`);
     });
   });
 

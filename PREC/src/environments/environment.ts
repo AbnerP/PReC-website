@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   googleapiURL: 'https://www.googleapis.com/calendar/v3',
-  calculatorApiURL: 'https://localhost:5001/api',
+  calculatorApiURL: 'https://prec-api.azurewebsites.net/api',
   backendAPIURL: 'http://localhost:3000/api'
 };
 

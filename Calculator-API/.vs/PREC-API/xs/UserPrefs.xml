@@ -1,20 +1,23 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{45332130-CEBD-4806-9C1A-DEAD83BA4276}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="PREC-API/Classes/Calculator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PREC-API/appsettings.Development.json">
     <Files>
       <File FileName="PREC-API/Classes/Calculator.cs" Line="26" Column="42" />
       <File FileName="PREC-API/Classes/TelemetryData.cs" />
+      <File FileName="PREC-API/Controllers/CalculatorController.cs" Line="13" Column="28" />
+      <File FileName="PREC-API/Startup.cs" Line="25" Column="31" />
+      <File FileName="PREC-API/appsettings.json" Line="1" Column="1" />
+      <File FileName="PREC-API/appsettings.Development.json" Line="9" Column="20" />
+      <File FileName="PREC-API/Program.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PREC-API" expanded="True">
             <Node name="PREC-API" expanded="True">
-              <Node name="Classes" expanded="True">
-                <Node name="Calculator.cs" selected="True" />
-              </Node>
               <Node name="Controllers" expanded="True" />
-              <Node name="DTO" expanded="True" />
-              <Node name="Models" expanded="True" />
+              <Node name="appsettings.json" expanded="True">
+                <Node name="appsettings.Development.json" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
