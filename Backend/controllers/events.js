@@ -50,7 +50,7 @@ exports.getRegisteredUsers = async (req,res,next) =>{
                 let users = [];
                 for(let i = 0; i<event.registeredUserIDsList.length;i++){
                     User.findById(event.registeredUserIDsList[i]).exec().then((user)=>{
-                        users.push(user)
+                        users.push(user);
                         if(i == event.registeredUserIDsList.length - 1){
                             const response = {
                                 users:users,

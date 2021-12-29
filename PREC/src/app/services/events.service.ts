@@ -108,8 +108,14 @@ export class EventsService {
   }
 
   async getRegisteredUsers(id:string){
-    const res = await axios.get<registeredUserIDs>(this.apiURL+`/users/${id}`);
-    return res.data;
+    let i = 0;
+    while(true){
+      const res = await axios.get<registeredUserIDs>(this.apiURL+`/users/${id}`);
+      if(res.data.users.length == res.data.count || i === 5){
+        return res.data;
+      }
+      i++;
+    }
   }
 
   async registerToEvent(eventId:string,userId:string){

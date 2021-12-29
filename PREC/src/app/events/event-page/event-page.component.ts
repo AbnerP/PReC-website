@@ -51,6 +51,7 @@ export class EventPageComponent implements OnInit {
         for(let i = 0; i < this.registeredUsers.length; i++){
           this.registeredUsers[i]["position"] = i+1;
         }
+        console.log(res.users);
       });
       console.log(this.checkID());
     });
