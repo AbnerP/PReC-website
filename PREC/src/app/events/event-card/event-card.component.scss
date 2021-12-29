@@ -18,6 +18,17 @@ $img-dims: 250px;
   transform: scale(.85);
 }
 
+@media (max-width:550px) {
+  #card{
+    transform: scale(.75);
+  }
+}
+@media (max-width:450px) {
+  #card{
+    transform: scale(.55);
+  }
+}
+
 #card:hover{
   transform: scale(.87) ;
 }
