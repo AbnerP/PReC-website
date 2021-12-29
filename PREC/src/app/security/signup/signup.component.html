@@ -2,7 +2,7 @@
   <h1>Sign Up</h1>
 
   <form (submit)="submitForm()" [formGroup]="form" autocomplete="on">
-    <div>
+    <div class="inline">
       <mat-form-field class="field" appearance="outline" >
         <mat-label>First Name</mat-label>
 
@@ -32,7 +32,7 @@
       </mat-form-field>
     </div>
 
-    <div>
+    <div class="inline">
       <mat-form-field class="field" appearance="outline" >
         <mat-label>Email</mat-label>
 
@@ -71,7 +71,7 @@
       </div>
     </div>
 
-    <div>
+    <div class="inline-3">
       <mat-form-field *ngIf="this.form.value['platforms'][0]" class="field" appearance="outline" >
         <mat-label>Playstation ID</mat-label>
 
