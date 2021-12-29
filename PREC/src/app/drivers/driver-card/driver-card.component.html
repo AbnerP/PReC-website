@@ -4,7 +4,7 @@
   <a href="{{driver.kudosPrimeLink}}">{{driver.gamertag}}</a>
   <div class="roles">
     <span *ngFor="let role of driver.teamRole;let i = index">
-      <span class="roleSeparator" *ngIf="driver.teamRole.length-1 === i" >|</span>
+      <span class="roleSeparator" *ngIf="i >= 1" >|</span>
       <span class="roleName">{{role}}</span>
     </span>
   </div>

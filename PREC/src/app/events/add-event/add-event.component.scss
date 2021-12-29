@@ -182,3 +182,6 @@ button{
   color: rgb(180, 180, 180);
 }
 
+::ng-deep .field input,textarea {
+  caret-color: $prec-yellow;
+}

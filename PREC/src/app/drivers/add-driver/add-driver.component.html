@@ -1,6 +1,6 @@
 <div class="body">
   <div class="driverForm" [formGroup]="form">
-    <mat-form-field  appearance="outline" >
+    <mat-form-field class="field" appearance="outline" >
       <mat-label>Name</mat-label>
 
       <input matInput
@@ -15,7 +15,7 @@
 
     </mat-form-field>
 
-    <div class="roles" formArrayName="teamRole">
+    <div class="roles field" formArrayName="teamRole">
       <div *ngFor="let r of teamRole.controls, let i = index">
         <div class="role" [formGroupName]="i">
           <mat-form-field  appearance="outline" >
@@ -31,7 +31,7 @@
       <button class="newRole" (click)="addTeamRole()">+</button>
     </div>
 
-    <mat-form-field  appearance="outline" >
+    <mat-form-field class="field" appearance="outline" >
       <mat-label>Gamer Tag</mat-label>
 
       <input matInput
@@ -45,7 +45,7 @@
 
     </mat-form-field>
 
-    <mat-form-field  appearance="outline" >
+    <mat-form-field class="field" appearance="outline" >
       <mat-label>Kudos Prime Link</mat-label>
 
       <input matInput
@@ -61,7 +61,7 @@
 
     <input type="file" id="file" (change)="onImageUploaded($event)">
     <label for="file" class="file-btn">Upload Image</label>
-    
+
     <img [src]="imageSrc" *ngIf="imageSrc" class="preview">
 
     <button class="submitBTN" mat-stroked-button type="submit" [disabled]="!form.valid" (click)="saveChanges()">Submit</button>

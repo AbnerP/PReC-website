@@ -169,3 +169,7 @@ button{
 ::placeholder {
   color: rgb(180, 180, 180);
 }
+
+::ng-deep .field input {
+  caret-color: $prec-yellow;
+}

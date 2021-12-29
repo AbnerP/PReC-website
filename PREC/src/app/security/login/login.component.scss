@@ -99,3 +99,7 @@ a{
   padding: 2vh;
   color: $prec-yellow;
 }
+
+::ng-deep .field input {
+  caret-color: $prec-yellow;
+}

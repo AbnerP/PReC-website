@@ -1,8 +1,7 @@
-<!-- {{formData | json}} -->
 <div class="calculator-form" [formGroup]="form">
   <h1>Race Strategy Calculator</h1>
   <div class="miscData">
-    <mat-form-field class="raceLengthField" floatLabel="always" appearance="outline" >
+    <mat-form-field class="raceLengthField field" floatLabel="always" appearance="outline" >
       <mat-label>Length</mat-label>
 
       <input matInput
@@ -21,7 +20,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="pitLossField" floatLabel="always" appearance="outline">
+    <mat-form-field class="pitLossField field" floatLabel="always" appearance="outline">
       <mat-label>Pit Loss</mat-label>
 
       <input matInput
@@ -48,7 +47,7 @@
       <div class="tire" formGroupName="{{t}}">
 
         <div>
-          <mat-form-field appearance="outline">
+          <mat-form-field class="field" appearance="outline">
             <mat-label>Tire</mat-label>
 
             <input matInput
@@ -72,7 +71,7 @@
         <div formArrayName="times">
           <div *ngFor="let time of getTimesFormsArray(t).controls, let l = index"><br>
             <div [formGroupName]=l>
-              <mat-form-field class="lap" appearance="outline">
+              <mat-form-field class="lap field" appearance="outline">
                 <mat-label>Lap {{l+1}}</mat-label>
                 <input matInput
                 formControlName="lap"

@@ -3,7 +3,7 @@
 
   <form (submit)="submitForm()" [formGroup]="form" autocomplete="on">
     <div>
-      <mat-form-field  appearance="outline" >
+      <mat-form-field class="field" appearance="outline" >
         <mat-label>First Name</mat-label>
 
         <input matInput
@@ -17,7 +17,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field  appearance="outline" >
+      <mat-form-field class="field" appearance="outline" >
         <mat-label>Last Name</mat-label>
 
         <input matInput
@@ -31,8 +31,9 @@
         </mat-error>
       </mat-form-field>
     </div>
+
     <div>
-      <mat-form-field  appearance="outline" >
+      <mat-form-field class="field" appearance="outline" >
         <mat-label>Email</mat-label>
 
         <input matInput
@@ -49,7 +50,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field *ngIf="mode !== 'settings'" appearance="outline" >
+      <mat-form-field *ngIf="mode !== 'settings'" class="field" appearance="outline" >
         <mat-label>Password</mat-label>
 
         <input matInput
@@ -71,7 +72,7 @@
     </div>
 
     <div>
-      <mat-form-field  *ngIf="this.form.value['platforms'][0]" appearance="outline" >
+      <mat-form-field *ngIf="this.form.value['platforms'][0]" class="field" appearance="outline" >
         <mat-label>Playstation ID</mat-label>
 
         <input matInput
@@ -79,14 +80,14 @@
 
       </mat-form-field>
 
-      <mat-form-field *ngIf="this.form.value['platforms'][1]" appearance="outline" >
+      <mat-form-field *ngIf="this.form.value['platforms'][1]" class="field" appearance="outline" >
         <mat-label>Xbox ID</mat-label>
 
         <input matInput
         formControlName="xboxgamertag">
       </mat-form-field>
 
-      <mat-form-field *ngIf="this.form.value['platforms'][2]" appearance="outline" >
+      <mat-form-field *ngIf="this.form.value['platforms'][2]" class="field" appearance="outline" >
         <mat-label>Steam ID</mat-label>
 
         <input matInput

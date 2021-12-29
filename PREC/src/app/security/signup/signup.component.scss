@@ -127,3 +127,7 @@ a{
     background-color: #ffd000;
   }
 }
+
+::ng-deep .field input {
+  caret-color: $prec-yellow;
+}
