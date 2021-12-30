@@ -1,3 +1,4 @@
+@use 'sass:math';
 $prec-yellow:rgb(255, 208, 0);
 $prec-yellowSecondary:#ffdb0e;
 $prec-blue:#252B42;
@@ -114,19 +115,19 @@ $grey:rgb(115, 115, 115);
         }
         .mat-column-firstName{
           text-align: center;
-          width: $table-width/4;
+          width: math.div($table-width, 4);
         }
         .mat-column-lastName{
           text-align: center;
-          width: $table-width/4;
+          width: math.div($table-width, 4);
         }
         .mat-column-position{
           text-align: center;
-          width: $table-width/4;
+          width: math.div($table-width, 4);
         }
         .mat-column-_id{
           text-align: center;
-          width: $table-width/4;
+          width: math.div($table-width, 4);
         }
 
         .idRow{
