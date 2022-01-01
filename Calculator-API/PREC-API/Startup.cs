@@ -37,11 +37,14 @@ namespace PREC_API
             services.AddCors(options => {
                 options.AddDefaultPolicy(builder =>
                 {
-                    var frontendURL = Configuration.GetValue<string>("frontend_url");
-                    builder.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader()
-                    .WithExposedHeaders(new string[] { "totalAmountOfRecords" });
+                    //var frontendURL = Configuration.GetValue<string>("frontend_url");
+                    //builder.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader()
+                    //.WithExposedHeaders(new string[] { "totalAmountOfRecords" });
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                 });
             });
+
+            services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

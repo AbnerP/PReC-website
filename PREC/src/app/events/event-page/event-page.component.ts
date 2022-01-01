@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { eventDTO } from 'src/app/models/events.model';
 import { userInfo, userInfoWithId } from 'src/app/models/user.model';
 import { EventsService } from 'src/app/services/events.service';
@@ -39,7 +39,9 @@ export class EventPageComponent implements OnInit {
 
   constructor(private service:EventsService,
     private userService:SecurityService,
-    private route:ActivatedRoute) { }
+    private route:ActivatedRoute,
+    private router:Router) { }
+
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -63,13 +65,13 @@ export class EventPageComponent implements OnInit {
   register(eventId:string){
     const userId = getFieldFromJWT("userId");
     this.service.registerToEvent(eventId,userId).then(res =>{
-      window.location.reload();
+      this.router.navigate(['events']);
     });
   }
   withdraw(eventId:string){
     const userId = getFieldFromJWT("userId");
     this.service.withdrawFromEvent(eventId,userId).then(res =>{
-      window.location.reload();
+      this.router.navigate(['events']);
     });
   }
 

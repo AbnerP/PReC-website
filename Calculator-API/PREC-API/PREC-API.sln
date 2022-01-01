@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PREC-API", "PREC-API.csproj", "{96593EF7-052F-463E-99CF-0F0554BEBB2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96593EF7-052F-463E-99CF-0F0554BEBB2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96593EF7-052F-463E-99CF-0F0554BEBB2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96593EF7-052F-463E-99CF-0F0554BEBB2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96593EF7-052F-463E-99CF-0F0554BEBB2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8662970-DA84-4737-9594-74ED2510EE46}
+	EndGlobalSection
+EndGlobal

@@ -29,4 +29,8 @@ export class NavBarComponent implements OnInit {
     this.innerWidth = window.innerWidth;
     this.cutOff = this.innerWidth < 950;
   }
+
+  home(){
+    this.router.navigate(['/home']);
+  }
 }

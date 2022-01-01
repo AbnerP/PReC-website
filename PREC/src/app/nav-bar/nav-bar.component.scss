@@ -20,6 +20,7 @@
 img{
   width: 275px;
   height: auto;
+  cursor: pointer;
 }
 
 .routes{
@@ -88,7 +89,7 @@ a{
 
 
 .menuLinks{
-  color: #FBCC02;
+  color: white;
   text-decoration: none;
   font-family: "Montserrat-Medium";
   font-size: 16px;
@@ -118,7 +119,7 @@ a{
     height: fit-content;
   }
   a{
-    color: #FBCC02;
+    color: white;
     text-decoration: none;
     font-family: "Montserrat-Medium";
     font-size: 16px;
@@ -138,6 +139,11 @@ a{
   img{
     width: 200px;
     height: auto;
+  }
+
+  .login , .signup{
+    font-size: 10px;
+    padding: 2vw;
   }
 }
 

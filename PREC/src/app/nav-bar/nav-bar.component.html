@@ -12,7 +12,7 @@
 
 <div class="container">
   <div class="logo-container">
-    <img [src]="imgURL">
+    <img [src]="imgURL" (click)="home()" >
   </div>
 
   <div class="routes" *ngIf="!cutOff">

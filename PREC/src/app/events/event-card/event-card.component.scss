@@ -22,10 +22,16 @@ $img-dims: 250px;
   #card{
     transform: scale(.75);
   }
+  #card:hover{
+    transform: scale(.76) ;
+  }
 }
 @media (max-width:450px) {
   #card{
     transform: scale(.55);
+  }
+  #card:hover{
+    transform: scale(.56) ;
   }
 }
 
