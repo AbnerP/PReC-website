@@ -19,6 +19,12 @@ $prec-blue:#252B42;
   width: 100%;
   padding: 2vh 0;
 }
+@media (max-width:750px) {
+  .cards{
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
 .card{
   margin: 5vh 0;
