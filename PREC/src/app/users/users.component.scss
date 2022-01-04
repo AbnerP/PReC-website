@@ -32,6 +32,27 @@ table{
   align-items: center;
 }
 
+@media (max-width:600px) {
+  table{
+    width: 95vw;
+    .mat-column-firstName{
+      font-size: 9px;
+    }
+    .mat-column-lastName{
+      font-size: 9px;
+    }
+    .mat-column-email{
+      font-size: 9px;
+    }
+    .mat-column-role{
+      font-size: 9px;
+    }
+  }
+  button{
+    font-size: 8px;
+    width: 6vw;
+  }
+}
 .role{
   display: flex;
   flex-direction: column;
