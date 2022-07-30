@@ -12,4 +12,6 @@ export interface driverDTO{
   gamertag:string;
   kudosPrimeLink:string;
   imageURL:string;
+  steamID:string;
+  xboxID:string;
 }

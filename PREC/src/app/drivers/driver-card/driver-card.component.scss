@@ -50,3 +50,17 @@ a:visited{
   font-size: $font-size-a;
   color: $prec-yellow;
 }
+
+.tag{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.psn-logo{
+  border-radius: 0;
+  margin-right: .5rem;
+  object-fit: contain;
+  width: 24px;
+  height: 24px;
+}

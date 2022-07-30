@@ -1,7 +1,16 @@
 <div class="card">
   <img [src]="driver.imageURL" alt="Abner">
   <h2 class="name">{{driver.name}}</h2>
-  <a href="{{driver.kudosPrimeLink}}">{{driver.gamertag}}</a>
+
+  <span *ngIf="driver.gamertag" class="tag">
+    <img src="assets/imgs/psnLogo.png" class="psn-logo" alt="psnLogo">
+    <a  href="{{driver.kudosPrimeLink}}">{{driver.gamertag}}</a>
+  </span>
+  <span *ngIf="driver.steamID" class="tag">
+    <img src="assets/imgs/steamLogo.png" class="psn-logo" alt="steamLogo">
+    <a *ngIf="driver.steamID" href="{{driver.kudosPrimeLink}}">{{driver.steamID}}</a>
+  </span>
+  <a *ngIf="driver.xboxID" href="{{driver.kudosPrimeLink}}">{{driver.xboxID}}</a>
   <div class="roles">
     <span *ngFor="let role of driver.teamRole;let i = index">
       <span class="roleSeparator" *ngIf="i >= 1" >|</span>

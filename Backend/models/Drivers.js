@@ -21,6 +21,14 @@ const driverSchema = mongoose.Schema({
     imageURL: {
         type:String,
         required:false
+    },
+    steamID: {
+        type:String,
+        required:false
+    },
+    xboxID: {
+        type:String,
+        required:false
     }
 });
 

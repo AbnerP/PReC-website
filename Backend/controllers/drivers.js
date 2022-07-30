@@ -17,7 +17,7 @@ conn.once('open', () => {
 
 exports.driversGetAll = async (req,res,next) =>{
     try{
-        const drivers = await Driver.find().select(' name teamRole gamertag kudosPrimeLink imageURL');
+        const drivers = await Driver.find().select(' name teamRole gamertag kudosPrimeLink imageURL steamID xboxID');
         const response = {
             drivers: drivers.map(driver =>{
                 return{
@@ -26,7 +26,9 @@ exports.driversGetAll = async (req,res,next) =>{
                     teamRole: driver.teamRole,
                     gamertag: driver.gamertag,
                     kudosPrimeLink:driver.kudosPrimeLink,
-                    imageURL: driver.imageURL
+                    imageURL: driver.imageURL,
+                    steamID: driver.steamID,
+                    xboxID: driver.xboxID
                 }
             }),
             count: drivers.length
