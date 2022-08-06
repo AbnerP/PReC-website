@@ -46,7 +46,7 @@ exports.getUserByID = async (req,res,next) =>{
     } 
 };
 
-exports.signup = (req,res,next) =>{
+exports.signup = async (req,res,next) =>{
     User.find({email:req.body.email})
         .exec()
         .then(user =>{
@@ -55,7 +55,7 @@ exports.signup = (req,res,next) =>{
                     message: `User with ${req.body.email} already exists`
                 });
             }else{
-                bcrypt.hash(req.body.password, 10 , (err,hash) =>{
+                bcrypt.hash(req.body.password, 10 , async (err,hash) =>{
                     if(err){
                         return res.status(500).json({
                             error:err
@@ -73,7 +73,7 @@ exports.signup = (req,res,next) =>{
                             xboxgamertag:req.body.xboxgamertag                        
                         });
                         
-                        subscribeToMailingList(req.body.email);
+                        await subscribeToMailingList(req.body.email);
             
                         user.save()
                             .then( result =>{
@@ -243,7 +243,7 @@ exports.subscribeAllUsers = async (req,res,next) =>{
     });
 };
 
-const subscribeToMailingList  = async (user) => {
+const subscribeToMailingList  = async (email) => {
     try {
         const listId = process.env.MAILCHIMP_LIST_ID;
         const mailChimpAPIKey = process.env.MAILCHIMP_API_KEY;
@@ -254,13 +254,12 @@ const subscribeToMailingList  = async (user) => {
             server: serverCode
         });
 
-        const subscriberHash = md5(user.email.toLowerCase());
+        const subscriberHash = md5(email.toLowerCase());
         await mailchimp.lists.setListMember(
             listId,
             subscriberHash,
             {
-                email_address: user.email,
-                full_name: user.firstName,
+                email_address: email,
                 status_if_new: "subscribed"
             }
         );
