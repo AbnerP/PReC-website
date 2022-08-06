@@ -20,4 +20,7 @@ router.patch('/update/:userId',checkPersonalAdmin,UserController.updateUser)
 //DELETE
 router.delete('/:userId', checkAuth, UserController.delete);
 
+//Mailinglist
+router.post("/subscribe",UserController.subscribeAllUsers);
+
 module.exports = router;

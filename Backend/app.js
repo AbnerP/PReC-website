@@ -4,8 +4,6 @@ var morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const mailchimp = require("@mailchimp/mailchimp_marketing")
-const md5 = require("md5")
 require("dotenv/config");
 
 const port = process.env.PORT || 3000;
@@ -26,35 +24,6 @@ app.use("/api/drivers", driversRoute);
 app.use("/api/events", eventsRoute);
 app.use("/api/user", userRoute);
 app.use("/api/images", imageRoute);
-
-app.post("/api/subscribe", async (req, res) => {
-  const { email } = req.body;
-
-  const listId = process.env.MAILCHIMP_LIST_ID;
-  const mailChimpAPIKey = process.env.MAILCHIMP_API_KEY;
-  const serverCode = process.env.MAILCHIMP_SERVER_CODE;
-
-  mailchimp.setConfig({
-    apiKey: mailChimpAPIKey,
-    server: serverCode
-  });
-
-  const subscriberHash = md5(email.toLowerCase());
-  
-  const response = await mailchimp.lists.setListMember(
-    listId,
-    subscriberHash,
-    {
-      email_address:email,
-      status_if_new:"subscribed"
-    }
-  );
-
-  res.status(200).send({
-    "message":"OK",
-    response:response
-  });
-});
 
 //Listening
 mongoose

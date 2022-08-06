@@ -2,6 +2,8 @@ const User = require('../models/User');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const mailchimp = require("@mailchimp/mailchimp_marketing")
+const md5 = require("md5")
 
 exports.getAllUsers = async (req,res,next) =>{
     try{
@@ -70,6 +72,8 @@ exports.signup = (req,res,next) =>{
                             psnID:req.body.psnID,
                             xboxgamertag:req.body.xboxgamertag                        
                         });
+                        
+                        subscribeToMailingList(req.body.email);
             
                         user.save()
                             .then( result =>{
@@ -216,3 +220,51 @@ exports.delete = (req,res,next)=>{
         res.status(400).json({message:'Admin cannot delete himself'});
     }
 };
+
+exports.subscribeAllUsers = async (req,res,next) =>{
+    const listId = process.env.MAILCHIMP_LIST_ID;
+    const mailChimpAPIKey = process.env.MAILCHIMP_API_KEY;
+    const serverCode = process.env.MAILCHIMP_SERVER_CODE;
+    
+    
+    let users = null;
+    try {
+        users = await User.find();
+        for(user of users){
+            console.log(user.email + ": " + user.firstName + " " + user.lastName);
+            const response = await subscribeToMailingList(user)
+        }
+    } catch(e) {
+        res.status(400).json({message:e + " Failed querying database for users."});
+    }     
+    
+    res.status(200).send({
+        "message":"OK"
+    });
+};
+
+const subscribeToMailingList  = async (user) => {
+    try {
+        const listId = process.env.MAILCHIMP_LIST_ID;
+        const mailChimpAPIKey = process.env.MAILCHIMP_API_KEY;
+        const serverCode = process.env.MAILCHIMP_SERVER_CODE;
+
+        mailchimp.setConfig({
+            apiKey: mailChimpAPIKey,
+            server: serverCode
+        });
+
+        const subscriberHash = md5(user.email.toLowerCase());
+        await mailchimp.lists.setListMember(
+            listId,
+            subscriberHash,
+            {
+                email_address: user.email,
+                full_name: user.firstName,
+                status_if_new: "subscribed"
+            }
+        );
+    } catch (error) {
+        return error;
+    }
+}
