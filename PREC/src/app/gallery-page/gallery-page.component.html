@@ -1,1 +1,10 @@
-<p>gallery-page works!</p>
+<div class="body">
+    <div class="header">
+      <h1>Gallery</h1>
+    </div>
+    <div class="images">
+      <div class="imageContainer"  *ngFor="let image of images">
+          <img class="image"src="{{image}}" alt="">
+      </div> 
+    </div>
+</div>
