@@ -1,19 +1,31 @@
 ﻿<Properties StartupConfiguration="{96593EF7-052F-463E-99CF-0F0554BEBB2C}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/CalculatorController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Classes/TelemetryData.cs">
     <Files>
-      <File FileName="Controllers/CalculatorController.cs" Line="23" Column="10" />
-      <File FileName="Program.cs" Line="1" Column="1" />
-      <File FileName="Startup.cs" Line="42" Column="84" />
-      <File FileName="appsettings.json" Line="11" Column="150" />
+      <File FileName="Controllers/CalculatorController.cs" Line="30" Column="13" />
+      <File FileName="Program.cs" />
+      <File FileName="Startup.cs" />
+      <File FileName="appsettings.json" />
+      <File FileName="Models/EmptyJSONFile.json" />
+      <File FileName="Models/Tire.cs" />
+      <File FileName="Classes/TelemetryData.cs" Line="33" Column="35" />
+      <File FileName="Classes/Calculator.cs" />
+      <File FileName="Classes/Strategy.cs" />
+      <File FileName="Classes/TireTelemetry.cs" />
+      <File FileName="DTO/TireTelemetryDTO.cs" Line="6" Column="5" />
+      <File FileName="DTO/TelemetryDTO.cs" Line="7" Column="5" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PREC-API" expanded="True">
             <Node name="PREC-API" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="CalculatorController.cs" selected="True" />
+              <Node name="Classes" expanded="True">
+                <Node name="TelemetryData.cs" selected="True" />
               </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="DTO" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
             </Node>
           </Node>
         </State>
