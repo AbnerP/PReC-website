@@ -27,6 +27,7 @@ import { LoginComponent } from './security/login/login.component';
 import { SignupComponent } from './security/signup/signup.component';
 import { UsersComponent } from './users/users.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { GalleryPageComponent } from './gallery-page/gallery-page.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
       SignupComponent,
       UsersComponent,
       AccountSettingsComponent,
+      GalleryPageComponent,
    ],
   imports: [
     BrowserModule,
