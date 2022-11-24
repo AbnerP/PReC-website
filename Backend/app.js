@@ -25,7 +25,7 @@ app.use("/api/events", eventsRoute);
 app.use("/api/user", userRoute);
 app.use("/api/gallery", galleryRoute);
 app.use("/api/images", imageRoute);
-
+ 
 //Listening
 mongoose
   .connect(process.env.DB_CONNECTION, {

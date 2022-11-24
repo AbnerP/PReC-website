@@ -55,7 +55,7 @@ exports.imageCreateNew = async (req,res,next) =>{
 
 exports.imageDelete = async (req,res,next) =>{
     try{
-        const image = await Image.findOne({ 'imageURL': req.params.imageId });//findById(req.params.imageId);
+        const image = await Image.findById(req.params.imageId);
         if(image){
             try{
                 console.log("Attempting to delete image with ID: "+image.imageURL);
