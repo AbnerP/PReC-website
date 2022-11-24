@@ -12,7 +12,7 @@ const driversRoute = require("./routes/drivers");
 const eventsRoute = require("./routes/events");
 const userRoute = require("./routes/user");
 const imageRoute = require("./routes/image");
-
+const galleryRoute = require("./routes/gallery")
 //Middleware
 app.use(morgan("dev"));
 app.use(cors());
@@ -23,6 +23,7 @@ app.use("/api/uploads", express.static("uploads"));
 app.use("/api/drivers", driversRoute);
 app.use("/api/events", eventsRoute);
 app.use("/api/user", userRoute);
+app.use("/api/gallery", galleryRoute);
 app.use("/api/images", imageRoute);
 
 //Listening
@@ -39,3 +40,4 @@ mongoose
   });
 
 module.exports = app;
+ 
