@@ -1,25 +1,74 @@
 <div class="body">
-
-    <div class="header">
-      <app-authorize-view [role]="'admin'">
-        <ng-container authorized>
-          <div class="addDriver">
-            <button mat-flat-button routerLink="new" routerLinkActive="active">Add Image</button>
-          </div>
-        </ng-container>
-      </app-authorize-view>
-    </div>
-    
+  
     <div class="section" *ngFor="let section of gallery.sections">
+
+      <br *ngIf="section.position > 1">
+
       <h1>{{section.name}}</h1>
-      <div class="mediaContainer">
+
+      <app-authorize-view [role]="'admin'">
+
+        <ng-container authorized>
+          <div class="meta-container">
+
+            <span class="meta-info">Position: {{section.position}}</span>
+
+            <div class="options">
+              
+              <button mat-button color="accent" (click)="moveSectionUp(section.position-1)">+</button>
+              <button mat-button color="accent" (click)="moveSectionDown(section.position-1)">-</button>
+              <button mat-button color="warn">X</button>
+              
+            </div>
+
+          </div>
+
+        </ng-container>
+
+      </app-authorize-view>
+
+
+
+      <hr>
+
+
+
+      <div class="section-gallery">
+
         <div class="media" *ngFor="let m of section.media">
-          <a href="{{m.sourceURL}}">
-            <img *ngIf="m.type === 'image'" class="image" src="{{m.sourceURL}}" alt="{{m.caption}}">
+
+          <a href="{{m.sourceURL}}"  *ngIf="m.type === 'image'">
+            <img class="image" src="{{m.sourceURL}}" alt="{{m.caption}}">
           </a>
-          <app-media-item *ngIf="m.type === 'video'"  class="image" [rawURL]="m.sourceURL"></app-media-item>
+
+          <app-media-item *ngIf="m.type === 'video'"[rawURL]="m.sourceURL"></app-media-item>
+          
+
+          <!-- OPTIONS -->
+          <app-authorize-view [role]="'admin'">
+            <ng-container authorized>
+
+              <div class="meta-container">
+
+                <span class="meta-info">Position: {{m.position}}</span>
+  
+                <div class="options">
+                  
+                  <button mat-button color="accent" (click)="moveMediaUp(section.position-1, m.position-1)">+</button>
+                  <button mat-button color="accent" (click)="moveMediaDown(section.position-1, m.position-1)">-</button>
+                  <button mat-button color="warn">X</button>
+                  
+                </div>
+
+              </div>
+    
+            </ng-container>
+          </app-authorize-view>
+         
         </div>
+
       </div>
+      
     </div>
 
 </div>

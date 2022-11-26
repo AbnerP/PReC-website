@@ -14,65 +14,91 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   encapsulation: ViewEncapsulation.None
 })
 export class GalleryPageComponent implements OnInit {
-  private lightGallery!: LightGallery;
-  private needRefresh = false;
-
-  ngAfterViewChecked(): void {
-    if (this.needRefresh) {
-      this.lightGallery.refresh();
-      this.needRefresh = false;
-    }
-  }
+  gallery: sectionsDTO;
 
   constructor(private service:GalleryService,
     private router:Router,
     private route:ActivatedRoute,
     private _sanitizer: DomSanitizer) { }
-
-  images: Array<imageDTO> = [];
-  videoURL:string = "https://www.youtube.com/embed/u9Hp6-Ynb2Q";
   
-  safeURL: SafeUrl;
-  gallery: sectionsDTO;
 
   ngOnInit(): void {
-    this.reloadImages();
-    this.refreshGalleryLayout();
-    this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(this.videoURL);
+    this.refreshGallery();
   }
 
-  deleteImage(id:string){
-    console.log(id);
-    this.service.deleteImage(id).then(() => this.reloadImages() );
-  }
-
-  onInit = (detail): void => {
-    this.lightGallery = detail.instance;
-  };
-
-  reloadImages(){
-    this.service.getImages().then(gallery =>{
-      this.images = gallery.images;
-    });
-  }
-
-  refreshGalleryLayout() {
+  refreshGallery() {
     this.service.getGalleryLayout().then(data => {
       this.gallery = data;
       console.log(this.gallery)
     });
   }
 
-  settings = {
-    counter: false,
-    plugins: [lgZoom]
-  };
+// SECTION FUNCTIONS
+  moveSectionUp(sectionIndex:number){
+    if(sectionIndex == 0) return;
 
-  onBeforeSlide = (detail: BeforeSlideDetail): void => {
-    const { index, prevIndex } = detail;
-    console.log(index, prevIndex);
-  };
+    let currentItem = this.gallery.sections[sectionIndex];
+    let previousItem = this.gallery.sections[sectionIndex-1];
 
+    currentItem.position--;
+    previousItem.position++;
+
+    this.sortSections();
+  }
+
+  moveSectionDown(sectionIndex:number){
+    if(sectionIndex == this.gallery.sections.length-1) return;
+    let currentItem = this.gallery.sections[sectionIndex];
+    let afterItem = this.gallery.sections[sectionIndex+1];
+
+    currentItem.position++;
+    afterItem.position--;
+    
+    this.sortSections();
+  }
+
+  deleteSection(id:string){
+    console.log(id);
+    // this.service.deleteImage(id).then(() => this.reloadImages() );
+  }
   
+  sortSections(){
+    this.gallery.sections.sort((a,b)=>{return a.position - b.position});
+  }
 
+// MEDIA FUNCTIONS
+  moveMediaUp(sectionIndex:number,mediaIndex:number){
+    if(mediaIndex == 0) return;
+
+    let section = this.gallery.sections[sectionIndex];
+    let currentItem = section.media[mediaIndex];
+    let previousItem = section.media[mediaIndex-1];
+    currentItem.position--;
+    previousItem.position++;
+
+    this.sortMediaForSection(sectionIndex);
+  }
+
+  moveMediaDown(sectionIndex:number,mediaIndex:number){
+    let section = this.gallery.sections[sectionIndex];
+
+    if(mediaIndex == section.media.length-1) return;
+
+    let currentItem = section.media[mediaIndex];
+    let afterItem = section.media[mediaIndex+1];
+    currentItem.position++;
+    afterItem.position--;
+    
+    this.sortMediaForSection(sectionIndex);
+  }
+
+  deleteMedia(id:string){
+    console.log(id);
+    // this.service.deleteImage(id).then(() => this.reloadImages() );
+  }
+
+  sortMediaForSection(sectionIndex:number){
+    let section = this.gallery.sections[sectionIndex];
+    section.media.sort((a,b)=>{return a.position - b.position});
+  }
 }

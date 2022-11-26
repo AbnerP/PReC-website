@@ -9,7 +9,7 @@ export interface media {
 export interface section{
   name:string,
   date:string,
-  position:string,
+  position:number,
   media:Array<media>
 }
 
