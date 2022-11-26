@@ -4,8 +4,7 @@ $prec-blue:#252B42;
 
 $image-dimension:28vw;
 
-@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lightgallery.css');
-@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-zoom.css');
+
 .header{
   padding-top: 3vh;
   width: 100%;
@@ -78,6 +77,16 @@ h1{
   border-radius: 5px;
 }
 
+.add-section-button{
+  width: 100vw;
+  height: 10rem;
+}
+
+.add-media-button{
+  width: $image-dimension;
+  height: $image-dimension+12;
+}
+
 .meta-container{
   display: flex;
   flex-direction: column;
@@ -92,4 +101,46 @@ h1{
     width: 80vw;
     height: 80vw;
   }
+}
+
+
+::ng-deep .mat-form-field {
+  .mat-input-element {
+    color: white;
+  }
+  .mat-form-field-label {
+    color: rgb(180, 180, 180);
+  }
+  .mat-form-field-outline{
+    color:$prec-yellow;
+  }
+  .mat-form-field-required-marker {
+    color: $prec-yellow;
+  }
+}
+
+::placeholder {
+  color: rgb(180, 180, 180);
+}
+
+::ng-deep .mat-form-field.mat-focused {
+  .mat-form-field-label {
+    color: white;
+  }
+  .mat-form-field-ripple {
+    background-color: $prec-yellow;
+  }
+  .mat-form-field-required-marker {
+    color: $prec-yellow;
+  }
+  .mat-form-field-outline{
+    color:$prec-yellow;
+  }
+  .mat-input-element {
+    color: white;
+  }
+}
+
+::ng-deep .field input {
+  caret-color: $prec-yellow;
 }

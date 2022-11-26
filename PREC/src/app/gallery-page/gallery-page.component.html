@@ -10,9 +10,17 @@
 
         <ng-container authorized>
           <div class="meta-container">
-
+            
             <span class="meta-info">Position: {{section.position}}</span>
 
+            <mat-form-field  class="field" appearance="outline" >
+              <mat-label>Section Name</mat-label>
+  
+              <input matInput 
+              placeholder="{{section.name}}"
+              (keyup)="updateSectionName($event,section.position-1)">
+            </mat-form-field>
+            
             <div class="options">
               
               <button mat-button color="accent" (click)="moveSectionUp(section.position-1)">+</button>
@@ -67,8 +75,24 @@
          
         </div>
 
+        <app-authorize-view [role]="'admin'">
+          <ng-container authorized>
+
+            <div class="media">
+              <button class="add-media-button" mat-button color="accent">Add Media +</button>
+            </div>
+    
+          </ng-container>
+        </app-authorize-view>
+
       </div>
       
     </div>
+
+    <app-authorize-view [role]="'admin'">
+      <ng-container authorized>
+        <button class="add-section-button" mat-button color="accent" (click)="addSection()">Add Section +</button>
+      </ng-container>
+    </app-authorize-view>
 
 </div>

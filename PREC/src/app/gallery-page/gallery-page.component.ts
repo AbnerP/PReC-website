@@ -27,10 +27,11 @@ export class GalleryPageComponent implements OnInit {
   }
 
   refreshGallery() {
-    this.service.getGalleryLayout().then(data => {
-      this.gallery = data;
-      console.log(this.gallery)
-    });
+    // this.service.getGalleryLayout().then(data => {
+    //   this.gallery = data;
+    //   console.log(this.gallery)
+    // });
+    this.gallery = this.service.getGalleryLayoutMock();
   }
 
 // SECTION FUNCTIONS
@@ -60,13 +61,34 @@ export class GalleryPageComponent implements OnInit {
   deleteSection(sectionIndex:number){
     this.gallery.sections.splice(sectionIndex,1);
 
+    this.setSectionPositions();
+  }
+
+  addSection(){
+    let emptySection:section = {
+      name: "New Section",
+      date:"string",
+      position:this.gallery.sections.length+1,
+      media:[]
+    }
+    this.gallery.sections.push(emptySection);
+
+    this.setSectionPositions();
+  }
+
+  sortSections(){
+    this.gallery.sections.sort((a,b)=>{return a.position - b.position});
+  }
+
+  updateSectionName(event:any,sectionIndex:number){
+   this.gallery.sections[sectionIndex].name = event.target.value;
+   this.setSectionPositions()
+  }
+
+  setSectionPositions(){
     for(let i = 0; i < this.gallery.sections.length;i++){
       this.gallery.sections[i].position = i+1;
     }
-  }
-  
-  sortSections(){
-    this.gallery.sections.sort((a,b)=>{return a.position - b.position});
   }
 
 // MEDIA FUNCTIONS
@@ -102,10 +124,6 @@ export class GalleryPageComponent implements OnInit {
     for(let i = 0; i < section.media.length;i++){
       section.media[i].position = i+1;
     }
-  }
-
-  updateMediaPositions(sectionIndex:number){
-
   }
 
   sortMediaForSection(sectionIndex:number){

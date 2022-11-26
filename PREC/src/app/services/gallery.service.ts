@@ -30,6 +30,7 @@ export class GalleryService {
     return data;
   }
 
+  
   async deleteImage(id:string){
     const token = localStorage.getItem("JWT")
     const jwt = `Bearer ${token}`;
@@ -51,7 +52,7 @@ export class GalleryService {
         Authorization: jwt,
       }
     };
-
+    
     const fd = new FormData();
     if(img == null){
       return null;
@@ -69,10 +70,68 @@ export class GalleryService {
           m.sourceURL = environment.backendAPIURL + '/images/'+ m.sourceURL;
         }
         // if(m.type === "video"){
-        //   m.sourceURL = this._sanitizer.bypassSecurityTrustResourceUrl(m.sourceURL);
-        // }
+          //   m.sourceURL = this._sanitizer.bypassSecurityTrustResourceUrl(m.sourceURL);
+          // }
+        }
       }
     }
-  }
-
+    
+     getGalleryLayoutMock(){
+      let mockData:sectionsDTO = {
+        "_id": "6382128677fc21036d7582df",
+        "sections": [
+            {
+                "name": "Event 2",
+                "date": "",
+                "position": 2,
+                "media": [
+                    {
+                        "position": 1,
+                        "type": "image",
+                        "sourceURL": "assets/imgs/bg2.png",
+                        "caption": "media 1"
+                    },
+                    {
+                        "position": 2,
+                        "type": "image",
+                        "sourceURL": "assets/imgs/bg2.png",
+                        "caption": "media 2"
+                    },
+                    {
+                        "position": 3,
+                        "type": "image",
+                        "sourceURL": "assets/imgs/bg2.png",
+                        "caption": "media 2"
+                    },
+                    {
+                        "position": 4,
+                        "type": "image",
+                        "sourceURL": "assets/imgs/bg2.png",
+                        "caption": "media 2"
+                    }
+                ]
+            },
+            {
+                "name": "Event 1",
+                "date": "",
+                "position": 1,
+                "media": [
+                    {
+                        "position": 2,
+                        "type": "image",
+                        "sourceURL": "assets/imgs/bg2.png",
+                        "caption": "media 2"
+                    },
+                    {
+                        "position": 1,
+                        "type": "image",
+                        "sourceURL": "assets/imgs/bg2.png",
+                        "caption": "media 1"
+                    }
+                ]
+            }
+        ]
+    }
+    return mockData;
+    }
 }

@@ -15,7 +15,7 @@ export interface section{
 
 export interface sectionsDTO{
   _id:string,
-  sections:Array<section>
+  sections:Array<section>,
 }
 
 export interface galleryDTO{
