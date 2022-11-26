@@ -17,7 +17,7 @@
               
               <button mat-button color="accent" (click)="moveSectionUp(section.position-1)">+</button>
               <button mat-button color="accent" (click)="moveSectionDown(section.position-1)">-</button>
-              <button mat-button color="warn">X</button>
+              <button mat-button color="warn" (click)="deleteSection(section.position-1)">X</button>
               
             </div>
 
@@ -56,7 +56,7 @@
                   
                   <button mat-button color="accent" (click)="moveMediaUp(section.position-1, m.position-1)">+</button>
                   <button mat-button color="accent" (click)="moveMediaDown(section.position-1, m.position-1)">-</button>
-                  <button mat-button color="warn">X</button>
+                  <button mat-button color="warn" (click)="deleteMedia(section.position-1, m.position-1)">X</button>
                   
                 </div>
 

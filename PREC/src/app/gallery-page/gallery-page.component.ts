@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { imageDTO, sectionsDTO } from '../models/galleryDTO.model';
+import { imageDTO, section, sectionsDTO } from '../models/galleryDTO.model';
 import { GalleryService } from '../services/gallery.service';
 import lgZoom from 'lightgallery/plugins/zoom';
 import { BeforeSlideDetail } from 'lightgallery/lg-events';
@@ -57,9 +57,12 @@ export class GalleryPageComponent implements OnInit {
     this.sortSections();
   }
 
-  deleteSection(id:string){
-    console.log(id);
-    // this.service.deleteImage(id).then(() => this.reloadImages() );
+  deleteSection(sectionIndex:number){
+    this.gallery.sections.splice(sectionIndex,1);
+
+    for(let i = 0; i < this.gallery.sections.length;i++){
+      this.gallery.sections[i].position = i+1;
+    }
   }
   
   sortSections(){
@@ -92,9 +95,17 @@ export class GalleryPageComponent implements OnInit {
     this.sortMediaForSection(sectionIndex);
   }
 
-  deleteMedia(id:string){
-    console.log(id);
-    // this.service.deleteImage(id).then(() => this.reloadImages() );
+  deleteMedia(sectionIndex:number,mediaIndex:number){
+    let section = this.gallery.sections[sectionIndex];
+    section.media.splice(mediaIndex,1);
+
+    for(let i = 0; i < section.media.length;i++){
+      section.media[i].position = i+1;
+    }
+  }
+
+  updateMediaPositions(sectionIndex:number){
+
   }
 
   sortMediaForSection(sectionIndex:number){
