@@ -10,7 +10,7 @@
 
         <ng-container authorized>
           <div class="meta-container">
-            
+
             <span class="meta-info">Position: {{section.position}}</span>
 
             <mat-form-field  class="field" appearance="outline" >
@@ -18,7 +18,8 @@
   
               <input matInput 
               placeholder="{{section.name}}"
-              (keyup)="updateSectionName($event,section.position-1)">
+              (keyup)="updateSectionName($event,section.position-1)"
+              value="{{section.name}}">
             </mat-form-field>
             
             <div class="options">
@@ -78,8 +79,25 @@
         <app-authorize-view [role]="'admin'">
           <ng-container authorized>
 
-            <div class="media">
-              <button class="add-media-button" mat-button color="accent">Add Media +</button>
+            <div class="new-media-container">
+              <div class="new-media-container-inner" *ngIf="!youtubeURL">
+                <input type="file" id="file" (change)="onImageUploaded($event)">
+                <label for="file" class="file-btn">Upload Image</label>
+                <img  *ngIf="imageSrc"
+                [src]="imageSrc"
+                 class="preview">
+              </div>
+
+              <span class="meta-info">or</span>
+
+              <mat-form-field *ngIf="!imageSrc"  class="field" appearance="outline" >
+                <mat-label>Youtube Embeded URL</mat-label>
+                <input matInput 
+                placeholder="https://www.youtube.com/embed/..."
+                (keyup)="updateYoutubeUrl($event)">
+              </mat-form-field>
+
+              <button class="submitBTN" mat-stroked-button type="submit" [disabled]="!imageSrc && !youtubeURL" (click)="saveChanges()">Submit</button>
             </div>
     
           </ng-container>

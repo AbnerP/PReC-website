@@ -7,31 +7,35 @@ import { BeforeSlideDetail } from 'lightgallery/lg-events';
 import { LightGallery } from 'lightgallery/lightgallery';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
+
 @Component({
   selector: 'app-gallery-page',
   templateUrl: './gallery-page.component.html',
-  styleUrls: ['./gallery-page.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./gallery-page.component.scss']
 })
 export class GalleryPageComponent implements OnInit {
   gallery: sectionsDTO;
+  public consoleMessages: string[] = [];
 
   constructor(private service:GalleryService,
     private router:Router,
     private route:ActivatedRoute,
-    private _sanitizer: DomSanitizer) { }
-  
+    private _sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.refreshGallery();
   }
 
   refreshGallery() {
-    // this.service.getGalleryLayout().then(data => {
-    //   this.gallery = data;
-    //   console.log(this.gallery)
-    // });
-    this.gallery = this.service.getGalleryLayoutMock();
+    this.service.getGalleryLayout().then(data => {
+      this.gallery = data;
+    });
+  }
+
+  persistGalleryLayout(){
+    this.service.updateGalleryLayout(this.gallery).then(()=>{
+      this.refreshGallery();
+    });
   }
 
 // SECTION FUNCTIONS
@@ -45,6 +49,7 @@ export class GalleryPageComponent implements OnInit {
     previousItem.position++;
 
     this.sortSections();
+    this.persistGalleryLayout();
   }
 
   moveSectionDown(sectionIndex:number){
@@ -56,12 +61,14 @@ export class GalleryPageComponent implements OnInit {
     afterItem.position--;
     
     this.sortSections();
+    this.persistGalleryLayout();
   }
 
   deleteSection(sectionIndex:number){
     this.gallery.sections.splice(sectionIndex,1);
 
     this.setSectionPositions();
+    this.persistGalleryLayout();
   }
 
   addSection(){
@@ -74,6 +81,7 @@ export class GalleryPageComponent implements OnInit {
     this.gallery.sections.push(emptySection);
 
     this.setSectionPositions();
+    this.persistGalleryLayout();
   }
 
   sortSections(){
@@ -82,7 +90,8 @@ export class GalleryPageComponent implements OnInit {
 
   updateSectionName(event:any,sectionIndex:number){
    this.gallery.sections[sectionIndex].name = event.target.value;
-   this.setSectionPositions()
+   this.setSectionPositions();
+   this.persistGalleryLayout();
   }
 
   setSectionPositions(){
@@ -102,6 +111,7 @@ export class GalleryPageComponent implements OnInit {
     previousItem.position++;
 
     this.sortMediaForSection(sectionIndex);
+    this.persistGalleryLayout();
   }
 
   moveMediaDown(sectionIndex:number,mediaIndex:number){
@@ -115,6 +125,7 @@ export class GalleryPageComponent implements OnInit {
     afterItem.position--;
     
     this.sortMediaForSection(sectionIndex);
+    this.persistGalleryLayout();
   }
 
   deleteMedia(sectionIndex:number,mediaIndex:number){
@@ -124,10 +135,50 @@ export class GalleryPageComponent implements OnInit {
     for(let i = 0; i < section.media.length;i++){
       section.media[i].position = i+1;
     }
+
+    this.persistGalleryLayout();
   }
 
   sortMediaForSection(sectionIndex:number){
     let section = this.gallery.sections[sectionIndex];
     section.media.sort((a,b)=>{return a.position - b.position});
   }
+
+
+  imageSrc:string;
+  youtubeURL:string;
+  imageFile:File = null;
+  
+  saveChanges(){
+    let type = "";
+    if (this.imageSrc){
+      type = "image";
+    }
+    if(this.youtubeURL){
+      type = "video";
+    }
+    // this.service.addImage(this.imageFile).then();
+  }
+
+  onImageUploaded(event){
+    this.imageFile = <File> event.target.files[0];
+    const reader = new FileReader();
+    // console.log(event)
+
+    if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+      };
+    }
+
+  }
+
+  updateYoutubeUrl(event){
+    this.youtubeURL = event.target.value;
+    // console.log(this.youtubeURL);
+  }
+
 }

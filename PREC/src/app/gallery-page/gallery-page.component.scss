@@ -23,6 +23,7 @@ $image-dimension:28vw;
 
 
 .section {
+  padding-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,6 +105,55 @@ h1{
 }
 
 
+.new-media-container{
+  min-height: $image-dimension;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-media-container-inner{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+[type="file"] {
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
+
+[type="file"] + label {
+  background: $prec-yellow;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: inherit;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  outline: none;
+  padding: 1rem 50px;
+  position: relative;
+  transition: all 0.3s;
+  vertical-align: middle;
+
+  &:hover {
+    background-color: darken($prec-yellow, 2%);
+  }
+}
+
+.preview{
+  width: 100px;
+  height: auto;
+  margin-bottom: 2vh;
+}
+
 ::ng-deep .mat-form-field {
   .mat-input-element {
     color: white;
@@ -143,4 +193,28 @@ h1{
 
 ::ng-deep .field input {
   caret-color: $prec-yellow;
+}
+
+.submitBTN:disabled{
+  background-color: rgb(144, 144, 144);
+  color: rgb(163, 163, 163);
+  cursor:default;
+  border: none;
+  border-radius: 1vh;
+  animation: none;
+  width: 10%;
+}
+
+.submitBTN:enabled{
+  background-color: $prec-yellow;
+  color: white;
+  cursor:default;
+  border: none;
+  border-radius: 1vh;
+  animation: none;
+  width: 10%;
+}
+
+.submitBTN:active{
+  width: 9.5%;
 }

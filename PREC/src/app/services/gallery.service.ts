@@ -30,7 +30,21 @@ export class GalleryService {
     return data;
   }
 
-  
+  async updateGalleryLayout(gallery:sectionsDTO){
+    for (let section of gallery.sections){
+      for (let m of section.media){
+          if(m.type === "image"){
+            m.sourceURL = m.sourceURL.split(environment.backendAPIURL + '/images/')[1];
+          }
+        }
+      }
+    // console.log(gallery);
+    // const res = await axios.get<sectionsDTO>(this.apiURL+"/layout");
+    const res = await axios.put<sectionsDTO>(this.apiURL+"/layout",gallery);
+    // console.log(res)
+    return res;
+  }
+
   async deleteImage(id:string){
     const token = localStorage.getItem("JWT")
     const jwt = `Bearer ${token}`;
@@ -74,64 +88,64 @@ export class GalleryService {
           // }
         }
       }
-    }
+  }
     
-     getGalleryLayoutMock(){
-      let mockData:sectionsDTO = {
-        "_id": "6382128677fc21036d7582df",
-        "sections": [
-            {
-                "name": "Event 2",
-                "date": "",
-                "position": 2,
-                "media": [
-                    {
-                        "position": 1,
-                        "type": "image",
-                        "sourceURL": "assets/imgs/bg2.png",
-                        "caption": "media 1"
-                    },
-                    {
-                        "position": 2,
-                        "type": "image",
-                        "sourceURL": "assets/imgs/bg2.png",
-                        "caption": "media 2"
-                    },
-                    {
-                        "position": 3,
-                        "type": "image",
-                        "sourceURL": "assets/imgs/bg2.png",
-                        "caption": "media 2"
-                    },
-                    {
-                        "position": 4,
-                        "type": "image",
-                        "sourceURL": "assets/imgs/bg2.png",
-                        "caption": "media 2"
-                    }
-                ]
-            },
-            {
-                "name": "Event 1",
-                "date": "",
-                "position": 1,
-                "media": [
-                    {
-                        "position": 2,
-                        "type": "image",
-                        "sourceURL": "assets/imgs/bg2.png",
-                        "caption": "media 2"
-                    },
-                    {
-                        "position": 1,
-                        "type": "image",
-                        "sourceURL": "assets/imgs/bg2.png",
-                        "caption": "media 1"
-                    }
-                ]
-            }
-        ]
-    }
-    return mockData;
-    }
+  getGalleryLayoutMock(){
+    let mockData:sectionsDTO = {
+      "_id": "6382128677fc21036d7582df",
+      "sections": [
+          {
+              "name": "Event 2",
+              "date": "",
+              "position": 1,
+              "media": [
+                  {
+                      "position": 1,
+                      "type": "image",
+                      "sourceURL": "assets/imgs/bg2.png",
+                      "caption": "media 1"
+                  },
+                  {
+                      "position": 2,
+                      "type": "image",
+                      "sourceURL": "assets/imgs/bg2.png",
+                      "caption": "media 2"
+                  },
+                  {
+                      "position": 3,
+                      "type": "image",
+                      "sourceURL": "assets/imgs/bg2.png",
+                      "caption": "media 2"
+                  },
+                  {
+                      "position": 4,
+                      "type": "image",
+                      "sourceURL": "assets/imgs/bg2.png",
+                      "caption": "media 2"
+                  }
+              ]
+          },
+          {
+              "name": "Event 1",
+              "date": "",
+              "position": 2,
+              "media": [
+                  {
+                      "position": 1,
+                      "type": "image",
+                      "sourceURL": "assets/imgs/bg2.png",
+                      "caption": "media 2"
+                  },
+                  {
+                      "position": 2,
+                      "type": "image",
+                      "sourceURL": "assets/imgs/bg2.png",
+                      "caption": "media 1"
+                  }
+              ]
+          }
+      ]
+  }
+  return mockData;
+  }
 }
