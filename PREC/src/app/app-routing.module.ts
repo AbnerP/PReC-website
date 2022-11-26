@@ -8,6 +8,7 @@ import { DriversComponent } from './drivers/Drivers.component';
 import { AddEventComponent } from './events/add-event/add-event.component';
 import { EventPageComponent } from './events/event-page/event-page.component';
 import { EventsComponent } from './events/events.component';
+import { AddGalleryImage } from './gallery-page/add-image/add-image.component';
 import { GalleryPageComponent } from './gallery-page/gallery-page.component';
 import { HomeComponent } from './home/home.component';
 import { IsAdminGuard } from './is-admin.guard';
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path:'events/update/:id',component:AddEventComponent, canActivate:[IsAdminGuard]},
 
   {path:'gallery',component:GalleryPageComponent},
+  {path:'gallery/new',component:AddGalleryImage},
 
   {path:'users',component:UsersComponent, canActivate:[IsAdminGuard]},
   {path:'settings',component:AccountSettingsComponent,canActivate:[IsUserGuard]},

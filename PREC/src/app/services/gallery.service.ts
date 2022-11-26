@@ -4,13 +4,15 @@ import axios from "axios";
 import { driverDTO, driversDTO } from '../models/driversDTO.model';
 import { driverInfo } from '../models/drivers.model';
 import { HttpClient } from '@angular/common/http';
-import { galleryDTO } from '../models/galleryDTO.model';
+import { galleryDTO, sectionsDTO } from '../models/galleryDTO.model';
+import { DomSanitizer } from '@angular/platform-browser';
 @Injectable({
   providedIn: 'root'
 })
 export class GalleryService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,
+    private _sanitizer: DomSanitizer) { }
 
   private apiURL = environment.backendAPIURL + '/gallery';
 
@@ -20,6 +22,12 @@ export class GalleryService {
       image.imageURL = environment.backendAPIURL + '/images/'+ image.imageURL;
     }
     return res.data;
+  }
+
+  async getGalleryLayout(){
+    const {data} = await axios.get<sectionsDTO>(this.apiURL+"/layout");
+    this.updateImagesURL(data.sections);
+    return data;
   }
 
   async deleteImage(id:string){
@@ -35,7 +43,7 @@ export class GalleryService {
     return res.data;
   }
 
-  async addImage(driver:driverInfo, img:File){
+  async addImage(img:File){
     const token = localStorage.getItem("JWT")
     const jwt = `Bearer ${token}`;
     const config = {
@@ -45,11 +53,26 @@ export class GalleryService {
     };
 
     const fd = new FormData();
-    if(img != null){
+    if(img == null){
       return null;
     }
     fd.append('image',img,img.name);
     return await axios.post(this.apiURL,fd,config);
+  }
+  
+  updateImagesURL(sections){
+    sections.sort((a,b)=>{return a.position - b.position});
+    for (let section of sections){
+      section.media.sort((a,b)=>{return a.position - b.position})
+      for (let m of section.media){
+        if(m.type === "image"){
+          m.sourceURL = environment.backendAPIURL + '/images/'+ m.sourceURL;
+        }
+        // if(m.type === "video"){
+        //   m.sourceURL = this._sanitizer.bypassSecurityTrustResourceUrl(m.sourceURL);
+        // }
+      }
+    }
   }
 
 }

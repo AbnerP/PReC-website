@@ -15,4 +15,10 @@ router.post('/', uploadMiddleware,GalleryController.imageCreateNew);
 //DELETE
 router.delete('/:imageId', GalleryController.imageDelete);
 
+//POST
+router.post('/layout/', GalleryController.createGalleryLayout);
+
+//PUT
+router.put('/layout/', GalleryController.modifyGalleryLayout);
+router.get('/layout/', GalleryController.getLayout);
 module.exports = router;

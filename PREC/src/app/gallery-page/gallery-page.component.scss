@@ -2,6 +2,19 @@ $prec-yellow:#ffd000;
 $prec-yellowSecondary:#ffdb0e;
 $prec-blue:#252B42;
 
+$image-dimension:40vw;
+
+@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lightgallery.css');
+@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-zoom.css');
+.header{
+  padding-top: 3vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .body{
   // border-top: 1px solid $prec-yellow;
   min-height: 90vh;
@@ -9,8 +22,15 @@ $prec-blue:#252B42;
   background-color: $prec-blue;
 }
 
-.images {
-  padding: 0 1rem;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mediaContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -19,23 +39,25 @@ $prec-blue:#252B42;
 }
 
 .image {
-  max-width: 500px;
-  min-width: 200px;
+  width: $image-dimension;
+  height: $image-dimension;
   margin: 1rem;
-  height: auto;
+  border-radius: 1rem;
+  object-fit: cover;
 }
 
-.header{
-  padding-top: 3vh;
-  width: 100%;
+
+
+h1{
+  font-size: 26px;
+  color: white;
+}
+
+.options{
   display: flex;
   justify-content: center;
-
-  h1{
-    font-size: 26px;
-    color: white;
-  }
 }
+
 .deleteBTN{
   margin: .5rem;
   padding: .1rem;
@@ -44,4 +66,17 @@ $prec-blue:#252B42;
   background-color: red;
   border: none;
   border-radius: 5px;
+}
+
+@media (max-width:700px) {
+  .image {
+    width: 80vw;
+    height: 80vw;
+  }
+}
+@media (min-width:701px) {
+  .image {
+    width: $image-dimension;
+    height: $image-dimension;
+  }
 }

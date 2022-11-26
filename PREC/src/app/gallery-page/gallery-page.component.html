@@ -1,17 +1,25 @@
 <div class="body">
+
     <div class="header">
-      <h1>Gallery</h1>
+      <app-authorize-view [role]="'admin'">
+        <ng-container authorized>
+          <div class="addDriver">
+            <button mat-flat-button routerLink="new" routerLinkActive="active">Add Image</button>
+          </div>
+        </ng-container>
+      </app-authorize-view>
     </div>
-    <div class="images">
-      <div class="imageContainer"  *ngFor="let image of images">
-          <img class="image"src="{{image.imageURL}}" alt="">
-          <app-authorize-view [role]="'admin'">
-            <ng-container authorized>
-              <div class="options">
-                <button tton mat-flat-button class="deleteBTN" (click)="deleteImage(image._id)"><mat-icon>clear</mat-icon></button>
-              </div>
-            </ng-container>
-          </app-authorize-view>
-      </div> 
+    
+    <div class="section" *ngFor="let section of gallery.sections">
+      <h1>{{section.name}}</h1>
+      <div class="mediaContainer">
+        <div class="media" *ngFor="let m of section.media">
+          <a href="{{m.sourceURL}}">
+            <img *ngIf="m.type === 'image'" class="image" src="{{m.sourceURL}}" alt="{{m.caption}}">
+          </a>
+          <app-media-item *ngIf="m.type === 'video'"  class="image" [rawURL]="m.sourceURL"></app-media-item>
+        </div>
+      </div>
     </div>
+
 </div>

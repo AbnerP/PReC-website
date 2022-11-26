@@ -28,6 +28,9 @@ import { SignupComponent } from './security/signup/signup.component';
 import { UsersComponent } from './users/users.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { GalleryPageComponent } from './gallery-page/gallery-page.component';
+import { AddGalleryImage } from './gallery-page/add-image/add-image.component';
+import { LightgalleryModule } from 'lightgallery/angular/12';
+import { MediaItemComponent } from './gallery-page/media-item/media-item.component';
 
 
 @NgModule({
@@ -54,6 +57,8 @@ import { GalleryPageComponent } from './gallery-page/gallery-page.component';
       UsersComponent,
       AccountSettingsComponent,
       GalleryPageComponent,
+      AddGalleryImage,
+      MediaItemComponent,
    ],
   imports: [
     BrowserModule,
@@ -63,6 +68,7 @@ import { GalleryPageComponent } from './gallery-page/gallery-page.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    LightgalleryModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

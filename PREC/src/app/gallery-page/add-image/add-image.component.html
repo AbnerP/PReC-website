@@ -1,0 +1,15 @@
+<div class="body">
+  <div class="header">
+    <h1>Add Image</h1>
+  </div>
+  <div class="galleryForm" [formGroup]="form">
+
+    <input required type="file" id="file" (change)="onImageUploaded($event)">
+    <label for="file" class="file-btn">Upload Image</label>
+
+    <img [src]="imageSrc" *ngIf="imageSrc" class="preview">
+
+    <button class="submitBTN" mat-stroked-button type="submit" [disabled]="!imageSrc" (click)="saveChanges()">Submit</button>
+  </div>
+
+</div>
