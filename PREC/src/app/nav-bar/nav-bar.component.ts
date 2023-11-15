@@ -12,6 +12,7 @@ export class NavBarComponent implements OnInit {
   innerWidth:number;
   cutOff:boolean;
   imgURL:string = environment.backendAPIURL+"/images/61cb24aceb63a128cec77080";
+  blogURL:string = environment.wordpressBlogURL;
 
   constructor(public service:SecurityService,
     private router:Router) { }

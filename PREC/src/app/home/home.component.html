@@ -3,9 +3,9 @@
 
   <img class="bg-image" src="assets/imgs/bg.png" alt="">
 
-  <app-calendar-preview></app-calendar-preview>
+  <app-calendar-preview [events]="events"></app-calendar-preview>
 
-  <hr>
+  <hr *ngIf="events.length > 0">
 
   <app-about-us></app-about-us>
 

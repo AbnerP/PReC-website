@@ -19,7 +19,8 @@
 
     <div class="pages">
       <a mat-button routerLink="home" routerLinkActive="active">Home</a>
-      <a mat-button routerLink="drivers" routerLinkActive="active">Drivers</a>
+      <a mat-button [href]="blogURL">Blog</a>
+      <!-- <a mat-button routerLink="drivers" routerLinkActive="active">Drivers</a> -->
       <a mat-button routerLink="events" routerLinkActive="active">Events</a>
       <a mat-button routerLink="calculator" routerLinkActive="active">Calculator</a>
       <app-authorize-view [role]="'admin'">
@@ -27,7 +28,7 @@
           <a mat-button routerLink="users" routerLinkActive="active">Users</a>
         </ng-container>
       </app-authorize-view>
-      <a mat-button routerLink="about-us" routerLinkActive="active">About Us</a>
+      <!-- <a mat-button routerLink="about-us" routerLinkActive="active">About Us</a> -->
     </div>
 
     <app-authorize-view>
@@ -53,7 +54,8 @@
     <button mat-icon-button [matMenuTriggerFor]="beforeMenu"  id="menuBTN"><mat-icon color="accent">menu</mat-icon></button>
     <mat-menu class="customize" #beforeMenu="matMenu" xPosition="before">
       <a mat-menu-item routerLink="home" routerLinkActive="active" class="menuLinks">Home</a>
-      <a mat-menu-item routerLink="drivers" routerLinkActive="active" class="menuLinks">Drivers</a>
+      <a mat-menu-item [href]="blogURL" class="menuLinks">Blog</a>
+      <!-- <a mat-menu-item routerLink="drivers" routerLinkActive="active" class="menuLinks">Drivers</a> -->
       <a mat-menu-item routerLink="events" routerLinkActive="active" class="menuLinks">Events</a>
       <a mat-menu-item routerLink="calculator" routerLinkActive="active" class="menuLinks">Calculator</a>
       <app-authorize-view [role]="'admin'">
@@ -61,7 +63,7 @@
           <a mat-menu-item routerLink="users" routerLinkActive="active" class="menuLinks">Users</a>
         </ng-container>
       </app-authorize-view>
-      <a mat-menu-item routerLink="about-us" routerLinkActive="active" class="menuLinks">About Us</a>
+      <!-- <a mat-menu-item routerLink="about-us" routerLinkActive="active" class="menuLinks">About Us</a> -->
       <app-authorize-view>
         <ng-container authorized>
           <div class="options">

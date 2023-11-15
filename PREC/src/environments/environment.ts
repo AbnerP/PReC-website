@@ -6,8 +6,9 @@ export const environment = {
   production: false,
   googleapiURL: 'https://www.googleapis.com/calendar/v3',
   calculatorApiURL: 'https://prec-api.azurewebsites.net/api',
-  backendAPIURL: 'http://localhost:3000/api'
-  // backendAPIURL: 'https://puertoricoeracingclub.herokuapp.com/api'
+  wordpressBlogURL: 'http://blog.puertoricoeracing.com/',
+  // backendAPIURL: 'http://localhost:3000/api'
+  backendAPIURL: 'https://puertoricoeracingclub.herokuapp.com/api'
 };
 
 /*

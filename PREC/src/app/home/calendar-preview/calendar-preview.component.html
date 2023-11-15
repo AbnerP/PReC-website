@@ -1,4 +1,4 @@
-<div class="box">
+<div *ngIf="events.length > 0" class="box">
   <a routerLink="../events" routerLinkActive="active" style="text-decoration: none;"><h2>Upcoming Events</h2></a>
   <div class="events">
     <div *ngFor="let event of events" class="card">
