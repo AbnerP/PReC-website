@@ -4,6 +4,7 @@ var morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const serverless = require('serverless-http');
 require("dotenv/config");
 
 const port = process.env.PORT || 3000;
@@ -18,13 +19,17 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
-app.get("", (req, res) => res.send("Hello"));
+app.get("/healthcheck", (req, res) => {
+    console.log("Healthy");
+    res.json({message:"Healthy"})
+});
 app.use("/api/uploads", express.static("uploads"));
 app.use("/api/drivers", driversRoute);
 app.use("/api/events", eventsRoute);
 app.use("/api/user", userRoute);
 app.use("/api/images", imageRoute);
 
+const handler = serverless(app, { provider: 'aws' });
 //Listening
 mongoose
   .connect(process.env.DB_CONNECTION, {
@@ -38,4 +43,9 @@ mongoose
     });
   });
 
-module.exports = app;
+module.exports.handler = async (event, context, callback) => {
+//  context.res = await handler(context, req);
+    const response = handler(event, context, callback);
+    return response;
+}
+// module.exports = app;
