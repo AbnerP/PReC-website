@@ -30,12 +30,12 @@ app.use("/api/user", userRoute);
 app.use("/api/images", imageRoute);
 
 const handler = serverless(app, { provider: 'aws' });
+
 //Listening
 mongoose
   .connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // useCreateIndex: true,
   })
   .then(() => {
     app.listen(port, () => {
@@ -44,7 +44,6 @@ mongoose
   });
 
 module.exports.handler = async (event, context, callback) => {
-//  context.res = await handler(context, req);
     const response = handler(event, context, callback);
     return response;
 }
