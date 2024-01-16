@@ -15,8 +15,8 @@ export class PREC_STACK extends cdk.Stack {
     const MAILCHIMP_SERVER_CODE = secrets.secretValueFromJson("MAILCHIMP_SERVER_CODE").unsafeUnwrap();
 
     const lambda = new aws_lambda.Function(this, 'PrecBackend_Lambda', {
-        runtime: aws_lambda.Runtime.NODEJS_14_X,
-        handler: 'app.handler',
+        runtime: aws_lambda.Runtime.NODEJS_18_X,
+        handler: 'lambda.handler',
         code: aws_lambda.Code.fromAsset('../Backend'),
         environment:{
             DB_CONNECTION: DB_CONNECTION, 
@@ -24,7 +24,9 @@ export class PREC_STACK extends cdk.Stack {
             MAILCHIMP_API_KEY: MAILCHIMP_API_KEY,
             MAILCHIMP_LIST_ID: MAILCHIMP_LIST_ID, 
             MAILCHIMP_SERVER_CODE: MAILCHIMP_SERVER_CODE 
-        }
+        },
+        timeout: cdk.Duration.seconds(30),
+        logRetention: 7
     });
 
     const url = new aws_lambda.FunctionUrl(this, 'PrecBackend_Lambda_URL',{

@@ -4,7 +4,6 @@ var morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const serverless = require('serverless-http');
 require("dotenv/config");
 
 const port = process.env.PORT || 3000;
@@ -29,22 +28,26 @@ app.use("/api/events", eventsRoute);
 app.use("/api/user", userRoute);
 app.use("/api/images", imageRoute);
 
-const handler = serverless(app, { provider: 'aws' });
-
 //Listening
-mongoose
-  .connect(process.env.DB_CONNECTION, {
+// mongoose
+//   .connect(process.env.DB_CONNECTION, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => {
+//     app.listen(port, () => {
+//       console.log(`Listening on: http://localhost:${port}/`);
+//     });
+//   });
+
+const connectDB = async() => {
+  await mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  })
-  .then(() => {
-    app.listen(port, () => {
-      console.log(`Listening on: http://localhost:${port}/`);
-    });
   });
 
-module.exports.handler = async (event, context, callback) => {
-    const response = handler(event, context, callback);
-    return response;
+  console.log(`Connected to DB ${mongoose.connection}`);
 }
-// module.exports = app;
+connectDB();
+
+module.exports = app;

@@ -5,8 +5,8 @@ require('dotenv').config();
 
 const mongoURI = process.env.DB_CONNECTION;
 const conn = mongoose.createConnection(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+ useNewUrlParser: true,
+ useUnifiedTopology: true,
 });
 
 let gfs;
@@ -26,21 +26,37 @@ router.post('/upload/', uploadMiddleware, async (req, res) => {
   return res.send(file.id);
 });
 
-router.get('/:id', ({ params: { id } }, res) => {
+router.get('/:id', async ({ params: { id } }, res) => {
     if (!id || id === 'undefined') return res.status(400).send('no image id');
     const _id = new mongoose.Types.ObjectId(id);
-    gfs.find({ _id }).toArray((err, files) => {
-        if (!files || files.length === 0)
-        return res.status(400).send('no files exist');
-        gfs.openDownloadStream(_id).pipe(res);
+    
+    while (!gfs){ await sleep(100); }
+
+    gfs.find({ _id }).toArray(async (err, files) => {
+        if (!files || files.length === 0) 
+          res.setHeader("Content-Type","image/png");
+        var buffer = await streamToString(gfs.openDownloadStream(_id));
+        res.status(200).send(buffer);
     });
 });
+
+function streamToString (stream) {
+  const chunks = [];
+  return new Promise((resolve, reject) => {
+    stream.on('data', (chunk) => chunks.push(Buffer.from(chunk)));
+    stream.on('error', (err) => reject(err));
+    stream.on('end', () => resolve(Buffer.concat(chunks)));
+  })
+}
 
 const deleteImage = (id) => {
   if (!id || id === 'undefined') return res.status(400).send('no image id');
   const _id = new mongoose.Types.ObjectId(id);
-  gfs.delete(_id, (err) => {
+    gfs.delete(_id, (err) => {
     if (err) return res.status(500).send('image deletion error');
   });
 };
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
 module.exports = router;
