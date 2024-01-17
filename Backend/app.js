@@ -18,7 +18,10 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
-app.get("", (req, res) => res.send("Hello"));
+app.get("/healthcheck", (req, res) => {
+    console.log("Healthy");
+    res.json({message:"Healthy"})
+});
 app.use("/api/uploads", express.static("uploads"));
 app.use("/api/drivers", driversRoute);
 app.use("/api/events", eventsRoute);
@@ -26,16 +29,25 @@ app.use("/api/user", userRoute);
 app.use("/api/images", imageRoute);
 
 //Listening
-mongoose
-  .connect(process.env.DB_CONNECTION, {
+// mongoose
+//   .connect(process.env.DB_CONNECTION, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => {
+//     app.listen(port, () => {
+//       console.log(`Listening on: http://localhost:${port}/`);
+//     });
+//   });
+
+const connectDB = async() => {
+  await mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // useCreateIndex: true,
-  })
-  .then(() => {
-    app.listen(port, () => {
-      console.log(`Listening on: http://localhost:${port}/`);
-    });
   });
+
+  console.log(`Connected to DB ${mongoose.connection}`);
+}
+connectDB();
 
 module.exports = app;
