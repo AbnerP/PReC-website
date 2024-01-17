@@ -9,7 +9,7 @@ export const environment = {
   wordpressBlogURL: 'http://blog.puertoricoeracing.com/',
   //  backendAPIURL: 'http://localhost:3000/api'
   // backendAPIURL: 'https://puertoricoeracingclub.herokuapp.com/api'
-  backendAPIURL: 'https://vm7saihigrmieermkzufohdfsu0malzj.lambda-url.us-east-1.on.aws/api'
+  backendAPIURL: 'https://efqrzjkzibwxcf2s3z7tywdism0bvomh.lambda-url.us-east-1.on.aws/api'
 };
 
 /*

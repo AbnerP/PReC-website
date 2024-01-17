@@ -30,7 +30,8 @@ export class PREC_STACK extends cdk.Stack {
     });
 
     const url = new aws_lambda.FunctionUrl(this, 'PrecBackend_Lambda_URL',{
-        function: lambda
+        function: lambda,
+        authType: cdk.aws_lambda.FunctionUrlAuthType.NONE
     });
   }
 }

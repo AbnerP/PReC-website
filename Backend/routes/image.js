@@ -34,7 +34,8 @@ router.get('/:id', async ({ params: { id } }, res) => {
 
     gfs.find({ _id }).toArray(async (err, files) => {
         if (!files || files.length === 0) 
-          res.setHeader("Content-Type","image/png");
+          return res.status(400).send('no files exist');   
+        res.setHeader("Content-Type","image/png");
         var buffer = await streamToString(gfs.openDownloadStream(_id));
         res.status(200).send(buffer);
     });

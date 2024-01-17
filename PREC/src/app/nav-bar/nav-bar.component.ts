@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class NavBarComponent implements OnInit {
   innerWidth:number;
   cutOff:boolean;
-  imgURL:string = environment.backendAPIURL+"/images/61cb24aceb63a128cec77080";
+  imgURL:string = './assets/imgs/logo.png'
   blogURL:string = environment.wordpressBlogURL;
 
   constructor(public service:SecurityService,
